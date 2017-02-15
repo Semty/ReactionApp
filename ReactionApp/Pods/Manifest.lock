@@ -1,0 +1,34 @@
+PODS:
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
+  - Charts (3.0.1):
+    - Charts/Core (= 3.0.1)
+  - Charts/Core (3.0.1)
+  - RandomKit (3.0.0):
+    - ShiftOperations
+  - ShiftOperations (1.0.0)
+
+DEPENDENCIES:
+  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
+  - Charts
+  - RandomKit (~> 3.0.0)
+
+EXTERNAL SOURCES:
+  ChameleonFramework:
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
+CHECKOUT OPTIONS:
+  ChameleonFramework:
+    :commit: dcf98f9bf3a632a7f40679b7da46f09681e48526
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
+SPEC CHECKSUMS:
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  Charts: 0e84f4418e87dad6a9edde221fba37ebb51d3ba7
+  RandomKit: 03b4be99ecc35850b794e0185689931d72024e93
+  ShiftOperations: 0c77c06851e7976c2665d601b46af123dbffeade
+
+PODFILE CHECKSUM: fc4a435c6f362108e41c312192030fe8394af351
+
+COCOAPODS: 1.2.0
