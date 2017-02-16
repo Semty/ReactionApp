@@ -8,25 +8,14 @@
 
 import UIKit
 import RandomKit
-import ChameleonFramework
-import Charts
 
 class ReactionViewController: UIViewController {
     
 // MARK: - Properties
     
-    @IBOutlet weak var circleImageView: UIImageView!
-    
-// MARK: - Class Properties
-    
-    static let circleAnimationDuration: TimeInterval = 0.2
+    @IBOutlet weak var circleView: CircleView!
     
 // MARK: - Private Properties
-    
-    private let circleRedImage      = UIImage.init(named: "circleRed")
-    private let circleGreenImage    = UIImage.init(named: "circleGreen")
-    private let circleBlueImage     = UIImage.init(named: "circleBlue")
-    private let circleVioletImage   = UIImage.init(named: "circleViolet")
     
     private var startTime:  CFTimeInterval?
     private var endTime:    CFTimeInterval?
@@ -45,13 +34,9 @@ class ReactionViewController: UIViewController {
             return nil
         }
     }
-    
-    //private var isHoldingCircle     = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.circleImageView.alpha = 0.75
         
         // Do any additional setup after loading the view.
     }
@@ -65,37 +50,41 @@ class ReactionViewController: UIViewController {
     
     func circleTouchStarted() {
         
-        self.circleImageView.image = self.circleRedImage
+        Circle.sharedCircle.state = .preparation
+        self.circleView.setNeedsDisplay()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(within: 2...8), execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(within: Circle.sharedCircle.currentPreparationTime),
+                                      execute: {
             
-            if self.circleImageView.image == self.circleRedImage {
+            if Circle.sharedCircle.state == .preparation {
+                
+                Circle.sharedCircle.state = .action
+                self.circleView.setNeedsDisplay()
                 
                 self.startTime = CACurrentMediaTime()
-                
-                self.circleImageView.image = self.circleGreenImage
             }
         })
         
-        UIView.animate(withDuration: ReactionViewController.circleAnimationDuration) { 
+        UIView.animate(withDuration: Circle.sharedCircle.animationDuration) { 
             
-            self.circleImageView.transform  = CGAffineTransform.init(scaleX: 1.1, y: 1.1)
+            self.circleView.transform  = CGAffineTransform.init(scaleX: 1.1, y: 1.1)
         }
     }
     
     func circleTouchEnded() {
         
-        UIView.animate(withDuration: ReactionViewController.circleAnimationDuration) { 
+        Circle.sharedCircle.state = .none
+        
+        UIView.animate(withDuration: Circle.sharedCircle.animationDuration) {
             
-            self.circleImageView.transform  = CGAffineTransform.identity
-            
-            self.circleImageView.image = self.circleBlueImage
+            self.circleView.transform  = CGAffineTransform.identity
+            self.circleView.setNeedsDisplay()
         }
     }
     
     func touchEndedForCircle(with touch: UITouch, and event: UIEvent?) {
         
-        if self.circleImageView.image == self.circleRedImage {
+        if Circle.sharedCircle.state == .preparation {
             
             self.circleTouchEnded()
             
@@ -103,7 +92,7 @@ class ReactionViewController: UIViewController {
             
             print("\n\nToo Early!\n")
             
-        } else if self.circleImageView.image == self.circleGreenImage {
+        } else if Circle.sharedCircle.state == .action {
             
             self.endTime = CACurrentMediaTime()
             
@@ -127,7 +116,7 @@ class ReactionViewController: UIViewController {
         
         let hitView = self.view.hitTest(pointOnTheMainView, with: event)
         
-        if hitView == self.circleImageView {
+        if hitView == self.circleView {
         
             self.circleTouchStarted()
         }

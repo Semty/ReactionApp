@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FO8-5U-4ff">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,43 +11,79 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Reaction View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Tab Bar Controller-->
+        <scene sceneID="RCc-JL-7ny">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ReactionViewController" customModule="ReactionApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="FO8-5U-4ff" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Amj-MT-vCo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="1T6-2k-Jxl" kind="relationship" relationship="viewControllers" id="BTU-D5-7uT"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iOG-7Q-h7Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-775" y="122"/>
+        </scene>
+        <!--Training-->
+        <scene sceneID="WUJ-61-yo1">
+            <objects>
+                <navigationController id="1T6-2k-Jxl" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Training" image="training" id="5T0-j1-cCN"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ga8-g3-W6H">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="MvT-JN-wkA" kind="relationship" relationship="rootViewController" id="Kc0-An-xbK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YVq-qF-dBh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="151" y="122"/>
+        </scene>
+        <!--Reaction Test-->
+        <scene sceneID="1ef-pD-Joh">
+            <objects>
+                <viewController id="MvT-JN-wkA" customClass="ReactionViewController" customModule="ReactionApp" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="Ot6-VJ-pcq"/>
+                        <viewControllerLayoutGuide type="bottom" id="Frm-1J-ATg"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="HRq-Cc-HLn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circleBlue" translatesAutoresizingMaskIntoConstraints="NO" id="C2Q-Mj-nr9">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41j-pY-I8Q" customClass="CircleView" customModule="ReactionApp">
                                 <rect key="frame" x="62.5" y="208.5" width="250" height="250"/>
+                                <color key="backgroundColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="C2Q-Mj-nr9" secondAttribute="height" multiplier="1:1" id="w1K-5O-RpV"/>
+                                    <constraint firstAttribute="width" secondItem="41j-pY-I8Q" secondAttribute="height" multiplier="1:1" id="Ltd-hG-Qug"/>
                                 </constraints>
-                            </imageView>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="C2Q-Mj-nr9" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.374813" id="Jie-47-Bot"/>
-                            <constraint firstItem="C2Q-Mj-nr9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Kdu-RQ-4gf"/>
-                            <constraint firstItem="C2Q-Mj-nr9" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.666667" priority="999" id="Xzb-RS-mmq"/>
-                            <constraint firstItem="C2Q-Mj-nr9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nBy-HD-Lyd"/>
+                            <constraint firstItem="41j-pY-I8Q" firstAttribute="width" secondItem="HRq-Cc-HLn" secondAttribute="width" multiplier="0.666667" priority="999" id="Kbv-BQ-Qr0"/>
+                            <constraint firstItem="41j-pY-I8Q" firstAttribute="height" secondItem="HRq-Cc-HLn" secondAttribute="height" multiplier="0.374813" id="bpv-pN-cg4"/>
+                            <constraint firstItem="41j-pY-I8Q" firstAttribute="centerY" secondItem="HRq-Cc-HLn" secondAttribute="centerY" id="czW-Pl-FmA"/>
+                            <constraint firstItem="41j-pY-I8Q" firstAttribute="centerX" secondItem="HRq-Cc-HLn" secondAttribute="centerX" id="jhO-hH-CpX"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Reaction Test" id="g91-sU-dbe"/>
                     <connections>
-                        <outlet property="circleImageView" destination="C2Q-Mj-nr9" id="E0I-qE-dM5"/>
+                        <outlet property="circleView" destination="41j-pY-I8Q" id="IVz-gX-ASV"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wJB-ZG-OaR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="116" y="121.88905547226388"/>
+            <point key="canvasLocation" x="1004" y="122"/>
         </scene>
     </scenes>
     <resources>
-        <image name="circleBlue" width="512" height="512"/>
+        <image name="training" width="32" height="32"/>
     </resources>
 </document>
