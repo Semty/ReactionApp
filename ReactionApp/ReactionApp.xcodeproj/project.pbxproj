@@ -251,6 +251,7 @@
 				TargetAttributes = {
 					44D087931E547DAF00180DD9 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = XWGY2HKNAY;
 						ProvisioningStyle = Automatic;
 					};
 					44D087AA1E547DAF00180DD9 = {
@@ -612,6 +613,8 @@
 			baseConfigurationReference = 5B51BBB4330E48D4BE6FEE3C /* Pods-ReactionApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = XWGY2HKNAY;
 				INFOPLIST_FILE = ReactionApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -626,6 +629,8 @@
 			baseConfigurationReference = F438793F6FC39C17F09DF974 /* Pods-ReactionApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = XWGY2HKNAY;
 				INFOPLIST_FILE = ReactionApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

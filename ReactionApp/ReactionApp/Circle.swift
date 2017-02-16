@@ -27,7 +27,7 @@ class Circle: NSObject {
     public var colorPreparation                 = FlatRed()   // default
     public var colorAction                      = FlatGreen() // default
     
-    public var animationDuration: TimeInterval  = 0.3         // default
+    public var animationDuration: TimeInterval  = 0.15         // default
     
     public var preparationTimeFrom              = 2.0         // default
     public var preparationTimeUntil             = 8.0         // default

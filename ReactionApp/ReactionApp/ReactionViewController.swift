@@ -15,20 +15,25 @@ class ReactionViewController: UIViewController {
     
     @IBOutlet weak var circleView: CircleView!
     
+    @IBOutlet weak var reactionResultLabel: UILabel!
+    @IBOutlet weak var shortInstructionLabel: UILabel!
+    
 // MARK: - Private Properties
     
     private var startTime:  CFTimeInterval?
     private var endTime:    CFTimeInterval?
     
+    private var timer = Timer()
+    
 // MARK: - Public Properties
     
-    public var reactionTime: String? {
+    public var reactionTime: Int? {
         
         if self.startTime != nil && self.endTime != nil {
             
             let resultTime = (self.endTime! - self.startTime!) * 1000
             
-            return String.init(format: "%1.f", resultTime)
+            return Int(resultTime)
             
         } else {
             return nil
@@ -50,20 +55,34 @@ class ReactionViewController: UIViewController {
     
     func circleTouchStarted() {
         
+        if self.reactionResultLabel.text != nil {
+            self.reactionResultLabel.text = nil
+        }
+        
+        if self.shortInstructionLabel.text != nil {
+            self.shortInstructionLabel.text = "Wait Green Color.."
+        }
+        
         Circle.sharedCircle.state = .preparation
         self.circleView.setNeedsDisplay()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + Double.random(within: Circle.sharedCircle.currentPreparationTime),
-                                      execute: {
-            
-            if Circle.sharedCircle.state == .preparation {
-                
-                Circle.sharedCircle.state = .action
-                self.circleView.setNeedsDisplay()
-                
-                self.startTime = CACurrentMediaTime()
-            }
-        })
+        self.timer = Timer.scheduledTimer(withTimeInterval: Double.random(within: Circle.sharedCircle.currentPreparationTime),
+                                         repeats: false) { (_) in
+                                            
+                                            if Circle.sharedCircle.state == .preparation {
+                                                
+                                                Circle.sharedCircle.state = .action
+                                                self.circleView.setNeedsDisplay()
+                                                
+                                                self.startTime = CACurrentMediaTime()
+                                                
+                                                if self.shortInstructionLabel.text != nil {
+                                                    self.shortInstructionLabel.text = "Throw the Circle!"
+                                                }
+                                            }
+        }
+        
+        RunLoop.current.add(self.timer, forMode: .commonModes)
         
         UIView.animate(withDuration: Circle.sharedCircle.animationDuration) { 
             
@@ -90,18 +109,26 @@ class ReactionViewController: UIViewController {
             
             self.startTime = nil
             
-            print("\n\nToo Early!\n")
+            self.reactionResultLabel.text = "Too Early!"
+            
+            self.timer.invalidate()
             
         } else if Circle.sharedCircle.state == .action {
+            
+            if self.shortInstructionLabel.text != nil {
+                self.shortInstructionLabel.text = nil
+            }
             
             self.endTime = CACurrentMediaTime()
             
             circleTouchEnded()
             
             if let reactionResult = self.reactionTime {
-                print("Congratulations! Your reaction time = \(reactionResult) ms")
+                
+                self.reactionResultLabel.text = "\(reactionResult) ms"
+                
             } else {
-                print("We are Sorry, but Something Went Wrong")
+                self.reactionResultLabel.text = "Error"
             }
         }
     }
