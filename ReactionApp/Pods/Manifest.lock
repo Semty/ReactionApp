@@ -2,16 +2,22 @@ PODS:
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
-  - Charts (3.0.1):
-    - Charts/Core (= 3.0.1)
   - Charts/Core (3.0.1)
+  - Charts/Realm (3.0.1):
+    - Charts/Core
+    - RealmSwift (~> 1.1)
   - RandomKit (3.0.0):
     - ShiftOperations
+  - Realm (1.1.0):
+    - Realm/Headers (= 1.1.0)
+  - Realm/Headers (1.1.0)
+  - RealmSwift (1.1.0):
+    - Realm (= 1.1.0)
   - ShiftOperations (1.0.0)
 
 DEPENDENCIES:
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
-  - Charts
+  - Charts/Realm
   - RandomKit (~> 3.0.0)
 
 EXTERNAL SOURCES:
@@ -27,8 +33,10 @@ SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Charts: 0e84f4418e87dad6a9edde221fba37ebb51d3ba7
   RandomKit: 03b4be99ecc35850b794e0185689931d72024e93
+  Realm: ceecf1a4540c4ce9efe196fe73fa9855bce05bd8
+  RealmSwift: 838058b2db95b12cb86bd0cf209df642c33fb60a
   ShiftOperations: 0c77c06851e7976c2665d601b46af123dbffeade
 
-PODFILE CHECKSUM: fc4a435c6f362108e41c312192030fe8394af351
+PODFILE CHECKSUM: 93cd4fcc27c0914bd5e7381e23f1c9708efce1b3
 
 COCOAPODS: 1.2.0

@@ -34,6 +34,16 @@
 			<key>orderHint</key>
 			<integer>6</integer>
 		</dict>
+		<key>Realm.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>RealmSwift.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
 		<key>ShiftOperations.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -53,6 +63,36 @@
 			<true/>
 		</dict>
 		<key>12E0D88CFFAD0B3362B8A374979E80AF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>24712DEB79F57D28F03EA1359679BACF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2B83A0E9C829666A5EF2A73FEFB17533</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3278524A96A851FC3B0FE7A54780B553</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>556898D7241316D441172C8799D58E6C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>685614DC76DA52AF800D3319B5736895</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>699364E9658D24FF319736159FDC959C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

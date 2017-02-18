@@ -11,14 +11,19 @@
 		438F1ABC97D2889232DACCE4 /* Pods_ReactionAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DBFF92BC89DA48170448B0 /* Pods_ReactionAppTests.framework */; };
 		446241B81E55B0EC00240B93 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446241B71E55B0EC00240B93 /* CircleView.swift */; };
 		446241BA1E55B5D200240B93 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446241B91E55B5D200240B93 /* Circle.swift */; };
+		44B90D031E584EB1001BC546 /* shortInstructionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B90D021E584EB1001BC546 /* shortInstructionLabel.swift */; };
+		44B90D051E5875CC001BC546 /* ReactionResultObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B90D041E5875CC001BC546 /* ReactionResultObject.swift */; };
+		44B90D081E588181001BC546 /* FirstStartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B90D071E588181001BC546 /* FirstStartApp.swift */; };
+		44B90D0C1E589CA4001BC546 /* RealmDemoBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B90D0B1E589CA4001BC546 /* RealmDemoBaseViewController.swift */; };
 		44D087981E547DAF00180DD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D087971E547DAF00180DD9 /* AppDelegate.swift */; };
 		44D0879D1E547DAF00180DD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44D0879B1E547DAF00180DD9 /* Main.storyboard */; };
-		44D087A01E547DAF00180DD9 /* ReactionApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44D0879E1E547DAF00180DD9 /* ReactionApp.xcdatamodeld */; };
 		44D087A21E547DAF00180DD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44D087A11E547DAF00180DD9 /* Assets.xcassets */; };
 		44D087A51E547DAF00180DD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44D087A31E547DAF00180DD9 /* LaunchScreen.storyboard */; };
 		44D087B01E547DAF00180DD9 /* ReactionAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D087AF1E547DAF00180DD9 /* ReactionAppTests.swift */; };
 		44D087BB1E547DB000180DD9 /* ReactionAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D087BA1E547DB000180DD9 /* ReactionAppUITests.swift */; };
 		44E46FEC1E54AA5300F453B9 /* ReactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E46FEB1E54AA5300F453B9 /* ReactionViewController.swift */; };
+		44FABE261E58A70300D38A07 /* RealmLineChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FABE251E58A70300D38A07 /* RealmLineChartViewController.swift */; };
+		44FABE291E58DAD500D38A07 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FABE281E58DAD500D38A07 /* BalloonMarker.swift */; };
 		7A9555973A8F3EE74B094D1C /* Pods_ReactionApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 934F4D896946D687B7047B20 /* Pods_ReactionApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,10 +48,13 @@
 		376C5D3EB9F4901558F1680D /* Pods-ReactionAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactionAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactionAppUITests/Pods-ReactionAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		446241B71E55B0EC00240B93 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		446241B91E55B5D200240B93 /* Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
+		44B90D021E584EB1001BC546 /* shortInstructionLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shortInstructionLabel.swift; sourceTree = "<group>"; };
+		44B90D041E5875CC001BC546 /* ReactionResultObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionResultObject.swift; sourceTree = "<group>"; };
+		44B90D071E588181001BC546 /* FirstStartApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstStartApp.swift; sourceTree = "<group>"; };
+		44B90D0B1E589CA4001BC546 /* RealmDemoBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmDemoBaseViewController.swift; sourceTree = "<group>"; };
 		44D087941E547DAF00180DD9 /* ReactionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReactionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44D087971E547DAF00180DD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44D0879C1E547DAF00180DD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		44D0879F1E547DAF00180DD9 /* ReactionApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ReactionApp.xcdatamodel; sourceTree = "<group>"; };
 		44D087A11E547DAF00180DD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44D087A41E547DAF00180DD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		44D087A61E547DAF00180DD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -57,6 +65,8 @@
 		44D087BA1E547DB000180DD9 /* ReactionAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionAppUITests.swift; sourceTree = "<group>"; };
 		44D087BC1E547DB000180DD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44E46FEB1E54AA5300F453B9 /* ReactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionViewController.swift; sourceTree = "<group>"; };
+		44FABE251E58A70300D38A07 /* RealmLineChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmLineChartViewController.swift; sourceTree = "<group>"; };
+		44FABE281E58DAD500D38A07 /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		5B51BBB4330E48D4BE6FEE3C /* Pods-ReactionApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactionApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactionApp/Pods-ReactionApp.debug.xcconfig"; sourceTree = "<group>"; };
 		5CB309FC91935A63881F9155 /* Pods-ReactionAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactionAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactionAppTests/Pods-ReactionAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		64B5EB1ACBB11C9D2DCE8313 /* Pods-ReactionAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactionAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactionAppUITests/Pods-ReactionAppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -95,6 +105,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		44B90D061E587ECE001BC546 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				44B90D041E5875CC001BC546 /* ReactionResultObject.swift */,
+				44B90D071E588181001BC546 /* FirstStartApp.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		44B90D091E589B19001BC546 /* Training */ = {
+			isa = PBXGroup;
+			children = (
+				44E46FEB1E54AA5300F453B9 /* ReactionViewController.swift */,
+				446241B91E55B5D200240B93 /* Circle.swift */,
+				446241B71E55B0EC00240B93 /* CircleView.swift */,
+				44B90D021E584EB1001BC546 /* shortInstructionLabel.swift */,
+			);
+			name = Training;
+			sourceTree = "<group>";
+		};
+		44B90D0A1E589B29001BC546 /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				44B90D0B1E589CA4001BC546 /* RealmDemoBaseViewController.swift */,
+				44FABE251E58A70300D38A07 /* RealmLineChartViewController.swift */,
+			);
+			name = Stats;
+			sourceTree = "<group>";
+		};
 		44D0878B1E547DAF00180DD9 = {
 			isa = PBXGroup;
 			children = (
@@ -120,15 +159,15 @@
 		44D087961E547DAF00180DD9 /* ReactionApp */ = {
 			isa = PBXGroup;
 			children = (
+				44FABE271E58DAAE00D38A07 /* Components */,
+				44B90D091E589B19001BC546 /* Training */,
+				44B90D0A1E589B29001BC546 /* Stats */,
+				44B90D061E587ECE001BC546 /* Models */,
 				44D087971E547DAF00180DD9 /* AppDelegate.swift */,
-				44E46FEB1E54AA5300F453B9 /* ReactionViewController.swift */,
-				446241B71E55B0EC00240B93 /* CircleView.swift */,
-				446241B91E55B5D200240B93 /* Circle.swift */,
 				44D0879B1E547DAF00180DD9 /* Main.storyboard */,
 				44D087A11E547DAF00180DD9 /* Assets.xcassets */,
 				44D087A31E547DAF00180DD9 /* LaunchScreen.storyboard */,
 				44D087A61E547DAF00180DD9 /* Info.plist */,
-				44D0879E1E547DAF00180DD9 /* ReactionApp.xcdatamodeld */,
 			);
 			path = ReactionApp;
 			sourceTree = "<group>";
@@ -149,6 +188,14 @@
 				44D087BC1E547DB000180DD9 /* Info.plist */,
 			);
 			path = ReactionAppUITests;
+			sourceTree = "<group>";
+		};
+		44FABE271E58DAAE00D38A07 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				44FABE281E58DAD500D38A07 /* BalloonMarker.swift */,
+			);
+			name = Components;
 			sourceTree = "<group>";
 		};
 		BC23DE2A610CB33414CA3362 /* Pods */ = {
@@ -457,10 +504,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				446241BA1E55B5D200240B93 /* Circle.swift in Sources */,
+				44B90D0C1E589CA4001BC546 /* RealmDemoBaseViewController.swift in Sources */,
+				44B90D031E584EB1001BC546 /* shortInstructionLabel.swift in Sources */,
 				446241B81E55B0EC00240B93 /* CircleView.swift in Sources */,
 				44E46FEC1E54AA5300F453B9 /* ReactionViewController.swift in Sources */,
-				44D087A01E547DAF00180DD9 /* ReactionApp.xcdatamodeld in Sources */,
+				44B90D081E588181001BC546 /* FirstStartApp.swift in Sources */,
+				44B90D051E5875CC001BC546 /* ReactionResultObject.swift in Sources */,
 				44D087981E547DAF00180DD9 /* AppDelegate.swift in Sources */,
+				44FABE261E58A70300D38A07 /* RealmLineChartViewController.swift in Sources */,
+				44FABE291E58DAD500D38A07 /* BalloonMarker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,19 +790,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		44D0879E1E547DAF00180DD9 /* ReactionApp.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				44D0879F1E547DAF00180DD9 /* ReactionApp.xcdatamodel */,
-			);
-			currentVersion = 44D0879F1E547DAF00180DD9 /* ReactionApp.xcdatamodel */;
-			path = ReactionApp.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 44D0878C1E547DAF00180DD9 /* Project object */;
 }

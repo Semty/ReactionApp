@@ -8,6 +8,8 @@
 
 import UIKit
 import RandomKit
+import Realm
+import RealmSwift
 
 class ReactionViewController: UIViewController {
     
@@ -16,12 +18,14 @@ class ReactionViewController: UIViewController {
     @IBOutlet weak var circleView: CircleView!
     
     @IBOutlet weak var reactionResultLabel: UILabel!
-    @IBOutlet weak var shortInstructionLabel: UILabel!
+    @IBOutlet weak var shortInstructionLabel: shortInstructionLabel!
     
 // MARK: - Private Properties
     
     private var startTime:  CFTimeInterval?
     private var endTime:    CFTimeInterval?
+    
+    private let realm = RLMRealm.default()
     
     private var timer = Timer()
     
@@ -43,7 +47,28 @@ class ReactionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        /*
+        realm.beginWriteTransaction()
+        realm.deleteAllObjects()
+        try! realm.commitWriteTransaction()
+        */
+        
+        
+        let results = realm.allObjects("ReactionResultObject")
+        
+        for index in 0..<results.count {
+            
+            let result = results.object(at: index) as! ReactionResultObject
+            
+            print("\(index). \(result.reactionTime) ms at \(result.reactionDateDayHour) hours")
+        }
+        
+        
+        self.shortInstructionLabel.setShortInstruction(duringCircleState: .none)
+        
+        if self.shortInstructionLabel.text == nil {
+            self.shortInstructionLabel.text = "Nice to see you again!"
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,15 +78,40 @@ class ReactionViewController: UIViewController {
     
 // MARK: - Helpful Functions
     
+    func saveResult(withTime time: Int) {
+        
+        let reactionObject = ReactionResultObject()
+        
+        let dateNow = Date.init(timeIntervalSinceNow: 0)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH.mm"
+        
+        reactionObject.reactionTime = time
+        reactionObject.reactionDateSince1970 = dateNow.timeIntervalSince1970
+        reactionObject.reactionDateDayHour = (Double)(formatter.string(from: dateNow))!
+        
+        realm.beginWriteTransaction()
+        realm.add(reactionObject)
+        try! realm.commitWriteTransaction()
+    }
+    
+    func saveFirstStartAppState(state: Bool) {
+        
+        let firstStartApp = FirstStartApp()
+        firstStartApp.isFirstStart = state
+        
+        realm.beginWriteTransaction()
+        realm.add(firstStartApp)
+        try! realm.commitWriteTransaction()
+    }
+    
     func circleTouchStarted() {
         
         if self.reactionResultLabel.text != nil {
             self.reactionResultLabel.text = nil
         }
         
-        if self.shortInstructionLabel.text != nil {
-            self.shortInstructionLabel.text = "Wait Green Color.."
-        }
+        self.shortInstructionLabel.setShortInstruction(duringCircleState: .preparation)
         
         Circle.sharedCircle.state = .preparation
         self.circleView.setNeedsDisplay()
@@ -76,9 +126,7 @@ class ReactionViewController: UIViewController {
                                                 
                                                 self.startTime = CACurrentMediaTime()
                                                 
-                                                if self.shortInstructionLabel.text != nil {
-                                                    self.shortInstructionLabel.text = "Throw the Circle!"
-                                                }
+                                                self.shortInstructionLabel.setShortInstruction(duringCircleState: .action)
                                             }
         }
         
@@ -113,19 +161,34 @@ class ReactionViewController: UIViewController {
             
             self.timer.invalidate()
             
-        } else if Circle.sharedCircle.state == .action {
+            self.shortInstructionLabel.setShortInstruction(duringCircleState: .none)
             
-            if self.shortInstructionLabel.text != nil {
-                self.shortInstructionLabel.text = nil
-            }
+        } else if Circle.sharedCircle.state == .action {
             
             self.endTime = CACurrentMediaTime()
             
             circleTouchEnded()
             
-            if let reactionResult = self.reactionTime {
+            if let reactionResult = self.reactionTime {                             // First Start Application
                 
-                self.reactionResultLabel.text = "\(reactionResult) ms"
+                if (realm.allObjects("FirstStartApp").firstObject() as? FirstStartApp)?.isFirstStart ?? true {
+                    
+                    self.reactionResultLabel.numberOfLines = 2
+                    self.reactionResultLabel.text = "Here will be\nyour time :)"
+                    self.shortInstructionLabel.text = "That's all, Let's go!"
+                    
+                    saveFirstStartAppState(state: false)
+                    
+                } else {                                                            // Default Situation
+                    
+                    saveResult(withTime: reactionResult)
+                    
+                    self.reactionResultLabel.numberOfLines = 1
+                    
+                    self.reactionResultLabel.text = "\(reactionResult) ms"
+                    
+                    self.shortInstructionLabel.setShortNotes(withResultTime: reactionResult)
+                }
                 
             } else {
                 self.reactionResultLabel.text = "Error"
@@ -170,13 +233,3 @@ class ReactionViewController: UIViewController {
     */
 
 }
-
-
-
-
-
-
-
-
-
-
