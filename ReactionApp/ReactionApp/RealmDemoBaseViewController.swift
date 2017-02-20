@@ -33,34 +33,36 @@ class RealmDemoBaseViewController: UIViewController {
         chartView.drawGridBackgroundEnabled = false
         
         chartView.dragEnabled = true
-        chartView.setScaleEnabled(true)
+        chartView.setScaleEnabled(false)
         chartView.pinchZoomEnabled = false
         
         let xAxis = chartView.xAxis;
         xAxis.labelPosition = .bottom
+        xAxis.labelFont = UIFont.init(name: "HelveticaNeue-CondensedBold", size: 9)!
+        xAxis.labelTextColor = FlatBlue()
         
         chartView.rightAxis.enabled = false
         
-        let percentFormatter = NumberFormatter()
-        percentFormatter.positiveSuffix = " ms"
-        percentFormatter.negativeSuffix = " ms"
+        let msFormatter = NumberFormatter()
+        msFormatter.positiveSuffix = " ms"
+        msFormatter.negativeSuffix = " ms"
         
         let leftAxis = chartView.leftAxis
-        leftAxis.labelFont = UIFont.init(name: "HelveticaNeue-Light", size: 8)!
-        leftAxis.labelTextColor = FlatBlueDark()
-        leftAxis.valueFormatter = DefaultAxisValueFormatter.init(formatter: percentFormatter)
+        leftAxis.labelFont = UIFont.init(name: "HelveticaNeue-CondensedBold", size: 9)!
+        leftAxis.labelTextColor = FlatBlue()
+        leftAxis.valueFormatter = DefaultAxisValueFormatter.init(formatter: msFormatter)
     }
     
     public func styleData(data: ChartData) {
         
-        let percentFormatter = NumberFormatter()
-        percentFormatter.positiveSuffix = " ms"
-        percentFormatter.negativeSuffix = " ms"
+        let msFormatter = NumberFormatter()
+        msFormatter.positiveSuffix = " ms"
+        msFormatter.negativeSuffix = " ms"
         
         data.setValueFont(UIFont.init(name: "HelveticaNeue-Light", size: 8))
         data.setValueTextColor(FlatBlack())
         
-        data.setValueFormatter(DefaultValueFormatter.init(formatter: percentFormatter))
+        data.setValueFormatter(DefaultValueFormatter.init(formatter: msFormatter))
     }
     
     

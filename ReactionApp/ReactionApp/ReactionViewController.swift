@@ -25,7 +25,7 @@ class ReactionViewController: UIViewController {
     private var startTime:  CFTimeInterval?
     private var endTime:    CFTimeInterval?
     
-    private let realm = RLMRealm.default()
+    private let realm = try! Realm()
     
     private var timer = Timer()
     
@@ -47,22 +47,9 @@ class ReactionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /*
-        realm.beginWriteTransaction()
-        realm.deleteAllObjects()
-        try! realm.commitWriteTransaction()
-        */
+        let objects = realm.objects(ReactionResultObject.self)
         
-        
-        let results = realm.allObjects("ReactionResultObject")
-        
-        for index in 0..<results.count {
-            
-            let result = results.object(at: index) as! ReactionResultObject
-            
-            print("\(index). \(result.reactionTime) ms at \(result.reactionDateDayHour) hours")
-        }
-        
+        print("WE HAVE \(objects.count) REACTION OBJECTS!!!")
         
         self.shortInstructionLabel.setShortInstruction(duringCircleState: .none)
         
@@ -88,11 +75,8 @@ class ReactionViewController: UIViewController {
         
         reactionObject.reactionTime = time
         reactionObject.reactionDateSince1970 = dateNow.timeIntervalSince1970
-        reactionObject.reactionDateDayHour = (Double)(formatter.string(from: dateNow))!
         
-        realm.beginWriteTransaction()
-        realm.add(reactionObject)
-        try! realm.commitWriteTransaction()
+        reactionObject.save()
     }
     
     func saveFirstStartAppState(state: Bool) {
@@ -100,12 +84,15 @@ class ReactionViewController: UIViewController {
         let firstStartApp = FirstStartApp()
         firstStartApp.isFirstStart = state
         
-        realm.beginWriteTransaction()
-        realm.add(firstStartApp)
-        try! realm.commitWriteTransaction()
+        firstStartApp.save()
     }
     
     func circleTouchStarted() {
+        
+        UIView.animate(withDuration: Circle.sharedCircle.animationDuration) {
+            
+            self.circleView.transform  = CGAffineTransform.init(scaleX: 1.1, y: 1.1)
+        }
         
         if self.reactionResultLabel.text != nil {
             self.reactionResultLabel.text = nil
@@ -131,25 +118,20 @@ class ReactionViewController: UIViewController {
         }
         
         RunLoop.current.add(self.timer, forMode: .commonModes)
-        
-        UIView.animate(withDuration: Circle.sharedCircle.animationDuration) { 
-            
-            self.circleView.transform  = CGAffineTransform.init(scaleX: 1.1, y: 1.1)
-        }
     }
     
     func circleTouchEnded() {
         
         Circle.sharedCircle.state = .none
+    }
+    
+    func touchEndedForCircle(with touch: UITouch, and event: UIEvent?) {
         
         UIView.animate(withDuration: Circle.sharedCircle.animationDuration) {
             
             self.circleView.transform  = CGAffineTransform.identity
             self.circleView.setNeedsDisplay()
         }
-    }
-    
-    func touchEndedForCircle(with touch: UITouch, and event: UIEvent?) {
         
         if Circle.sharedCircle.state == .preparation {
             
@@ -165,13 +147,13 @@ class ReactionViewController: UIViewController {
             
         } else if Circle.sharedCircle.state == .action {
             
-            self.endTime = CACurrentMediaTime()
-            
             circleTouchEnded()
+            
+            self.endTime = CACurrentMediaTime()
             
             if let reactionResult = self.reactionTime {                             // First Start Application
                 
-                if (realm.allObjects("FirstStartApp").firstObject() as? FirstStartApp)?.isFirstStart ?? true {
+                if realm.objects(FirstStartApp.self).first?.isFirstStart ?? true {
                     
                     self.reactionResultLabel.numberOfLines = 2
                     self.reactionResultLabel.text = "Here will be\nyour time :)"
@@ -181,7 +163,9 @@ class ReactionViewController: UIViewController {
                     
                 } else {                                                            // Default Situation
                     
-                    saveResult(withTime: reactionResult)
+                    if reactionResult <= Circle.sharedCircle.maxSavingTime {
+                        saveResult(withTime: reactionResult)
+                    }
                     
                     self.reactionResultLabel.numberOfLines = 1
                     

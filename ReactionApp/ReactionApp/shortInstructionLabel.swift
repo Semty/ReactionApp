@@ -12,7 +12,7 @@ import RealmSwift
 
 class shortInstructionLabel: UILabel {
     
-    let realm = RLMRealm.default()
+    let realm = try! Realm()
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -24,7 +24,7 @@ class shortInstructionLabel: UILabel {
     
     public func setShortInstruction(duringCircleState circleState: CircleState) {
         
-        if (realm.allObjects("FirstStartApp").firstObject() as? FirstStartApp)?.isFirstStart ?? true {
+        if realm.objects(FirstStartApp.self).first?.isFirstStart ?? true {
             
             switch circleState {
             case .none:

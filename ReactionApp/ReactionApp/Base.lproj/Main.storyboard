@@ -136,21 +136,47 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VGo-cy-lEQ" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="16" y="64" width="343" height="554"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="16" y="123.5" width="343" height="494.5"/>
+                                <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5iv-2q-KTW">
+                                <rect key="frame" x="16" y="64" width="343" height="29"/>
+                                <segments>
+                                    <segment title="Day"/>
+                                    <segment title="Week"/>
+                                    <segment title="Month"/>
+                                    <segment title="All Time"/>
+                                </segments>
+                                <connections>
+                                    <action selector="actionDateStatsChanged:" destination="CgY-bQ-scz" eventType="valueChanged" id="lPq-T0-pTZ"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X8P-3x-vgT">
+                                <rect key="frame" x="16" y="102" width="343" height="21.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="d8Q-AG-JDX" firstAttribute="top" secondItem="VGo-cy-lEQ" secondAttribute="bottom" id="4hg-s0-8Lc"/>
-                            <constraint firstItem="VGo-cy-lEQ" firstAttribute="trailing" secondItem="3Bv-y0-qvm" secondAttribute="trailingMargin" id="CBT-TZ-eFC"/>
-                            <constraint firstItem="VGo-cy-lEQ" firstAttribute="top" secondItem="kNk-Pz-jjt" secondAttribute="bottom" id="WgR-uG-DI1"/>
-                            <constraint firstItem="VGo-cy-lEQ" firstAttribute="leading" secondItem="3Bv-y0-qvm" secondAttribute="leadingMargin" id="yHS-uU-Z4V"/>
+                            <constraint firstItem="VGo-cy-lEQ" firstAttribute="leading" secondItem="3Bv-y0-qvm" secondAttribute="leadingMargin" id="0Hz-Sa-8F2"/>
+                            <constraint firstItem="VGo-cy-lEQ" firstAttribute="top" secondItem="X8P-3x-vgT" secondAttribute="bottom" id="7MP-SK-jt6"/>
+                            <constraint firstItem="X8P-3x-vgT" firstAttribute="leading" secondItem="3Bv-y0-qvm" secondAttribute="leadingMargin" id="NG8-fS-OQj"/>
+                            <constraint firstItem="VGo-cy-lEQ" firstAttribute="trailing" secondItem="3Bv-y0-qvm" secondAttribute="trailingMargin" id="Q4a-iM-qn4"/>
+                            <constraint firstItem="X8P-3x-vgT" firstAttribute="trailing" secondItem="3Bv-y0-qvm" secondAttribute="trailingMargin" id="UeH-Cw-mcm"/>
+                            <constraint firstItem="X8P-3x-vgT" firstAttribute="top" secondItem="5iv-2q-KTW" secondAttribute="bottom" constant="10" id="d3c-HM-0Id"/>
+                            <constraint firstItem="d8Q-AG-JDX" firstAttribute="top" secondItem="VGo-cy-lEQ" secondAttribute="bottom" id="eRk-C7-Vxc"/>
+                            <constraint firstItem="5iv-2q-KTW" firstAttribute="top" secondItem="kNk-Pz-jjt" secondAttribute="bottom" id="eso-Sb-suQ"/>
+                            <constraint firstItem="5iv-2q-KTW" firstAttribute="trailing" secondItem="3Bv-y0-qvm" secondAttribute="trailingMargin" id="h8m-gq-WO9"/>
+                            <constraint firstItem="5iv-2q-KTW" firstAttribute="leading" secondItem="3Bv-y0-qvm" secondAttribute="leadingMargin" id="uQf-Lm-BM7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Statistics" id="MYj-NK-4Ws"/>
                     <connections>
                         <outlet property="chartView" destination="VGo-cy-lEQ" id="aGx-jq-Vqr"/>
+                        <outlet property="currentDateLabel" destination="X8P-3x-vgT" id="cEJ-jw-9rg"/>
+                        <outlet property="dateStatsSegmentedControl" destination="5iv-2q-KTW" id="WOj-t0-mad"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r2T-YQ-HIn" userLabel="First Responder" sceneMemberID="firstResponder"/>

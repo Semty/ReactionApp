@@ -10,9 +10,20 @@ import Foundation
 import Realm
 import RealmSwift
 
-class FirstStartApp: RLMObject {
+class FirstStartApp: Object {
     
     dynamic var isFirstStart = true // default
+    
+    func save() {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.add(self)
+            }
+        } catch let error as NSError {
+            fatalError(error.localizedDescription)
+        }
+    }
 }
 
 
