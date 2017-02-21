@@ -13,6 +13,8 @@ target 'ReactionApp' do
   
   pod 'Charts/Realm'
   
+  pod 'SwiftLint'
+  
   pod 'RandomKit', '~> 3.0.0'
 
   target 'ReactionAppTests' do

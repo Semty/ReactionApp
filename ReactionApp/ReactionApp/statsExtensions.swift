@@ -15,11 +15,48 @@ enum DateStats: Int {
     case day = 0, week, month, allTime
 }
 
+extension Array where Element: Integer {
+    
+    var total: Element {
+        return reduce(0, +)
+    }
+}
+
+extension Collection where Iterator.Element == Int, Index == Int {
+    
+    var average: Double {
+        return isEmpty ? 0 : Double(reduce(0, +)) / Double(endIndex-startIndex)
+    }
+}
+
+extension Array where Element: FloatingPoint {
+    
+    var total: Element {
+        return reduce(0, +)
+    }
+    
+    var average: Element {
+        return isEmpty ? 0 : total / Element(count)
+    }
+}
+
 extension Date {
+    
+    func startOfDay() -> Date {
+        return Calendar.current.date(from:
+            Calendar.current.dateComponents([.year, .month, .weekOfMonth, .day, .hour, .minute, .second],
+                                                                           from: Calendar.current.startOfDay(for: self)))!
+    }
+    
+    func endOfDay() -> Date {
+        return Calendar.current.date(byAdding: DateComponents.init(day: 1, second: -1),
+                                     to: self.startOfDay())!
+    }
     
     func startOfMonth() -> Date {
         return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month],
                                                                            from: Calendar.current.startOfDay(for: self)))!
+        
     }
     
     func endOfMonth() -> Date {
@@ -33,7 +70,7 @@ extension Date {
     }
     
     func endOfWeek() -> Date {
-        return Calendar.current.date(byAdding: DateComponents.init(day: -1, weekOfYear: 1),
+        return Calendar.current.date(byAdding: DateComponents.init(second: -1, weekOfYear: 1),
                                      to: self.startOfWeek())!
     }
 }

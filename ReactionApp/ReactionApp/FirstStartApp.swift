@@ -12,16 +12,20 @@ import RealmSwift
 
 class FirstStartApp: Object {
     
+    private let backgroundQueue = DispatchQueue(label: "com.rstimchenko.backgroundQueue")
+    
     dynamic var isFirstStart = true // default
     
     func save() {
-        do {
-            let realm = try Realm()
-            try realm.write {
-                realm.add(self)
+        backgroundQueue.sync {
+            do {
+                let realm = try Realm()
+                try realm.write {
+                    realm.add(self)
+                }
+            } catch let error as NSError {
+                fatalError(error.localizedDescription)
             }
-        } catch let error as NSError {
-            fatalError(error.localizedDescription)
         }
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 import Realm
 import RealmSwift
 
-class shortInstructionLabel: UILabel {
+class ShortInstructionLabel: UILabel {
     
     let realm = try! Realm()
 

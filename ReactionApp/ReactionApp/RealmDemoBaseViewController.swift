@@ -32,8 +32,8 @@ class RealmDemoBaseViewController: UIViewController {
         
         chartView.drawGridBackgroundEnabled = false
         
-        chartView.dragEnabled = true
         chartView.setScaleEnabled(false)
+        chartView.dragEnabled = true
         chartView.pinchZoomEnabled = false
         
         let xAxis = chartView.xAxis;
