@@ -11,7 +11,7 @@
 		438F1ABC97D2889232DACCE4 /* Pods_ReactionAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DBFF92BC89DA48170448B0 /* Pods_ReactionAppTests.framework */; };
 		446241B81E55B0EC00240B93 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446241B71E55B0EC00240B93 /* CircleView.swift */; };
 		446241BA1E55B5D200240B93 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446241B91E55B5D200240B93 /* Circle.swift */; };
-		448F64411E5A1084003504C0 /* statsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448F64401E5A1084003504C0 /* statsExtensions.swift */; };
+		448F64411E5A1084003504C0 /* StatsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448F64401E5A1084003504C0 /* StatsExtensions.swift */; };
 		44B90D031E584EB1001BC546 /* shortInstructionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B90D021E584EB1001BC546 /* shortInstructionLabel.swift */; };
 		44B90D051E5875CC001BC546 /* ReactionResultObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B90D041E5875CC001BC546 /* ReactionResultObject.swift */; };
 		44B90D081E588181001BC546 /* FirstStartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B90D071E588181001BC546 /* FirstStartApp.swift */; };
@@ -49,7 +49,7 @@
 		376C5D3EB9F4901558F1680D /* Pods-ReactionAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactionAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactionAppUITests/Pods-ReactionAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		446241B71E55B0EC00240B93 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		446241B91E55B5D200240B93 /* Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
-		448F64401E5A1084003504C0 /* statsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = statsExtensions.swift; sourceTree = "<group>"; };
+		448F64401E5A1084003504C0 /* StatsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsExtensions.swift; sourceTree = "<group>"; };
 		44B90D021E584EB1001BC546 /* shortInstructionLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shortInstructionLabel.swift; sourceTree = "<group>"; };
 		44B90D041E5875CC001BC546 /* ReactionResultObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionResultObject.swift; sourceTree = "<group>"; };
 		44B90D071E588181001BC546 /* FirstStartApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstStartApp.swift; sourceTree = "<group>"; };
@@ -132,7 +132,7 @@
 			children = (
 				44B90D0B1E589CA4001BC546 /* RealmDemoBaseViewController.swift */,
 				44FABE251E58A70300D38A07 /* RealmLineChartViewController.swift */,
-				448F64401E5A1084003504C0 /* statsExtensions.swift */,
+				448F64401E5A1084003504C0 /* StatsExtensions.swift */,
 			);
 			name = Stats;
 			sourceTree = "<group>";
@@ -507,7 +507,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				446241BA1E55B5D200240B93 /* Circle.swift in Sources */,
-				448F64411E5A1084003504C0 /* statsExtensions.swift in Sources */,
+				448F64411E5A1084003504C0 /* StatsExtensions.swift in Sources */,
 				44B90D0C1E589CA4001BC546 /* RealmDemoBaseViewController.swift in Sources */,
 				44B90D031E584EB1001BC546 /* shortInstructionLabel.swift in Sources */,
 				446241B81E55B0EC00240B93 /* CircleView.swift in Sources */,

@@ -51,6 +51,8 @@ class ReactionViewController: UIViewController {
         super.viewDidLoad()
 
         self.shortInstructionLabel.setShortInstruction(duringCircleState: .none)
+        self.circleView.transform  = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
+        self.circleView.alpha = 0.1
         
         if self.shortInstructionLabel.text == nil {
             self.shortInstructionLabel.text = "Nice to see you again!"
@@ -80,6 +82,23 @@ class ReactionViewController: UIViewController {
             }
         }
          */
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        UIView.animate(withDuration: 0.25) {
+            
+            self.circleView.transform  = CGAffineTransform.identity
+            self.circleView.alpha = 1.0
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        
+        self.circleView.transform  = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
+        self.circleView.alpha = 0.1
     }
 
     override func didReceiveMemoryWarning() {
@@ -145,15 +164,15 @@ class ReactionViewController: UIViewController {
     func circleTouchEnded() {
         
         Circle.sharedCircle.state = .none
+        
+        UIView.animate(withDuration: Circle.sharedCircle.animationDuration) {
+            
+            self.circleView.transform  = CGAffineTransform.identity
+        }
+        self.circleView.setNeedsDisplay()
     }
     
     func touchEndedForCircle(with touch: UITouch, and event: UIEvent?) {
-
-        UIView.animate(withDuration: Circle.sharedCircle.animationDuration) {
-                
-            self.circleView.transform  = CGAffineTransform.identity
-            self.circleView.setNeedsDisplay()
-        }
         
         if Circle.sharedCircle.state == .preparation {
             

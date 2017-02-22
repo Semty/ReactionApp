@@ -286,7 +286,7 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
                 
                 self.chartView.animate(yAxisDuration: animationDuration, easingOption: .easeOutExpo)
                 
-                self.ignoreInteractions(withTime: animationDuration)
+                //self.ignoreInteractions(withTime: animationDuration)
             }
             
             chartView.isHidden = false
@@ -340,7 +340,7 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
                 
                 self.barChartView.animate(yAxisDuration: animationDuration, easingOption: .easeOutBounce)
                 
-                self.ignoreInteractions(withTime: animationDuration)
+                //self.ignoreInteractions(withTime: animationDuration)
             }
             
             chartView.isHidden = true

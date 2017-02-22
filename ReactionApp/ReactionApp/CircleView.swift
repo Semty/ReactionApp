@@ -11,28 +11,29 @@ import ChameleonFramework
 
 class CircleView: UIView {
     
-    let strokeWidth: CGFloat = 3.0
+    let circleLayer = CAShapeLayer()
     
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect) {
         
-        let context = UIGraphicsGetCurrentContext()
-        
-        context?.setFillColor(Circle.sharedCircle.currentColor.cgColor)
-        
-        context?.setStrokeColor(FlatBlack().cgColor)
-        context?.setLineWidth(2)
-        
-        let newRect = CGRect.init(x: rect.origin.x + strokeWidth / 2,
-                                  y: rect.origin.y + strokeWidth / 2,
-                                  width: rect.width - strokeWidth,
-                                  height: rect.width - strokeWidth)
-        
-        context?.fillEllipse(in: rect)
-        context?.strokeEllipse(in: newRect)
-        
-        context?.fillPath()
+        if circleLayer.superlayer == nil {
+            
+            self.circleLayer.path = CGPath(ellipseIn: rect, transform: nil)
+            circleLayer.lineWidth = 3.0
+            circleLayer.fillColor = Circle.sharedCircle.currentColor.cgColor
+            circleLayer.strokeColor = FlatBlackDark().cgColor
+            
+            self.layer.addSublayer(circleLayer)
+        } else {
+            
+            if Circle.sharedCircle.state == .action {
+                CATransaction.setDisableActions(true)
+                circleLayer.fillColor = Circle.sharedCircle.currentColor.cgColor
+                CATransaction.commit()
+            } else {
+                circleLayer.fillColor = Circle.sharedCircle.currentColor.cgColor
+            }
+        }
     }
-
 }

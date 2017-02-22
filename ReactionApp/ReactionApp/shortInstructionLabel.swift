@@ -30,7 +30,7 @@ class ShortInstructionLabel: UILabel {
             case .none:
                 self.text = "Tap and Hold Circle to Start!"
             case .preparation:
-                self.text = "Wait Green Color.."
+                self.text = "Wait Green Color"
             case .action:
                 self.text = "Throw the Circle!"
             }
