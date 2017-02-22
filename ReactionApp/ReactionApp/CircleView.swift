@@ -35,5 +35,43 @@ class CircleView: UIView {
                 circleLayer.fillColor = Circle.sharedCircle.currentColor.cgColor
             }
         }
+ 
     }
+    /*
+    func runAnimation() {
+        
+        if circleLayer.superlayer == nil {
+            circleLayer.path = getCirclePath()
+            circleLayer.lineWidth = 3.0
+            circleLayer.strokeColor = FlatBlackDark().cgColor
+            circleLayer.fillColor   = Circle.sharedCircle.currentColor.cgColor
+            
+            let fadeAnimation = CABasicAnimation(keyPath: "strokeEnd")
+            fadeAnimation.fromValue = 0
+            fadeAnimation.toValue = 1.0
+            fadeAnimation.duration = 2.0
+            
+            self.layer.addSublayer(circleLayer)
+            circleLayer.add(fadeAnimation, forKey: "myCustomLoad")
+        }
+    }
+    
+    func getCirclePath() -> CGPath {
+        let path = CGPath(ellipseIn: self.bounds, transform: nil)
+        return path
+    }
+     */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

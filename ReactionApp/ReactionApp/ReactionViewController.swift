@@ -8,7 +8,6 @@
 
 import UIKit
 import RandomKit
-import Realm
 import RealmSwift
 
 class ReactionViewController: UIViewController {
@@ -52,15 +51,15 @@ class ReactionViewController: UIViewController {
 
         self.shortInstructionLabel.setShortInstruction(duringCircleState: .none)
         self.circleView.transform  = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
-        self.circleView.alpha = 0.1
+        self.circleView.alpha = 0.0
         
         if self.shortInstructionLabel.text == nil {
             self.shortInstructionLabel.text = "Nice to see you again!"
         }
         
-        /*
-        // *** REMOVE ALL REACTIONS FOR DEBUG ***
         
+        // *** REMOVE ALL REACTIONS FOR DEBUG ***
+        /*
         backgroundQueue.async {
             
             let realm = self.getRealmInBack()
@@ -73,6 +72,7 @@ class ReactionViewController: UIViewController {
                 fatalError(deleteError.localizedDescription)
             }
             
+            
             // *** ADDING RANDOM REACTIONS FOR DEBUG ***
             
             for _ in 0..<100 {
@@ -80,8 +80,9 @@ class ReactionViewController: UIViewController {
                 let testReaction = ReactionResultObject()
                 testReaction.save()
             }
+ 
         }
-         */
+        */
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,7 +99,7 @@ class ReactionViewController: UIViewController {
         super.viewWillDisappear(true)
         
         self.circleView.transform  = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
-        self.circleView.alpha = 0.1
+        self.circleView.alpha = 0.0
     }
 
     override func didReceiveMemoryWarning() {

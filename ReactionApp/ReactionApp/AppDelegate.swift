@@ -40,35 +40,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
     }
-    
-    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        
-        let tabBarNav = self.window?.rootViewController
-        
-        if tabBarNav is UITabBarController {
-            
-            let nav = tabBarNav?.childViewControllers[1]
-            
-            if nav is UINavigationController {
-                
-                if nav?.childViewControllers.first! is RealmLineChartViewController {
-                    
-                    let lineChartController = nav?.childViewControllers.first as! RealmLineChartViewController
-                    
-                    if lineChartController.isPresented {
-                        return .allButUpsideDown;
-                    } else {
-                        return .portrait;
-                    }
-                } else {
-                    return .portrait;
-                }
-                
-            }
-            
-        }
-        return .portrait
-    }
-
 }
 

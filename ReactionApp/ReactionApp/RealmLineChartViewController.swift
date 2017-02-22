@@ -21,20 +21,11 @@ extension RealmLineChartViewController: IAxisValueFormatter {
             
         case DateStats.day.rawValue:
             
-            if (Int)(value) < (currentDayResults?.count)! {
-                
-                let date = currentDayResults?[(Int)(value)].reactionDate
-                
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "HH:mm"
-                return dateFormatter.string(from: date!)
-            } else {
-                return ""
-            }
-        
+            return xAxisValueForDayStats(withIndex: value)
+            
         case DateStats.week.rawValue:
             
-            return weekDayString(forDayNumber: value)
+            return xAxisValueForWeekdayStats(withDayNumber: value)
         default:
             break
         }
@@ -45,33 +36,22 @@ extension RealmLineChartViewController: IAxisValueFormatter {
 // MARK: - RealmLineChartViewController
 
 class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelegate {
-
+    
     @IBOutlet weak var chartView: LineChartView!
     @IBOutlet weak var barChartView: BarChartView!
     
     
     @IBOutlet weak var dateStatsSegmentedControl: UISegmentedControl!
-    
     @IBOutlet weak var currentDateLabel: UILabel!
     
     weak var axisFormatDelegate: IAxisValueFormatter?
     
-    var isPresented = false
-    
     var currentDayResults: Results<ReactionResultObject>?
+    var currentWeekResults: Results<ReactionResultObject>?
     
     var currentDate = Date()
     
-    var dayToday    = 0
-    var weekDay     = 0
-    var weekOfYear  = 0
-    var monthToday  = 0
-    
-// MARK: - Private Variables
-    
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return [.allButUpsideDown]
-    }
+    // MARK: - Private Variables
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,41 +61,22 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
         chartView.delegate = self
         barChartView.delegate = self
         
+        chartView.xAxis.valueFormatter = axisFormatDelegate
+        barChartView.xAxis.valueFormatter = axisFormatDelegate
+        
         self.setupBarLineChartView(chartView: chartView)
         self.setupBarLineChartView(chartView: barChartView)
         
-        // enable description text
-        chartView.chartDescription?.enabled = false
+        barChartView.leftAxis.axisMinimum = 0.0
         
-        chartView.leftAxis.drawGridLinesEnabled = false
-        chartView.xAxis.drawGridLinesEnabled = false
-        chartView.xAxis.valueFormatter = axisFormatDelegate
-        chartView.leftAxis.axisMinimum = 0
-        //chartView.xAxis.granularity = 1
-        //chartView.xAxis.granularityEnabled = true
-        
-        barChartView.leftAxis.axisMinimum = 0
-        barChartView.xAxis.valueFormatter = axisFormatDelegate
-        //barChartView.fitBars = true
-        barChartView.xAxis.drawGridLinesEnabled = false
-        barChartView.leftAxis.drawGridLinesEnabled = false
-        
-        addMarker(forChartView: chartView)
-        addMarker(forChartView: barChartView)
+        self.setRealmQueries()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        self.isPresented = true
-        
         let date = Date(timeIntervalSinceNow: 0)
         currentDate = date
-        
-        self.dayToday   = self.getCurrentDateInfo(unit: .day, from: date)
-        self.weekDay    = self.getCurrentDateInfo(unit: .weekday, from: date)
-        self.weekOfYear = self.getCurrentDateInfo(unit: .weekOfYear, from: date)
-        self.monthToday = self.getCurrentDateInfo(unit: .month, from: date)
         
         switch dateStatsSegmentedControl.selectedSegmentIndex {
         case DateStats.day.rawValue:
@@ -127,80 +88,33 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        
-        self.isPresented = false
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-// MARK: - Helpful Functions
+    // MARK: - Helpful Functions
     
-    func ignoreInteractions(withTime time: TimeInterval) {
-        
-        UIApplication.shared.beginIgnoringInteractionEvents()
-        DispatchQueue.main.asyncAfter(deadline: .now() + time,
-                                      execute: {
-                                        UIApplication.shared.endIgnoringInteractionEvents()
-        })
-    }
-    
-    func weekDayString(forDayNumber number: Double) -> String {
-        
-        switch number {
-        case 0:
-            return "Sunday"
-        case 1:
-            return "Monday"
-        case 2:
-            return "Tuesday"
-        case 3:
-            return "Thursday"
-        case 4:
-            return "Wednesday"
-        case 5:
-            return "Friday"
-        case 6:
-            return "Saturday"
-        default:
-            return ""
-        }
-        
-    }
-    
-    func addMarker(forChartView chartView: BarLineChartViewBase) {
-        
-        let marker = BalloonMarker.init(color: FlatGray(),
-                                        font: UIFont.systemFont(ofSize: 12),
-                                        textColor: FlatWhite(),
-                                        insets: UIEdgeInsetsMake(8, 8, 20, 8))
-        marker.chartView = chartView
-        marker.minimumSize = CGSize(width: 80, height: 40)
-        chartView.marker = marker
-    }
-    
-    func getCurrentDateInfo(unit: Calendar.Component, from date: Date) -> Int {
-        return Calendar.current.component(unit, from: date)
-    }
-    
-    /*
-    func addLimitLine(with overallTime: Int, and count: Int) {
-        
-        chartView.leftAxis.removeAllLimitLines()
-        
-        let limitTime = (Double)(overallTime) / (Double)(count)
-        let limitLine = ChartLimitLine(limit: limitTime)
-        limitLine.lineColor = FlatBlue()
+    func xAxisValueForDayStats(withIndex index: Double) -> String {
+        if (Int)(index) < (currentDayResults?.count)! {
+            
+            let date = currentDayResults?[(Int)(index)].reactionDate
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm"
 
-        limitLine.lineDashLengths = [8.0]
-        
-        chartView.leftAxis.addLimitLine(limitLine)
+            return dateFormatter.string(from: date!)
+        }
+        return ""
     }
-     */
+    
+    func setRealmQueries() {
+        self.currentDayResults = try! Realm().objects(ReactionResultObject.self).filter("reactionDate >= %@ && reactionDate <= %@",
+                                                                                        currentDate.startOfDay(), currentDate.endOfDay()).sorted(byProperty: "reactionDate", ascending: false)
+        
+        self.currentWeekResults = try! Realm().objects(ReactionResultObject.self).filter("reactionDate >= %@ && reactionDate <= %@",
+                                                                                         currentDate.startOfWeek(), currentDate.endOfWeek())
+    }
     
     func setDateInLabel(forPeriod period: DateStats) {
         
@@ -222,132 +136,81 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
         }
         
     }
- 
+    
 // MARK: - Data Initialization
     
     func setDayData() {
         
         self.setDateInLabel(forPeriod: .day)
+
+        let animationDuration: TimeInterval = 1.2
+        let resultsCount = (currentDayResults?.count)!
+        var overallTime = 0
         
-        do {
-            let realm = try Realm()
+        if resultsCount > 0 {
             
-            let results = realm.objects(ReactionResultObject.self).filter("reactionDate >= %@ && reactionDate <= %@",
-                                                                     currentDate.startOfDay(), currentDate.endOfDay()).sorted(byProperty: "reactionDate", ascending: false)
+            print("setDayData, OBJECTS = \(resultsCount)")
             
-            //var overallTime = 0
-            let animationDuration: TimeInterval = 1.2
+            var dataEntries: [ChartDataEntry] = []
             
-            if results.count > 0 {
+            for (index, result) in (currentDayResults?.enumerated())! {
                 
-                print("setDayData, OBJECTS = \(results.count)")
+                let dataEntry = ChartDataEntry(x: Double(index), y: Double(result.reactionTime))
+                overallTime += result.reactionTime
                 
-                self.currentDayResults = results
-                
-                var dataEntries: [ChartDataEntry] = []
-                
-                for (index, result) in results.enumerated() {
-                    
-                    let dataEntry = ChartDataEntry(x: Double(index), y: Double(result.reactionTime))
-                    //overallTime += result.reactionTime
-                    
-                    dataEntries.append(dataEntry)
-                }
-                
-                let chartDataSet = LineChartDataSet(values: dataEntries,
-                                                    label: "Reaction Time Per Day")
-                chartDataSet.drawCirclesEnabled = true
-                chartDataSet.circleRadius = 4
-                chartDataSet.setCircleColor(FlatSkyBlue())
-                
-                let resultsMultiplier = (CGFloat)(Double(results.count) / 20.0)
-                let zoomMultiplier = resultsMultiplier > 1.0 ? resultsMultiplier : 1.0
-                
-                if chartView.scaleX != zoomMultiplier {
-                    chartView.setScaleMinima(zoomMultiplier, scaleY: 1)  
-                }
-                
-                chartDataSet.mode = .horizontalBezier
-                chartDataSet.drawValuesEnabled = false
-                
-                chartDataSet.setColor(FlatSkyBlue())
-                chartDataSet.drawFilledEnabled = true
-                
-                chartDataSet.lineWidth = 2
-                
-                let dataSets = [chartDataSet]
-                
-                let data = LineChartData.init(dataSets: dataSets)
-                self.styleData(data: data)
-                
-                chartView.data = data
-                
-                //addLimitLine(with: overallTime, and: results.count)
-                
-                self.chartView.animate(yAxisDuration: animationDuration, easingOption: .easeOutExpo)
-                
-                //self.ignoreInteractions(withTime: animationDuration)
+                dataEntries.append(dataEntry)
             }
             
-            chartView.isHidden = false
-            barChartView.isHidden = true
+            chartView.data = super.createReactionDayChartData(withDataEntries: dataEntries,
+                                                              chartView: chartView, andrResultsCount: resultsCount)
             
-        } catch let error as NSError {
-            fatalError(error.localizedDescription)
+            super.addLimitLine(with: overallTime, count: resultsCount, andChartView: chartView)
+            
+            self.chartView.animate(yAxisDuration: animationDuration, easingOption: .easeOutExpo)
+            
         }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.chartView.alpha = 1
+            self.barChartView.alpha = 0.0
+        }
+        
     }
     
     func setWeekData() {
         
         self.setDateInLabel(forPeriod: .week)
         
-        do {
-            let realm = try Realm()
+        let animationDuration: TimeInterval = 1.2
+        let resultCount = (currentWeekResults?.count)!
+        
+        if resultCount > 0 {
             
-            let results = realm.objects(ReactionResultObject.self).filter("reactionDate >= %@ && reactionDate <= %@",
-                                                                     currentDate.startOfWeek(), currentDate.endOfWeek())
+            print("setWeekData, OBJECTS = \(resultCount)")
             
-            let animationDuration: TimeInterval = 1.2
+            var dataEntries: [BarChartDataEntry] = []
             
-            if results.count > 0 {
+            for index in 1...7 {
                 
-                print("setWeekData, OBJECTS = \(results.count)")
+                let avgValue: Int = currentWeekResults!.filter("reactionWeekday == %@", index).average(ofProperty: "reactionTime") ?? 0
                 
-                var dataEntries: [BarChartDataEntry] = []
-                
-                for index in 1...7 {
-                    
-                    let avgValue: Int = results.filter("reactionWeekday == %@", index).average(ofProperty: "reactionTime") ?? 0
-                    
-                    let dataEntry = BarChartDataEntry(x: Double(index - 1), y: Double(avgValue))
-                    dataEntries.append(dataEntry)
-                }
-                
-                let chartDataSet = BarChartDataSet(values: dataEntries,
-                                                   label: "Average Reaction Time Per Weekday")
-                
-                chartDataSet.drawValuesEnabled = false
-                
-                chartDataSet.colors = [FlatSkyBlue()]
-                
-                let dataSets = [chartDataSet]
-                
-                let data = BarChartData.init(dataSets: dataSets)
-                
-                barChartView.data = data
-                
-                //addLimitLine(with: overallTime, and: results.count)
-                
-                self.barChartView.animate(yAxisDuration: animationDuration, easingOption: .easeOutBounce)
-                
-                //self.ignoreInteractions(withTime: animationDuration)
+                let dataEntry = BarChartDataEntry(x: Double(index - 1), y: Double(avgValue))
+                dataEntries.append(dataEntry)
             }
             
-            chartView.isHidden = true
-            barChartView.isHidden = false
+            if let data = super.createReactionWeekChartData(withDataEntries: dataEntries,
+                                                            chartView: barChartView, andrResultsCount: resultCount) {
+                barChartView.data = data
+            }
             
-        } catch let error as NSError {
-            fatalError(error.localizedDescription)
+            //addLimitLine(with: overallTime, and: results.count)
+            
+            self.barChartView.animate(yAxisDuration: animationDuration, easingOption: .easeOutBounce)
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.barChartView.alpha = 1
+            self.chartView.alpha = 0.0
         }
     }
     

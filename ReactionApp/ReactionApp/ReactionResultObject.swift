@@ -8,7 +8,6 @@
 
 import Foundation
 import RealmSwift
-import Realm
 
 class ReactionResultObject: Object {
     
@@ -18,6 +17,7 @@ class ReactionResultObject: Object {
     
     dynamic var reactionDate        = Date()
     dynamic var reactionWeekday     = 0
+    //dynamic var reactionWeekOfMonth = 0
     
     func save() {
         backgroundQueue.sync {
@@ -26,6 +26,7 @@ class ReactionResultObject: Object {
             
             self.reactionDate = currentDate
             self.reactionWeekday = Calendar.current.component(.weekday, from: currentDate)
+            //self.reactionWeekOfMonth = Calendar.current.component(.weekOfMonth, from: currentDate)
 
             /*
              // *** RANDOM DEBUG PROPERTIES ***

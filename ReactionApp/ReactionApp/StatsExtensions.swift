@@ -60,7 +60,7 @@ extension Date {
     }
     
     func endOfMonth() -> Date {
-        return Calendar.current.date(byAdding: DateComponents(month: 1, day: -1),
+        return Calendar.current.date(byAdding: DateComponents(month: 1, second: -1),
                                      to: self.startOfMonth())!
     }
     
