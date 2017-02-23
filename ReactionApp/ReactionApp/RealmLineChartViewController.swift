@@ -16,20 +16,8 @@ import Charts
 extension RealmLineChartViewController: IAxisValueFormatter {
     
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        
-        switch self.dateStatsSegmentedControl.selectedSegmentIndex {
-            
-        case DateStats.day.rawValue:
-            
-            return xAxisValueForDayStats(withIndex: value)
-            
-        case DateStats.week.rawValue:
-            
-            return xAxisValueForWeekdayStats(withDayNumber: value)
-        default:
-            break
-        }
-        return ""
+
+        return xAxisValueForDayStats(withIndex: value)
     }
 }
 
@@ -37,8 +25,9 @@ extension RealmLineChartViewController: IAxisValueFormatter {
 
 class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelegate {
     
-    @IBOutlet weak var chartView: LineChartView!
-    @IBOutlet weak var barChartView: BarChartView!
+    @IBOutlet weak var dayChartView: LineChartView!
+    @IBOutlet weak var weekChartView: BarChartView!
+    @IBOutlet weak var allTimeChartView: BarChartView!
     
     
     @IBOutlet weak var dateStatsSegmentedControl: UISegmentedControl!
@@ -46,8 +35,9 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
     
     weak var axisFormatDelegate: IAxisValueFormatter?
     
-    var currentDayResults: Results<ReactionResultObject>?
+    var currentDayResults:  Results<ReactionResultObject>?
     var currentWeekResults: Results<ReactionResultObject>?
+    var allTimeResults:     Results<ReactionResultObject>?
     
     var currentDate = Date()
     
@@ -58,16 +48,23 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
         
         axisFormatDelegate = self
         
-        chartView.delegate = self
-        barChartView.delegate = self
+        dayChartView.delegate = self
+        weekChartView.delegate = self
+        allTimeChartView.delegate = self
         
-        chartView.xAxis.valueFormatter = axisFormatDelegate
-        barChartView.xAxis.valueFormatter = axisFormatDelegate
+        dayChartView.xAxis.valueFormatter = axisFormatDelegate
         
-        self.setupBarLineChartView(chartView: chartView)
-        self.setupBarLineChartView(chartView: barChartView)
+        weekChartView.xAxis.valueFormatter = DayAxisValueFormatter(forChart: weekChartView)
+        allTimeChartView.xAxis.valueFormatter = DayAxisValueFormatter(forChart: allTimeChartView)
         
-        barChartView.leftAxis.axisMinimum = 0.0
+        self.setupBarLineChartView(chartView: dayChartView)
+        self.setupBarLineChartView(chartView: weekChartView)
+        self.setupBarLineChartView(chartView: allTimeChartView)
+        
+        weekChartView.leftAxis.axisMinimum = 0.0
+        allTimeChartView.leftAxis.axisMinimum = 0.0
+        
+        allTimeChartView.scaleXEnabled = true
         
         self.setRealmQueries()
     }
@@ -83,6 +80,8 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
             self.setDayData()
         case DateStats.week.rawValue:
             self.setWeekData()
+        case DateStats.allTime.rawValue:
+            setAllTimeData()
         default:
             break
         }
@@ -109,11 +108,17 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
     }
     
     func setRealmQueries() {
-        self.currentDayResults = try! Realm().objects(ReactionResultObject.self).filter("reactionDate >= %@ && reactionDate <= %@",
-                                                                                        currentDate.startOfDay(), currentDate.endOfDay()).sorted(byProperty: "reactionDate", ascending: false)
+        self.currentDayResults = try! Realm().objects(
+            ReactionResultObject.self).filter(
+            "reactionDate >= %@ && reactionDate <= %@",
+            currentDate.startOfDay(), currentDate.endOfDay())
         
-        self.currentWeekResults = try! Realm().objects(ReactionResultObject.self).filter("reactionDate >= %@ && reactionDate <= %@",
-                                                                                         currentDate.startOfWeek(), currentDate.endOfWeek())
+        self.currentWeekResults = try! Realm().objects(
+            ReactionResultObject.self).filter(
+            "reactionDate <= %@ && reactionDate >= %@",
+            currentDate.endOfDay(), Date(timeInterval: -518_400, since: currentDate.startOfDay()))
+        
+        self.allTimeResults = try! Realm().objects(ReactionResultObject.self)
     }
     
     func setDateInLabel(forPeriod period: DateStats) {
@@ -130,9 +135,14 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
             let weekFormatter = DateFormatter()
             weekFormatter.dateFormat = "dd MMMM"
             
-            self.currentDateLabel.text = "\(weekFormatter.string(from: currentDate.startOfWeek())) - \(weekFormatter.string(from: currentDate.endOfWeek()))"
-        default:
-            break
+            self.currentDateLabel.text = "\(weekFormatter.string(from: Date(timeInterval: -518_400, since: currentDate.startOfDay()))) - \(weekFormatter.string(from: currentDate.endOfDay()))"
+        case .allTime:
+            
+            let allTimeFormatter = DateFormatter()
+            allTimeFormatter.dateFormat = "dd MMM yyy"
+            
+            self.currentDateLabel.text = "\(allTimeFormatter.string(from: (allTimeResults?.min(ofProperty: "reactionDate")) ?? Date(timeInterval: -518_400, since: currentDate.startOfDay()))) - " +
+                                         "\(allTimeFormatter.string(from: (allTimeResults?.max(ofProperty: "reactionDate")) ?? currentDate.endOfDay()))"
         }
         
     }
@@ -161,18 +171,19 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
                 dataEntries.append(dataEntry)
             }
             
-            chartView.data = super.createReactionDayChartData(withDataEntries: dataEntries,
-                                                              chartView: chartView, andrResultsCount: resultsCount)
+            dayChartView.data = super.createReactionDayChartData(withDataEntries: dataEntries,
+                                                              chartView: dayChartView, andrResultsCount: resultsCount)
             
-            super.addLimitLine(with: overallTime, count: resultsCount, andChartView: chartView)
+            super.addLimitLine(with: overallTime, count: resultsCount, andChartView: dayChartView)
             
-            self.chartView.animate(yAxisDuration: animationDuration, easingOption: .easeOutExpo)
+            self.dayChartView.animate(yAxisDuration: animationDuration, easingOption: .easeOutExpo)
             
         }
         
         UIView.animate(withDuration: 0.3) {
-            self.chartView.alpha = 1
-            self.barChartView.alpha = 0.0
+            self.dayChartView.alpha = 1
+            self.weekChartView.alpha = 0.0
+            self.allTimeChartView.alpha = 0.0
         }
         
     }
@@ -182,6 +193,8 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
         self.setDateInLabel(forPeriod: .week)
         
         let animationDuration: TimeInterval = 1.2
+        var overallTime = 0
+        var overallCount = 0
         let resultCount = (currentWeekResults?.count)!
         
         if resultCount > 0 {
@@ -189,28 +202,69 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
             print("setWeekData, OBJECTS = \(resultCount)")
             
             var dataEntries: [BarChartDataEntry] = []
+            let minDayOfYear: Int = (Calendar.current.ordinality(of: .day, in: .year, for: currentDate))! - 6
+            let maxDayOfYear: Int = (Calendar.current.ordinality(of: .day, in: .year, for: currentDate))!
             
-            for index in 1...7 {
+            for index in minDayOfYear...maxDayOfYear {
                 
-                let avgValue: Int = currentWeekResults!.filter("reactionWeekday == %@", index).average(ofProperty: "reactionTime") ?? 0
+                let avgValue: Int = currentWeekResults!.filter("reactionDayOfYear == %@", index).average(ofProperty: "reactionTime") ?? 0
+                overallTime += avgValue
+                overallCount += avgValue != 0 ? 1 : 0
                 
-                let dataEntry = BarChartDataEntry(x: Double(index - 1), y: Double(avgValue))
+                let dataEntry = BarChartDataEntry(x: Double(index), y: Double(avgValue))
                 dataEntries.append(dataEntry)
             }
+
+            weekChartView.data = super.createReactionWeekChartData(withDataEntries: dataEntries,
+                                                                   chartView: weekChartView, andrResultsCount: resultCount)
             
-            if let data = super.createReactionWeekChartData(withDataEntries: dataEntries,
-                                                            chartView: barChartView, andrResultsCount: resultCount) {
-                barChartView.data = data
-            }
-            
-            //addLimitLine(with: overallTime, and: results.count)
-            
-            self.barChartView.animate(yAxisDuration: animationDuration, easingOption: .easeOutBounce)
+            self.weekChartView.animate(yAxisDuration: animationDuration, easingOption: .easeOutQuint)
         }
         
         UIView.animate(withDuration: 0.3) {
-            self.barChartView.alpha = 1
-            self.chartView.alpha = 0.0
+            self.weekChartView.alpha = 1
+            self.dayChartView.alpha = 0.0
+            self.allTimeChartView.alpha = 0.0
+        }
+    }
+    
+    func setAllTimeData() {
+        
+        self.setDateInLabel(forPeriod: .allTime)
+        
+        let animationDuration: TimeInterval = 1.2
+        var overallTime = 0
+        var overallCount = 0
+        let resultCount = (allTimeResults?.count)!
+        
+        if resultCount > 0 {
+            
+            print("setAllTimeData, OBJECTS = \(resultCount)")
+            
+            var dataEntries: [BarChartDataEntry] = []
+            let minDayOfYear: Int = (allTimeResults?.min(ofProperty: "reactionDayOfYear"))!
+            let maxDayOfYear: Int = (allTimeResults?.max(ofProperty: "reactionDayOfYear"))!
+            
+            for index in minDayOfYear...maxDayOfYear {
+                
+                let avgValue: Int = allTimeResults!.filter("reactionDayOfYear == %@", index).average(ofProperty: "reactionTime") ?? 0
+                overallTime += avgValue
+                overallCount += avgValue != 0 ? 1 : 0
+                
+                let dataEntry = BarChartDataEntry(x: Double(index), y: Double(avgValue))
+                dataEntries.append(dataEntry)
+            }
+            
+            allTimeChartView.data = super.createReactionAllTimeChartData(withDataEntries: dataEntries,
+                                                                      chartView: allTimeChartView, andrResultsCount: resultCount)
+            
+            self.allTimeChartView.animate(yAxisDuration: animationDuration, easingOption: .easeOutQuint)
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.allTimeChartView.alpha = 1
+            self.weekChartView.alpha = 0.0
+            self.dayChartView.alpha = 0.0
         }
     }
     
@@ -223,6 +277,8 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
             setDayData()
         case DateStats.week.rawValue:
             setWeekData()
+        case DateStats.allTime.rawValue:
+            setAllTimeData()
         default:
             break
         }
@@ -230,13 +286,3 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
     }
     
 }
-
-
-
-
-
-
-
-
-
-

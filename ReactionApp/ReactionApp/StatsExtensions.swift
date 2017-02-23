@@ -12,7 +12,7 @@ import Charts
 
 enum DateStats: Int {
     
-    case day = 0, week, month, allTime
+    case day = 0, week, allTime
 }
 
 extension Array where Element: Integer {

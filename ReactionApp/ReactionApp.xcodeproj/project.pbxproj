@@ -10,6 +10,7 @@
 		2AB9EE1E6DE04BA1E41D3D4E /* Pods_ReactionAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C142FC9F2C29C72D69BCD0A /* Pods_ReactionAppUITests.framework */; };
 		438F1ABC97D2889232DACCE4 /* Pods_ReactionAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DBFF92BC89DA48170448B0 /* Pods_ReactionAppTests.framework */; };
 		4428A8E71E5E024A006766BE /* XYMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4428A8E61E5E024A006766BE /* XYMarkerView.swift */; };
+		443466341E5F0A2C006214EE /* DayAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443466331E5F0A2C006214EE /* DayAxisValueFormatter.swift */; };
 		446241B81E55B0EC00240B93 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446241B71E55B0EC00240B93 /* CircleView.swift */; };
 		446241BA1E55B5D200240B93 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446241B91E55B5D200240B93 /* Circle.swift */; };
 		448F64411E5A1084003504C0 /* StatsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448F64401E5A1084003504C0 /* StatsExtensions.swift */; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		376C5D3EB9F4901558F1680D /* Pods-ReactionAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactionAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactionAppUITests/Pods-ReactionAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4428A8E61E5E024A006766BE /* XYMarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XYMarkerView.swift; sourceTree = "<group>"; };
+		443466331E5F0A2C006214EE /* DayAxisValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayAxisValueFormatter.swift; sourceTree = "<group>"; };
 		446241B71E55B0EC00240B93 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		446241B91E55B5D200240B93 /* Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 		448F64401E5A1084003504C0 /* StatsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsExtensions.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			children = (
 				44FABE281E58DAD500D38A07 /* BalloonMarker.swift */,
 				4428A8E61E5E024A006766BE /* XYMarkerView.swift */,
+				443466331E5F0A2C006214EE /* DayAxisValueFormatter.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 					44D087931E547DAF00180DD9 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = XWGY2HKNAY;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					44D087AA1E547DAF00180DD9 = {
@@ -512,6 +516,7 @@
 				446241BA1E55B5D200240B93 /* Circle.swift in Sources */,
 				448F64411E5A1084003504C0 /* StatsExtensions.swift in Sources */,
 				44B90D0C1E589CA4001BC546 /* RealmDemoBaseViewController.swift in Sources */,
+				443466341E5F0A2C006214EE /* DayAxisValueFormatter.swift in Sources */,
 				44B90D031E584EB1001BC546 /* shortInstructionLabel.swift in Sources */,
 				446241B81E55B0EC00240B93 /* CircleView.swift in Sources */,
 				44E46FEC1E54AA5300F453B9 /* ReactionViewController.swift in Sources */,
@@ -673,6 +678,7 @@
 			baseConfigurationReference = 5B51BBB4330E48D4BE6FEE3C /* Pods-ReactionApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = XWGY2HKNAY;
 				INFOPLIST_FILE = ReactionApp/Info.plist;
@@ -680,6 +686,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = RT.ReactionApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -689,6 +696,7 @@
 			baseConfigurationReference = F438793F6FC39C17F09DF974 /* Pods-ReactionApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = XWGY2HKNAY;
 				INFOPLIST_FILE = ReactionApp/Info.plist;

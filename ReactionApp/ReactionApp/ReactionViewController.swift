@@ -75,7 +75,7 @@ class ReactionViewController: UIViewController {
             
             // *** ADDING RANDOM REACTIONS FOR DEBUG ***
             
-            for _ in 0..<100 {
+            for _ in 0..<1500 {
                 
                 let testReaction = ReactionResultObject()
                 testReaction.save()

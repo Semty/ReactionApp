@@ -40,11 +40,15 @@ class RealmDemoBaseViewController: UIViewController {
         chartView.dragEnabled = true
         chartView.leftAxis.drawLimitLinesBehindDataEnabled = true
         chartView.pinchZoomEnabled = false
+        chartView.clipValuesToContentEnabled = true
         
         let xAxis = chartView.xAxis;
         xAxis.labelPosition = .bottom
-        xAxis.labelFont = UIFont.init(name: "HelveticaNeue-CondensedBold", size: 9)!
+        xAxis.labelFont = UIFont.init(name: "HelveticaNeue-CondensedBold", size: 10)!
         xAxis.labelTextColor = FlatBlue()
+        //xAxis.avoidFirstLastClippingEnabled = true
+        //xAxis.labelCount = 7
+        //xAxis.granularity = 1
         
         chartView.rightAxis.enabled = false
         
@@ -53,13 +57,14 @@ class RealmDemoBaseViewController: UIViewController {
         msFormatter.negativeSuffix = " ms"
         
         let leftAxis = chartView.leftAxis
-        leftAxis.labelFont = UIFont.init(name: "HelveticaNeue-CondensedBold", size: 9)!
+        leftAxis.labelFont = UIFont.init(name: "HelveticaNeue-CondensedBold", size: 11)!
         leftAxis.labelTextColor = FlatBlue()
         leftAxis.valueFormatter = DefaultAxisValueFormatter.init(formatter: msFormatter)
         
-        if chartView is BarChartView {
+        if chartView is LineChartView {
             addBalloonMarker(forChartView: chartView)
-        } else {
+            chartView.xAxis.avoidFirstLastClippingEnabled = true
+        } else if chartView is BarChartView {
             addXYMarker(forChartView: chartView, withXAxisValueFormatter: chartView.xAxis.valueFormatter!)
         }
     }
@@ -107,11 +112,8 @@ class RealmDemoBaseViewController: UIViewController {
     func createReactionDayChartData(withDataEntries dataEntries: [ChartDataEntry], chartView: BarLineChartViewBase,
                              andrResultsCount resultsCount: Int) -> LineChartData {
         
-        let chartDataSet = LineChartDataSet(values: dataEntries,
+        var chartDataSet = LineChartDataSet(values: dataEntries,
                                             label: "Reaction Time Per Day")
-        chartDataSet.drawCirclesEnabled = true
-        chartDataSet.circleRadius = 4
-        chartDataSet.setCircleColor(FlatSkyBlue())
         
         let resultsMultiplier = (CGFloat)(Double(resultsCount) / 20.0)
         let zoomMultiplier = resultsMultiplier > 1.0 ? resultsMultiplier : 1.0
@@ -124,13 +126,7 @@ class RealmDemoBaseViewController: UIViewController {
             chartView.xAxis.granularity = 1.0
         }
         
-        chartDataSet.mode = .horizontalBezier
-        chartDataSet.drawValuesEnabled = false
-        
-        chartDataSet.setColor(FlatSkyBlue())
-        chartDataSet.drawFilledEnabled = true
-        
-        chartDataSet.lineWidth = 2
+        setCommonProporties(forChartDataSet: &chartDataSet)
         
         let dataSets = [chartDataSet]
         
@@ -139,56 +135,73 @@ class RealmDemoBaseViewController: UIViewController {
         return data
     }
     
-    func createReactionWeekChartData(withDataEntries dataEntries: [ChartDataEntry], chartView: BarLineChartViewBase,
-                                     andrResultsCount resultsCount: Int) -> BarChartData? {
+    func createReactionWeekChartData(withDataEntries dataEntries: [BarChartDataEntry], chartView: BarLineChartViewBase,
+                                     andrResultsCount resultsCount: Int) -> BarChartData {
         
-        if chartView.data?.dataSetCount != nil {
-            
-            let chartDataSet = chartView.data?.dataSets[0] as! BarChartDataSet
-            chartDataSet.values = dataEntries
-            chartView.data?.notifyDataChanged()
-            chartView.notifyDataSetChanged()
-            
-            return nil
-        } else {
-            
-            let chartDataSet = BarChartDataSet(values: dataEntries,
-                                               label: "Average Reaction Time Per Weekday")
-            
-            chartDataSet.drawValuesEnabled = false
-            
-            chartDataSet.colors = [FlatSkyBlue()]
-            
-            let dataSets = [chartDataSet]
-            
-            let data = BarChartData.init(dataSets: dataSets)
-            
-            return data
-        }
+        let chartDataSet = BarChartDataSet(values: dataEntries,
+                                            label: "Average Reaction Time Per Last 7 Days")
+        
+        chartDataSet.colors = ChartColorTemplates.material()
+        
+        let dataSets = [chartDataSet]
+        
+        let data = BarChartData.init(dataSets: dataSets)
+        
+        return data
     }
     
+    func createReactionAllTimeChartData(withDataEntries dataEntries: [BarChartDataEntry], chartView: BarLineChartViewBase,
+                                        andrResultsCount resultsCount: Int) -> BarChartData {
+        
+        let chartDataSet = BarChartDataSet(values: dataEntries,
+                                           label: "Average Reaction per all Time")
+        
+        chartDataSet.colors = ChartColorTemplates.colorful()
+        
+        let dataSets = [chartDataSet]
+        
+        let data = BarChartData.init(dataSets: dataSets)
+        
+        return data
+    }
+    
+    func setCommonProporties(forChartDataSet chartDataSet: inout LineChartDataSet) {
+        
+        chartDataSet.circleRadius = 4
+        chartDataSet.setCircleColor(FlatSkyBlue())
+        
+        chartDataSet.mode = .horizontalBezier
+        chartDataSet.drawValuesEnabled = false
+        
+        chartDataSet.setColor(FlatSkyBlue())
+        chartDataSet.drawFilledEnabled = true
+        chartDataSet.setDrawHighlightIndicators(true)
+        
+        chartDataSet.lineWidth = 2
+    }
+    /*
     func xAxisValueForWeekdayStats(withDayNumber number: Double) -> String {
         
         switch number {
         case 0:
-            return "Sunday"
+            return "Sun"
         case 1:
-            return "Monday"
+            return "Mon"
         case 2:
-            return "Tuesday"
+            return "Tues"
         case 3:
-            return "Thursday"
+            return "Wed"
         case 4:
-            return "Wednesday"
+            return "Thurs"
         case 5:
-            return "Friday"
+            return "Fri"
         case 6:
-            return "Saturday"
+            return "Sat"
         default:
             return ""
         }
     }
-    
+    */
     func getCurrentDateInfo(unit: Calendar.Component, from date: Date) -> Int {
         return Calendar.current.component(unit, from: date)
     }

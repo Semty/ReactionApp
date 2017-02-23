@@ -67,7 +67,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="clip" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="FKr-1j-BSp">
-                                <rect key="frame" x="110" y="72" width="155" height="103.5"/>
+                                <rect key="frame" x="109.5" y="72" width="156" height="103.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="FKr-1j-BSp" secondAttribute="height" multiplier="155:103" id="AtN-II-gaB"/>
                                 </constraints>
@@ -137,6 +137,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LhA-Yq-9kc" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="16" y="123.5" width="343" height="494.5"/>
+                                <color key="backgroundColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VGo-cy-lEQ" customClass="LineChartView" customModule="Charts">
                                 <rect key="frame" x="16" y="123.5" width="343" height="494.5"/>
                                 <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
@@ -146,7 +150,6 @@
                                 <segments>
                                     <segment title="Day"/>
                                     <segment title="Week"/>
-                                    <segment title="Month"/>
                                     <segment title="All Time"/>
                                 </segments>
                                 <connections>
@@ -168,26 +171,31 @@
                         <constraints>
                             <constraint firstItem="VGo-cy-lEQ" firstAttribute="leading" secondItem="3Bv-y0-qvm" secondAttribute="leadingMargin" id="0Hz-Sa-8F2"/>
                             <constraint firstItem="VGo-cy-lEQ" firstAttribute="top" secondItem="X8P-3x-vgT" secondAttribute="bottom" id="7MP-SK-jt6"/>
+                            <constraint firstItem="d8Q-AG-JDX" firstAttribute="top" secondItem="LhA-Yq-9kc" secondAttribute="bottom" id="HCH-Le-End"/>
+                            <constraint firstItem="LhA-Yq-9kc" firstAttribute="trailing" secondItem="3Bv-y0-qvm" secondAttribute="trailingMargin" id="JIp-yx-lzT"/>
                             <constraint firstItem="sWf-FW-B4f" firstAttribute="trailing" secondItem="3Bv-y0-qvm" secondAttribute="trailingMargin" id="Jk3-Bz-rVu"/>
                             <constraint firstItem="X8P-3x-vgT" firstAttribute="leading" secondItem="3Bv-y0-qvm" secondAttribute="leadingMargin" id="NG8-fS-OQj"/>
                             <constraint firstItem="sWf-FW-B4f" firstAttribute="leading" secondItem="3Bv-y0-qvm" secondAttribute="leadingMargin" id="PIi-D5-6Aa"/>
                             <constraint firstItem="VGo-cy-lEQ" firstAttribute="trailing" secondItem="3Bv-y0-qvm" secondAttribute="trailingMargin" id="Q4a-iM-qn4"/>
                             <constraint firstItem="X8P-3x-vgT" firstAttribute="trailing" secondItem="3Bv-y0-qvm" secondAttribute="trailingMargin" id="UeH-Cw-mcm"/>
+                            <constraint firstItem="LhA-Yq-9kc" firstAttribute="leading" secondItem="3Bv-y0-qvm" secondAttribute="leadingMargin" id="bpl-vS-452"/>
                             <constraint firstItem="X8P-3x-vgT" firstAttribute="top" secondItem="5iv-2q-KTW" secondAttribute="bottom" constant="10" id="d3c-HM-0Id"/>
                             <constraint firstItem="d8Q-AG-JDX" firstAttribute="top" secondItem="VGo-cy-lEQ" secondAttribute="bottom" id="eRk-C7-Vxc"/>
                             <constraint firstItem="5iv-2q-KTW" firstAttribute="top" secondItem="kNk-Pz-jjt" secondAttribute="bottom" id="eso-Sb-suQ"/>
                             <constraint firstItem="5iv-2q-KTW" firstAttribute="trailing" secondItem="3Bv-y0-qvm" secondAttribute="trailingMargin" id="h8m-gq-WO9"/>
                             <constraint firstItem="sWf-FW-B4f" firstAttribute="top" secondItem="X8P-3x-vgT" secondAttribute="bottom" id="ola-Ya-h1b"/>
                             <constraint firstItem="5iv-2q-KTW" firstAttribute="leading" secondItem="3Bv-y0-qvm" secondAttribute="leadingMargin" id="uQf-Lm-BM7"/>
+                            <constraint firstItem="LhA-Yq-9kc" firstAttribute="top" secondItem="X8P-3x-vgT" secondAttribute="bottom" id="vIj-Ui-wJI"/>
                             <constraint firstItem="d8Q-AG-JDX" firstAttribute="top" secondItem="sWf-FW-B4f" secondAttribute="bottom" id="vg4-es-NOO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Statistics" id="MYj-NK-4Ws"/>
                     <connections>
-                        <outlet property="barChartView" destination="sWf-FW-B4f" id="wS8-Al-PXa"/>
-                        <outlet property="chartView" destination="VGo-cy-lEQ" id="aGx-jq-Vqr"/>
+                        <outlet property="allTimeChartView" destination="LhA-Yq-9kc" id="KFI-FN-Dmb"/>
                         <outlet property="currentDateLabel" destination="X8P-3x-vgT" id="cEJ-jw-9rg"/>
                         <outlet property="dateStatsSegmentedControl" destination="5iv-2q-KTW" id="WOj-t0-mad"/>
+                        <outlet property="dayChartView" destination="VGo-cy-lEQ" id="q88-4y-OJC"/>
+                        <outlet property="weekChartView" destination="sWf-FW-B4f" id="ZxL-IX-kYo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r2T-YQ-HIn" userLabel="First Responder" sceneMemberID="firstResponder"/>

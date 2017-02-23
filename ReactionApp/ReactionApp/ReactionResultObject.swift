@@ -17,7 +17,7 @@ class ReactionResultObject: Object {
     
     dynamic var reactionDate        = Date()
     dynamic var reactionWeekday     = 0
-    //dynamic var reactionWeekOfMonth = 0
+    dynamic var reactionDayOfYear   = 0
     
     func save() {
         backgroundQueue.sync {
@@ -26,14 +26,22 @@ class ReactionResultObject: Object {
             
             self.reactionDate = currentDate
             self.reactionWeekday = Calendar.current.component(.weekday, from: currentDate)
-            //self.reactionWeekOfMonth = Calendar.current.component(.weekOfMonth, from: currentDate)
-
+            self.reactionDayOfYear = Calendar.current.ordinality(of: .day, in: .year, for: currentDate)!
+            
             /*
+             let formatter = DateFormatter()
+             formatter.dateFormat = "dd MMMM yyyy"
+             
              // *** RANDOM DEBUG PROPERTIES ***
              self.reactionTime = Int.random(within: 150...750)
-             self.reactionDate = Date.random(within: currentDate.startOfWeek()...currentDate.endOfWeek())
-             self.reactionWeekday = Calendar.current.component(.weekday, from: reactionDate)
-            */
+             // 1 January // 31 December
+             self.reactionDate = Date.random(within: currentDate...Date.init(timeInterval: 30_000_000, since: currentDate))
+             */
+            
+            let currentYear = Calendar.current.component(.year, from: self.reactionDate)
+            let multiplier =  currentYear != 2021 ? (currentYear - 2017) * 365 : (currentYear - 2017) * 365 + 1
+            self.reactionDayOfYear = Calendar.current.ordinality(of: .day, in: .year, for: reactionDate)! + multiplier
+            
             do {
                 let realm = try Realm()
                 try realm.write {
