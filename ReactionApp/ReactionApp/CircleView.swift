@@ -27,6 +27,7 @@ class CircleView: UIView {
             self.layer.addSublayer(circleLayer)
         } else {
             
+            self.circleLayer.path = CGPath(ellipseIn: rect, transform: nil)
             if Circle.sharedCircle.state == .action {
                 CATransaction.setDisableActions(true)
                 circleLayer.fillColor = Circle.sharedCircle.currentColor.cgColor

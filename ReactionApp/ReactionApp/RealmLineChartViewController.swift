@@ -62,9 +62,9 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
         self.setupBarLineChartView(chartView: allTimeChartView)
         
         weekChartView.leftAxis.axisMinimum = 0.0
-        allTimeChartView.leftAxis.axisMinimum = 0.0
         
-        allTimeChartView.scaleXEnabled = true
+        allTimeChartView.maxVisibleCount = 25
+        allTimeChartView.leftAxis.axisMinimum = 0.0
         
         self.setRealmQueries()
     }
@@ -155,6 +155,7 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
 
         let animationDuration: TimeInterval = 1.2
         let resultsCount = (currentDayResults?.count)!
+        var lastXAxisIndex = 0.0
         var overallTime = 0
         
         if resultsCount > 0 {
@@ -169,12 +170,19 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
                 overallTime += result.reactionTime
                 
                 dataEntries.append(dataEntry)
+                
+                if index + 1 == resultsCount {
+                    lastXAxisIndex = Double(index)
+                }
             }
             
             dayChartView.data = super.createReactionDayChartData(withDataEntries: dataEntries,
                                                               chartView: dayChartView, andrResultsCount: resultsCount)
             
             super.addLimitLine(with: overallTime, count: resultsCount, andChartView: dayChartView)
+            
+            dayChartView.setVisibleXRangeMaximum(20.0)
+            dayChartView.moveViewToX(lastXAxisIndex)
             
             self.dayChartView.animate(yAxisDuration: animationDuration, easingOption: .easeOutExpo)
             
@@ -216,7 +224,7 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
             }
 
             weekChartView.data = super.createReactionWeekChartData(withDataEntries: dataEntries,
-                                                                   chartView: weekChartView, andrResultsCount: resultCount)
+                                                                   chartView: weekChartView)
             
             self.weekChartView.animate(yAxisDuration: animationDuration, easingOption: .easeOutQuint)
         }
@@ -234,6 +242,7 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
         
         let animationDuration: TimeInterval = 1.2
         var overallTime = 0
+        var lastXAxisIndex = 0.0
         var overallCount = 0
         let resultCount = (allTimeResults?.count)!
         
@@ -253,10 +262,17 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
                 
                 let dataEntry = BarChartDataEntry(x: Double(index), y: Double(avgValue))
                 dataEntries.append(dataEntry)
+                
+                if index == maxDayOfYear {
+                    lastXAxisIndex = Double(index)
+                }
             }
             
             allTimeChartView.data = super.createReactionAllTimeChartData(withDataEntries: dataEntries,
-                                                                      chartView: allTimeChartView, andrResultsCount: resultCount)
+                                                                      chartView: allTimeChartView)
+            
+            allTimeChartView.moveViewToX(lastXAxisIndex)
+            dayChartView.setVisibleXRangeMaximum(60.0)
             
             self.allTimeChartView.animate(yAxisDuration: animationDuration, easingOption: .easeOutQuint)
         }

@@ -30,21 +30,28 @@ class RealmDemoBaseViewController: UIViewController {
         
         chartView.alpha = 0.0
         
+        chartView.noDataFont = UIFont.init(name: "HelveticaNeue-CondensedBold", size: 12)!
+        chartView.noDataTextColor = FlatBlue()
+        chartView.noDataText = "We cannot find reaction stats for this period :("
+        
         chartView.chartDescription?.enabled = false
         
         chartView.drawGridBackgroundEnabled = false
         chartView.leftAxis.drawGridLinesEnabled = false
         chartView.xAxis.drawGridLinesEnabled = false
-        
         chartView.setScaleEnabled(false)
+        
         chartView.dragEnabled = true
         chartView.leftAxis.drawLimitLinesBehindDataEnabled = true
-        chartView.pinchZoomEnabled = false
+        chartView.pinchZoomEnabled = true
+        chartView.scaleXEnabled = true
         chartView.clipValuesToContentEnabled = true
+        
+        let fontSize = fontSizeForCurrentUIDevice()
         
         let xAxis = chartView.xAxis;
         xAxis.labelPosition = .bottom
-        xAxis.labelFont = UIFont.init(name: "HelveticaNeue-CondensedBold", size: 10)!
+        xAxis.labelFont = UIFont.init(name: "HelveticaNeue-CondensedBold", size: fontSize)!
         xAxis.labelTextColor = FlatBlue()
         //xAxis.avoidFirstLastClippingEnabled = true
         //xAxis.labelCount = 7
@@ -57,7 +64,7 @@ class RealmDemoBaseViewController: UIViewController {
         msFormatter.negativeSuffix = " ms"
         
         let leftAxis = chartView.leftAxis
-        leftAxis.labelFont = UIFont.init(name: "HelveticaNeue-CondensedBold", size: 11)!
+        leftAxis.labelFont = UIFont.init(name: "HelveticaNeue-CondensedBold", size: fontSize)!
         leftAxis.labelTextColor = FlatBlue()
         leftAxis.valueFormatter = DefaultAxisValueFormatter.init(formatter: msFormatter)
         
@@ -101,8 +108,9 @@ class RealmDemoBaseViewController: UIViewController {
         chartView.leftAxis.removeAllLimitLines()
         
         let limitTime = (Double)(overallTime) / (Double)(count)
-        let limitLine = ChartLimitLine(limit: limitTime)
+        let limitLine = ChartLimitLine(limit: limitTime, label: String.init(format: "%1.1f ms", limitTime))
         limitLine.lineColor = FlatSkyBlue().withAlphaComponent(0.3)
+        limitLine.valueFont = .boldSystemFont(ofSize: 8.0)
         
         limitLine.lineDashLengths = [8.0]
         
@@ -112,21 +120,26 @@ class RealmDemoBaseViewController: UIViewController {
     func createReactionDayChartData(withDataEntries dataEntries: [ChartDataEntry], chartView: BarLineChartViewBase,
                              andrResultsCount resultsCount: Int) -> LineChartData {
         
-        var chartDataSet = LineChartDataSet(values: dataEntries,
+        let chartDataSet = LineChartDataSet(values: dataEntries,
                                             label: "Reaction Time Per Day")
         
-        let resultsMultiplier = (CGFloat)(Double(resultsCount) / 20.0)
-        let zoomMultiplier = resultsMultiplier > 1.0 ? resultsMultiplier : 1.0
+        chartDataSet.circleRadius = 4
+        chartDataSet.setCircleColor(FlatSkyBlue())
         
-        if chartView.scaleX != zoomMultiplier {
-            chartView.setScaleMinima(zoomMultiplier, scaleY: 1)
+        chartDataSet.mode = .horizontalBezier
+        chartDataSet.drawValuesEnabled = false
+        
+        chartDataSet.setColor(FlatSkyBlue())
+        chartDataSet.drawFilledEnabled = true
+        chartDataSet.fillAlpha = 0.2
+        chartDataSet.fillColor = FlatSkyBlue()
+        chartDataSet.setDrawHighlightIndicators(true)
+        
+        chartDataSet.lineWidth = 2
+        
+        if resultsCount > 2 {
+            chartView.autoScaleMinMaxEnabled = true
         }
-        
-        if chartView.xAxis.isGranularityEnabled == false && resultsCount > 1 {
-            chartView.xAxis.granularity = 1.0
-        }
-        
-        setCommonProporties(forChartDataSet: &chartDataSet)
         
         let dataSets = [chartDataSet]
         
@@ -135,8 +148,9 @@ class RealmDemoBaseViewController: UIViewController {
         return data
     }
     
-    func createReactionWeekChartData(withDataEntries dataEntries: [BarChartDataEntry], chartView: BarLineChartViewBase,
-                                     andrResultsCount resultsCount: Int) -> BarChartData {
+    func createReactionWeekChartData(withDataEntries dataEntries: [BarChartDataEntry], chartView: BarLineChartViewBase) -> BarChartData {
+        
+        chartView.xAxis.granularity = 1.0
         
         let chartDataSet = BarChartDataSet(values: dataEntries,
                                             label: "Average Reaction Time Per Last 7 Days")
@@ -150,8 +164,9 @@ class RealmDemoBaseViewController: UIViewController {
         return data
     }
     
-    func createReactionAllTimeChartData(withDataEntries dataEntries: [BarChartDataEntry], chartView: BarLineChartViewBase,
-                                        andrResultsCount resultsCount: Int) -> BarChartData {
+    func createReactionAllTimeChartData(withDataEntries dataEntries: [BarChartDataEntry], chartView: BarLineChartViewBase) -> BarChartData {
+        
+        chartView.xAxis.granularity = 1.0
         
         let chartDataSet = BarChartDataSet(values: dataEntries,
                                            label: "Average Reaction per all Time")
@@ -165,20 +180,6 @@ class RealmDemoBaseViewController: UIViewController {
         return data
     }
     
-    func setCommonProporties(forChartDataSet chartDataSet: inout LineChartDataSet) {
-        
-        chartDataSet.circleRadius = 4
-        chartDataSet.setCircleColor(FlatSkyBlue())
-        
-        chartDataSet.mode = .horizontalBezier
-        chartDataSet.drawValuesEnabled = false
-        
-        chartDataSet.setColor(FlatSkyBlue())
-        chartDataSet.drawFilledEnabled = true
-        chartDataSet.setDrawHighlightIndicators(true)
-        
-        chartDataSet.lineWidth = 2
-    }
     /*
     func xAxisValueForWeekdayStats(withDayNumber number: Double) -> String {
         
@@ -204,6 +205,26 @@ class RealmDemoBaseViewController: UIViewController {
     */
     func getCurrentDateInfo(unit: Calendar.Component, from date: Date) -> Int {
         return Calendar.current.component(unit, from: date)
+    }
+    
+    func fontSizeForCurrentUIDevice() -> CGFloat {
+        
+        if UIDevice().userInterfaceIdiom == .phone {
+            switch UIScreen.main.nativeBounds.height {
+            case 960:
+                return 8.0
+            case 1136:
+                return 9.0
+            case 1334:
+                return 10.0
+            case 2208:
+                return 11.0
+            default:
+                return 12.0
+            }
+        } else {
+            return 12.0
+        }
     }
     
     /*

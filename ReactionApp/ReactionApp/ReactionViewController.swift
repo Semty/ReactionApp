@@ -256,6 +256,12 @@ class ReactionViewController: UIViewController {
         self.touchEndedForCircle(with: touches.first!, and: event)
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) in
+            self.circleView.setNeedsDisplay()
+        }, completion: nil)
+    }
+ 
 // MARK: - Realm
     
     func getRealmInBack() -> Realm {
