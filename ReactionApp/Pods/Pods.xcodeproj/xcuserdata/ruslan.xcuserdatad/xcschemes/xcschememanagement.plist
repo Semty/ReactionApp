@@ -14,6 +14,16 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>ESTabBarController-swift.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
+		<key>LTMorphingLabel.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
 		<key>Pods-ReactionApp.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -28,6 +38,11 @@
 		<dict>
 			<key>orderHint</key>
 			<integer>5</integer>
+		</dict>
+		<key>RAMAnimatedTabBarController.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
 		</dict>
 		<key>RandomKit.xcscheme</key>
 		<dict>
@@ -62,7 +77,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>112D4AEE81DA348BA066C627C1B6DFFE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>12E0D88CFFAD0B3362B8A374979E80AF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1EAD5D7494746591B76FABCEB110B5CC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,12 +102,37 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>32590E36134BA51F7162D926A263216E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>3278524A96A851FC3B0FE7A54780B553</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4C69BF3EF4CE81852226B9442B0C2DF4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>556898D7241316D441172C8799D58E6C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5C03EB35F3878C17B14F1D7243DFEBE5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5E707FF8CB3D090CCB960ECC250DC20F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>626AE439086FE267167FF3DE2EBBAE2A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,7 +147,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>763B5A246A76B7C081407E9C9FBA70E1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>76BD4592010354D6C23D6ECCA20D83A8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7C8F78AC491EBB040663981D20D9B07A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>951422200BDAC4FFDCA05E5113E0D48C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>960065150FFA631BF7E320005023E04B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9FB9FB6693C1F5B52A934F313DF6F98F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -108,6 +183,11 @@
 			<true/>
 		</dict>
 		<key>E7A5DEEA04DF6A63B58794787F23BF89</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EEC4976562D83586C9A07E84F0C7C301</key>
 		<dict>
 			<key>primary</key>
 			<true/>

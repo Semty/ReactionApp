@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import LTMorphingLabel
 import RealmSwift
 
-class ShortInstructionLabel: UILabel {
+class ShortInstructionLabel: ShrinkingLTMortphingLabel {
     
     let realm = try! Realm()
 

@@ -12,10 +12,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Animated Tab Bar Controller-->
         <scene sceneID="RCc-JL-7ny">
             <objects>
-                <tabBarController id="FO8-5U-4ff" sceneMemberID="viewController">
+                <tabBarController id="FO8-5U-4ff" customClass="RAMAnimatedTabBarController" customModule="RAMAnimatedTabBarController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Amj-MT-vCo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -34,7 +34,11 @@
         <scene sceneID="WUJ-61-yo1">
             <objects>
                 <navigationController id="1T6-2k-Jxl" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Training" image="training" id="5T0-j1-cCN"/>
+                    <tabBarItem key="tabBarItem" title="Training" image="training" id="5T0-j1-cCN" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <connections>
+                            <outlet property="animation" destination="PUt-lF-uP4" id="mJz-zx-GTn"/>
+                        </connections>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ga8-g3-W6H">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -44,6 +48,7 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YVq-qF-dBh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="PUt-lF-uP4" customClass="RAMFumeAnimation" customModule="RAMAnimatedTabBarController"/>
             </objects>
             <point key="canvasLocation" x="82" y="-287"/>
         </scene>
@@ -81,20 +86,30 @@
                                             </mask>
                                         </variation>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="clip" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="XwT-bF-u6c" customClass="ShortInstructionLabel" customModule="ReactionApp">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="clip" numberOfLines="0" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="XwT-bF-u6c" customClass="ShortInstructionLabel" customModule="ReactionApp">
                                         <rect key="frame" x="21.5" y="419" width="300" height="119"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="100"/>
                                         <color key="textColor" red="0.37071776390075684" green="0.25714370608329773" blue="0.75468015670776367" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="morphingDuration">
+                                                <real key="value" value="0.20000000000000001"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="clip" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="FKr-1j-BSp">
-                                        <rect key="frame" x="93" y="0.0" width="157" height="103"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="clip" numberOfLines="0" minimumFontSize="30" translatesAutoresizingMaskIntoConstraints="NO" id="FKr-1j-BSp" customClass="ShrinkingLTMortphingLabel" customModule="ReactionApp">
+                                        <rect key="frame" x="93.5" y="0.0" width="156" height="103"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="FKr-1j-BSp" secondAttribute="height" multiplier="156:103" id="Jqa-rM-j7M"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="100"/>
                                         <color key="textColor" red="0.15410047769546509" green="0.41306763887405396" blue="0.69063264131546021" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="morphingDuration">
+                                                <real key="value" value="0.20000000000000001"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <variation key="heightClass=compact">
                                             <mask key="constraints">
                                                 <exclude reference="Jqa-rM-j7M"/>
@@ -191,7 +206,11 @@
         <scene sceneID="rOw-V5-yXE">
             <objects>
                 <navigationController storyboardIdentifier="StatisticsNav" id="J3a-rR-PTr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Stats" image="stats" id="E2z-G7-MGd"/>
+                    <tabBarItem key="tabBarItem" title="Stats" image="stats" id="E2z-G7-MGd" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <connections>
+                            <outlet property="animation" destination="ZHt-LR-Oo2" id="Inz-sN-Uec"/>
+                        </connections>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="asr-NW-TWR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -201,6 +220,7 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eaa-vM-XqL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="ZHt-LR-Oo2" customClass="RAMFumeAnimation" customModule="RAMAnimatedTabBarController"/>
             </objects>
             <point key="canvasLocation" x="81" y="386"/>
         </scene>

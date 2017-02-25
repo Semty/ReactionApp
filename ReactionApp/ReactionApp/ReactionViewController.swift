@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LTMorphingLabel
 import RandomKit
 import RealmSwift
 
@@ -16,7 +17,7 @@ class ReactionViewController: UIViewController {
     
     @IBOutlet weak var circleView: CircleView!
     
-    @IBOutlet weak var reactionResultLabel: UILabel!
+    @IBOutlet weak var reactionResultLabel: ShrinkingLTMortphingLabel!
     @IBOutlet weak var shortInstructionLabel: ShortInstructionLabel!
     
 // MARK: - Private Properties
@@ -48,12 +49,15 @@ class ReactionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.shortInstructionLabel.morphingEffect   = .evaporate
+        self.reactionResultLabel.morphingEffect     = .evaporate
+        
         self.shortInstructionLabel.setShortInstruction(duringCircleState: .none)
         self.circleView.transform  = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
         self.circleView.alpha = 0.0
         
-        if self.shortInstructionLabel.text == nil {
+        if self.shortInstructionLabel.text?.characters.count == 0 {
             self.shortInstructionLabel.text = "Nice to see you again!"
         }
         
@@ -205,7 +209,7 @@ class ReactionViewController: UIViewController {
                         
                         DispatchQueue.main.async {
                             self.reactionResultLabel.numberOfLines = 2
-                            self.reactionResultLabel.text = "Here will be\nyour time :)"
+                            self.reactionResultLabel.text = "Here will be your time :)"
                             self.shortInstructionLabel.text = "That's all, Let's go!"
                         }
                         
