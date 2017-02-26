@@ -53,14 +53,15 @@ class ReactionViewController: UIViewController {
         self.shortInstructionLabel.morphingEffect   = .evaporate
         self.reactionResultLabel.morphingEffect     = .evaporate
         
-        self.shortInstructionLabel.setShortInstruction(duringCircleState: .none)
+        self.shortInstructionLabel.morphingDuration = 0.2
+        self.reactionResultLabel.morphingDuration = 0.2
+        
         self.circleView.transform  = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
         self.circleView.alpha = 0.0
         
-        if self.shortInstructionLabel.text?.characters.count == 0 {
-            self.shortInstructionLabel.text = "Nice to see you again!"
-        }
-        
+        let simpleStartApp = SimpleStartApp()
+        simpleStartApp.isSimpleStart = true
+        simpleStartApp.save()
         
         // *** REMOVE ALL REACTIONS FOR DEBUG ***
         /*
@@ -97,6 +98,12 @@ class ReactionViewController: UIViewController {
             self.circleView.transform  = CGAffineTransform.identity
             self.circleView.alpha = 1.0
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        self.shortInstructionLabel.setShortInstruction(duringCircleState: .none)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -208,7 +215,6 @@ class ReactionViewController: UIViewController {
                         self.saveFirstStartAppState(state: false)
                         
                         DispatchQueue.main.async {
-                            self.reactionResultLabel.numberOfLines = 2
                             self.reactionResultLabel.text = "Here will be your time :)"
                             self.shortInstructionLabel.text = "That's all, Let's go!"
                         }
