@@ -136,11 +136,11 @@ class RealmDemoBaseViewController: UIViewController {
         chartDataSet.setDrawHighlightIndicators(true)
         
         chartDataSet.lineWidth = 2
-        
+        /*
         if resultsCount > 2 {
             chartView.autoScaleMinMaxEnabled = true
         }
-        
+        */
         let dataSets = [chartDataSet]
         
         let data = LineChartData.init(dataSets: dataSets)

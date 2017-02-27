@@ -29,7 +29,7 @@ class ReactionViewController: UIViewController {
     
     private var backgroundQueue = DispatchQueue(label: "com.rstimchenko.backgroundQueue", qos: .background,
                                                 attributes: DispatchQueue.Attributes.concurrent,
-                                                autoreleaseFrequency: .workItem,
+                                                autoreleaseFrequency: .inherit,
                                                 target: nil)
     
 // MARK: - Public Properties
@@ -156,19 +156,11 @@ class ReactionViewController: UIViewController {
             
         self.circleView.setNeedsDisplay()
             
-        self.timer = Timer.scheduledTimer(withTimeInterval: Double.random(within: Circle.sharedCircle.currentPreparationTime),
-                                            repeats: false) { (_) in
-                                                
-                                            if Circle.sharedCircle.state == .preparation {
-                                                    
-                                                Circle.sharedCircle.state = .action
-                                                self.circleView.setNeedsDisplay()
-                                                    
-                                                self.startTime = CACurrentMediaTime()
-                                                    
-                                                self.shortInstructionLabel.setShortInstruction(duringCircleState: .action)
-                                            }
-        }
+        self.timer = Timer.scheduledTimer(timeInterval: Double.random(within: Circle.sharedCircle.currentPreparationTime),
+                                          target: self,
+                                          selector: #selector(actionTimerHire),
+                                          userInfo: nil,
+                                          repeats: false)
             
         RunLoop.current.add(self.timer, forMode: .commonModes)
     }
@@ -268,7 +260,12 @@ class ReactionViewController: UIViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) in
+            
             self.circleView.setNeedsDisplay()
+            
+            self.reactionResultLabel.adjustFontSizeToFitText(newText: self.reactionResultLabel.text!)
+            self.shortInstructionLabel.adjustFontSizeToFitText(newText: self.shortInstructionLabel.text!)
+            
         }, completion: nil)
     }
  
@@ -280,6 +277,20 @@ class ReactionViewController: UIViewController {
             return realm
         } catch let error as NSError {
             fatalError(error.localizedDescription)
+        }
+    }
+    
+// MARK: - Timer Selector
+    
+    func actionTimerHire() {
+        if Circle.sharedCircle.state == .preparation {
+            
+            Circle.sharedCircle.state = .action
+            self.circleView.setNeedsDisplay()
+            
+            self.startTime = CACurrentMediaTime()
+            
+            self.shortInstructionLabel.setShortInstruction(duringCircleState: .action)
         }
     }
 

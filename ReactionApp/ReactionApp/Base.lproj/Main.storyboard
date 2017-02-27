@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -19,11 +18,12 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Amj-MT-vCo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="1T6-2k-Jxl" kind="relationship" relationship="viewControllers" id="BTU-D5-7uT"/>
                         <segue destination="J3a-rR-PTr" kind="relationship" relationship="viewControllers" id="4bb-be-qsn"/>
+                        <segue destination="R9H-UM-Vuh" kind="relationship" relationship="viewControllers" id="02G-yc-NJU"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iOG-7Q-h7Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -42,6 +42,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ga8-g3-W6H">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="MvT-JN-wkA" kind="relationship" relationship="rootViewController" id="Kc0-An-xbK"/>
@@ -50,7 +51,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YVq-qF-dBh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="PUt-lF-uP4" customClass="RAMFumeAnimation" customModule="RAMAnimatedTabBarController"/>
             </objects>
-            <point key="canvasLocation" x="82" y="-287"/>
+            <point key="canvasLocation" x="15" y="-551"/>
         </scene>
         <!--Reaction Test-->
         <scene sceneID="1ef-pD-Joh">
@@ -190,7 +191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wJB-ZG-OaR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="864.08450704225356" y="-290.625"/>
+            <point key="canvasLocation" x="799" y="-555"/>
         </scene>
         <!--Stats-->
         <scene sceneID="rOw-V5-yXE">
@@ -204,6 +205,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="asr-NW-TWR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="CgY-bQ-scz" kind="relationship" relationship="rootViewController" id="zLx-ja-gHf"/>
@@ -212,7 +214,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eaa-vM-XqL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="ZHt-LR-Oo2" customClass="RAMFumeAnimation" customModule="RAMAnimatedTabBarController"/>
             </objects>
-            <point key="canvasLocation" x="81" y="386"/>
+            <point key="canvasLocation" x="15" y="123"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="pgx-98-69H">
+            <objects>
+                <navigationController id="R9H-UM-Vuh" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="5JA-qC-UAc" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <connections>
+                            <outlet property="animation" destination="Gc9-Yi-MUA" id="YLS-KR-rcV"/>
+                        </connections>
+                    </tabBarItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="tnP-rB-n5b">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="xk4-hk-sAK" kind="relationship" relationship="rootViewController" id="Jxx-7Z-J19"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1FW-Vi-8Oo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="Gc9-Yi-MUA" customClass="RAMFumeAnimation" customModule="RAMAnimatedTabBarController"/>
+            </objects>
+            <point key="canvasLocation" x="15" y="882"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="q7V-G3-9hQ">
+            <objects>
+                <viewController id="xk4-hk-sAK" customClass="SettingsViewController" customModule="ReactionApp" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jhr-ZF-19R"/>
+                        <viewControllerLayoutGuide type="bottom" id="1UV-JD-H5B"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FYu-D9-xW7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="HMn-LR-RTd">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="HMn-LR-RTd" firstAttribute="centerX" secondItem="FYu-D9-xW7" secondAttribute="centerX" id="1UH-k8-A4M"/>
+                            <constraint firstItem="HMn-LR-RTd" firstAttribute="centerY" secondItem="FYu-D9-xW7" secondAttribute="centerY" id="8cT-pB-vvv"/>
+                            <constraint firstAttribute="bottom" secondItem="HMn-LR-RTd" secondAttribute="bottom" id="Wbh-Pp-3f2"/>
+                            <constraint firstItem="HMn-LR-RTd" firstAttribute="leading" secondItem="FYu-D9-xW7" secondAttribute="leading" id="k2w-oo-EVW"/>
+                            <constraint firstItem="HMn-LR-RTd" firstAttribute="top" secondItem="FYu-D9-xW7" secondAttribute="top" id="r1c-ht-Tlk"/>
+                            <constraint firstAttribute="trailing" secondItem="HMn-LR-RTd" secondAttribute="trailing" id="yoT-rg-3yD"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="JTO-wh-MpQ"/>
+                    <connections>
+                        <outlet property="tableView" destination="HMn-LR-RTd" id="M5l-Rw-neI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="joy-rj-LfK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="797.60000000000002" y="881.10944527736137"/>
         </scene>
         <!--Statistics-->
         <scene sceneID="fK0-yM-duM">
@@ -289,10 +350,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r2T-YQ-HIn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="868" y="384.55772113943033"/>
+            <point key="canvasLocation" x="798" y="122"/>
         </scene>
     </scenes>
     <resources>
+        <image name="settings" width="16" height="16"/>
         <image name="stats" width="21" height="21"/>
         <image name="training" width="21" height="21"/>
     </resources>

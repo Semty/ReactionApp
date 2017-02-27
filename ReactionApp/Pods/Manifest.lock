@@ -6,6 +6,7 @@ PODS:
   - Charts/Realm (3.0.1):
     - Charts/Core
     - RealmSwift (~> 1.1)
+  - Eureka (2.0.1)
   - LTMorphingLabel (0.4.0)
   - RAMAnimatedTabBarController (2.0.13)
   - RandomKit (3.0.0):
@@ -20,6 +21,7 @@ PODS:
 DEPENDENCIES:
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - Charts/Realm
+  - Eureka (~> 2.0)
   - LTMorphingLabel
   - RAMAnimatedTabBarController (~> 2.0.13)
   - RandomKit (~> 3.0.0)
@@ -36,6 +38,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Charts: 0e84f4418e87dad6a9edde221fba37ebb51d3ba7
+  Eureka: ae837bb1dfae0c07bc1bda7aeef87876eeb537c2
   LTMorphingLabel: d9a85f16ac306f0e07321d6819964deb2dc69638
   RAMAnimatedTabBarController: 2510f3b66954c3f77ea1042a35d34df8f5f3b604
   RandomKit: 03b4be99ecc35850b794e0185689931d72024e93
@@ -43,6 +46,6 @@ SPEC CHECKSUMS:
   RealmSwift: 838058b2db95b12cb86bd0cf209df642c33fb60a
   ShiftOperations: 0c77c06851e7976c2665d601b46af123dbffeade
 
-PODFILE CHECKSUM: 106015a3b2b53a632c87e99a5eb447e17a176c04
+PODFILE CHECKSUM: 8f28f9a6847fd186a8b6a44cf39deb94ea672d15
 
 COCOAPODS: 1.2.0
