@@ -9,17 +9,15 @@
 /* Begin PBXBuildFile section */
 		2AB9EE1E6DE04BA1E41D3D4E /* Pods_ReactionAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C142FC9F2C29C72D69BCD0A /* Pods_ReactionAppUITests.framework */; };
 		438F1ABC97D2889232DACCE4 /* Pods_ReactionAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DBFF92BC89DA48170448B0 /* Pods_ReactionAppTests.framework */; };
-		4423E7331E6304A700D12E9A /* SimpleStartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4423E7321E6304A700D12E9A /* SimpleStartApp.swift */; };
 		4428A8E71E5E024A006766BE /* XYMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4428A8E61E5E024A006766BE /* XYMarkerView.swift */; };
 		443466341E5F0A2C006214EE /* DayAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443466331E5F0A2C006214EE /* DayAxisValueFormatter.swift */; };
 		446241B81E55B0EC00240B93 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446241B71E55B0EC00240B93 /* CircleView.swift */; };
 		446241BA1E55B5D200240B93 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446241B91E55B5D200240B93 /* Circle.swift */; };
 		446EF25B1E6488F100D01771 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446EF25A1E6488F100D01771 /* SettingsViewController.swift */; };
-		446EF25D1E64A81C00D01771 /* TrainingNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446EF25C1E64A81C00D01771 /* TrainingNotifications.swift */; };
 		448F64411E5A1084003504C0 /* StatsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448F64401E5A1084003504C0 /* StatsExtensions.swift */; };
+		44A81AB31E65DACA00DA3B44 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A81AB21E65DACA00DA3B44 /* UserDefaultManager.swift */; };
 		44B90D031E584EB1001BC546 /* shortInstructionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B90D021E584EB1001BC546 /* shortInstructionLabel.swift */; };
 		44B90D051E5875CC001BC546 /* ReactionResultObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B90D041E5875CC001BC546 /* ReactionResultObject.swift */; };
-		44B90D081E588181001BC546 /* FirstStartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B90D071E588181001BC546 /* FirstStartApp.swift */; };
 		44B90D0C1E589CA4001BC546 /* RealmDemoBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B90D0B1E589CA4001BC546 /* RealmDemoBaseViewController.swift */; };
 		44CB3E351E64536C00141735 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CB3E341E64536C00141735 /* NotificationManager.swift */; };
 		44D087981E547DAF00180DD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D087971E547DAF00180DD9 /* AppDelegate.swift */; };
@@ -54,17 +52,15 @@
 
 /* Begin PBXFileReference section */
 		376C5D3EB9F4901558F1680D /* Pods-ReactionAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactionAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactionAppUITests/Pods-ReactionAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		4423E7321E6304A700D12E9A /* SimpleStartApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleStartApp.swift; sourceTree = "<group>"; };
 		4428A8E61E5E024A006766BE /* XYMarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XYMarkerView.swift; sourceTree = "<group>"; };
 		443466331E5F0A2C006214EE /* DayAxisValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayAxisValueFormatter.swift; sourceTree = "<group>"; };
 		446241B71E55B0EC00240B93 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		446241B91E55B5D200240B93 /* Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 		446EF25A1E6488F100D01771 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		446EF25C1E64A81C00D01771 /* TrainingNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingNotifications.swift; sourceTree = "<group>"; };
 		448F64401E5A1084003504C0 /* StatsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsExtensions.swift; sourceTree = "<group>"; };
+		44A81AB21E65DACA00DA3B44 /* UserDefaultManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		44B90D021E584EB1001BC546 /* shortInstructionLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shortInstructionLabel.swift; sourceTree = "<group>"; };
 		44B90D041E5875CC001BC546 /* ReactionResultObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionResultObject.swift; sourceTree = "<group>"; };
-		44B90D071E588181001BC546 /* FirstStartApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstStartApp.swift; sourceTree = "<group>"; };
 		44B90D0B1E589CA4001BC546 /* RealmDemoBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmDemoBaseViewController.swift; sourceTree = "<group>"; };
 		44CB3E341E64536C00141735 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		44D087941E547DAF00180DD9 /* ReactionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReactionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,13 +125,18 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
+		44A81AB11E65DA8E00DA3B44 /* UserDefaultsData */ = {
+			isa = PBXGroup;
+			children = (
+				44A81AB21E65DACA00DA3B44 /* UserDefaultManager.swift */,
+			);
+			name = UserDefaultsData;
+			sourceTree = "<group>";
+		};
 		44B90D061E587ECE001BC546 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				44B90D041E5875CC001BC546 /* ReactionResultObject.swift */,
-				44B90D071E588181001BC546 /* FirstStartApp.swift */,
-				4423E7321E6304A700D12E9A /* SimpleStartApp.swift */,
-				446EF25C1E64A81C00D01771 /* TrainingNotifications.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -196,6 +197,7 @@
 		44D087961E547DAF00180DD9 /* ReactionApp */ = {
 			isa = PBXGroup;
 			children = (
+				44A81AB11E65DA8E00DA3B44 /* UserDefaultsData */,
 				44CB3E331E64534A00141735 /* Notifications */,
 				44B90D091E589B19001BC546 /* Training */,
 				44B90D0A1E589B29001BC546 /* Stats */,
@@ -548,19 +550,17 @@
 				448F64411E5A1084003504C0 /* StatsExtensions.swift in Sources */,
 				44B90D0C1E589CA4001BC546 /* RealmDemoBaseViewController.swift in Sources */,
 				443466341E5F0A2C006214EE /* DayAxisValueFormatter.swift in Sources */,
-				446EF25D1E64A81C00D01771 /* TrainingNotifications.swift in Sources */,
 				44B90D031E584EB1001BC546 /* shortInstructionLabel.swift in Sources */,
 				446241B81E55B0EC00240B93 /* CircleView.swift in Sources */,
 				44CB3E351E64536C00141735 /* NotificationManager.swift in Sources */,
 				44E46FEC1E54AA5300F453B9 /* ReactionViewController.swift in Sources */,
-				44B90D081E588181001BC546 /* FirstStartApp.swift in Sources */,
 				44B90D051E5875CC001BC546 /* ReactionResultObject.swift in Sources */,
+				44A81AB31E65DACA00DA3B44 /* UserDefaultManager.swift in Sources */,
 				44F5C2771E6208D800087667 /* ShrinkingLTMortphingLabel.swift in Sources */,
 				44D087981E547DAF00180DD9 /* AppDelegate.swift in Sources */,
 				446EF25B1E6488F100D01771 /* SettingsViewController.swift in Sources */,
 				44FABE261E58A70300D38A07 /* RealmLineChartViewController.swift in Sources */,
 				44FABE291E58DAD500D38A07 /* BalloonMarker.swift in Sources */,
-				4423E7331E6304A700D12E9A /* SimpleStartApp.swift in Sources */,
 				4428A8E71E5E024A006766BE /* XYMarkerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

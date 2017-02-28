@@ -18,6 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if(UIApplication.instancesRespond(to: #selector(UIApplication.registerUserNotificationSettings(_:)))) {
             UIApplication.shared.registerUserNotificationSettings(.init(types: [.alert, .sound], categories: nil))
+            
+            if UserDefaultManager.shared.loadValue(forKey: .kRingTime) == nil {
+                let defaultRingTime = NotificationManager.shared.currentDate(withHour: 20, andMinute: 00)
+                NotificationManager.shared.setUpLocalNotification(date: defaultRingTime)
+            }
         }
         
         return true

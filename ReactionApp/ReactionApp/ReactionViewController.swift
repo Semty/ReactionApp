@@ -59,9 +59,7 @@ class ReactionViewController: UIViewController {
         self.circleView.transform  = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
         self.circleView.alpha = 0.0
         
-        let simpleStartApp = SimpleStartApp()
-        simpleStartApp.isSimpleStart = true
-        simpleStartApp.save()
+        UserDefaultManager.shared.save(value: true, forKey: .kSimpleStartApp)
         
         // *** REMOVE ALL REACTIONS FOR DEBUG ***
         /*
@@ -130,15 +128,6 @@ class ReactionViewController: UIViewController {
         }
     }
     
-    func saveFirstStartAppState(state: Bool) {
-        backgroundQueue.async {
-            let firstStartApp = FirstStartApp()
-            firstStartApp.isFirstStart = state
-            
-            firstStartApp.save()
-        }
-    }
-    
     func circleTouchStarted() {
             
         UIView.animate(withDuration: Circle.sharedCircle.animationDuration) {
@@ -200,11 +189,9 @@ class ReactionViewController: UIViewController {
                 
                 backgroundQueue.async {
                     
-                    let realm = self.getRealmInBack()
-                    
-                    if realm.objects(FirstStartApp.self).first?.isFirstStart ?? true {  // First Start Application
+                    if UserDefaultManager.shared.loadValue(forKey: .kFirstStartApp) == nil {  // First Start Application
                         
-                        self.saveFirstStartAppState(state: false)
+                        UserDefaultManager.shared.save(value: false, forKey: .kFirstStartApp)
                         
                         DispatchQueue.main.async {
                             self.reactionResultLabel.text = "Here will be your time :)"

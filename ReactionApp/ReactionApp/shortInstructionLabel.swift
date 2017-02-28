@@ -24,12 +24,7 @@ class ShortInstructionLabel: ShrinkingLTMortphingLabel {
     
     public func setShortInstruction(duringCircleState circleState: CircleState) {
         
-        if realm.objects(FirstStartApp.self).first?.isFirstStart ?? true {
-            // DEBUG:
-            print("\n\nFirstStartApp objects in Realm = ",
-                  realm.objects(FirstStartApp.self).count,
-                  "; (must be 1 or 0)\n")
-            //
+        if UserDefaultManager.shared.loadValue(forKey: .kFirstStartApp) as? Bool ?? true {
             
             switch circleState {
             case .none:
@@ -42,32 +37,21 @@ class ShortInstructionLabel: ShrinkingLTMortphingLabel {
             
         } else {
             
-            if realm.objects(SimpleStartApp.self).first?.isSimpleStart ?? true {
-                // DEBUG:
-                print("\n\nSimpleStartApp objects in Realm = ",
-                      realm.objects(SimpleStartApp.self).count,
-                      "; (must be 1 or 0)\n")
-                //
+            if UserDefaultManager.shared.loadValue(forKey: .kSimpleStartApp) as? Bool ?? true {
+                
+                UserDefaultManager.shared.save(value: false, forKey: .kSimpleStartApp)
                 
                 if self.text == "" {
                     self.text = "Nice to see you again!"
-                    saveSimpleStartApp(to: false)
                     
                 } else {
                     self.text = nil
-                    saveSimpleStartApp(to: false)
                 }
                 
             } else if self.text != "" && self.text != nil {
                 self.text = nil
             }
         }
-    }
-    
-    private func saveSimpleStartApp(to state: Bool) {
-        let simpleStartApp = SimpleStartApp()
-        simpleStartApp.isSimpleStart = state
-        simpleStartApp.save()
     }
     
     public func setShortNotes(withResultTime resultTime: Int) {

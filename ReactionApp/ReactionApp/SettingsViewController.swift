@@ -8,18 +8,29 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 import Eureka
 
 class SettingsViewController: FormViewController {
     
     let notificationDisabledFooter = "Notifications disabled. You can activate it:\nSettings -> ReactionApp -> Push Notifications -> Allow Notifications"
-    let isNotificationsDisabled = UIApplication.shared.currentUserNotificationSettings?.types == []
     
-    var trainingNotifications = try! Realm().object(ofType: TrainingNotifications.self, forPrimaryKey: "isSwitchOnKey")
-                                ?? TrainingNotifications()
+    var isNotificationsDisabled = Bool()
+    var isNotificationsOn = Bool()
+    var ringTime = Date()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        isNotificationsOn = UserDefaultManager.shared.loadValue(forKey: .kNotificationsOn) as? Bool != nil &&
+                            !(UIApplication.shared.currentUserNotificationSettings?.types == []) ?
+                            UserDefaultManager.shared.loadValue(forKey: .kNotificationsOn) as! Bool :
+                            !(UIApplication.shared.currentUserNotificationSettings?.types == [])
+        
+        isNotificationsDisabled = UIApplication.shared.currentUserNotificationSettings?.types == []
+        
+        ringTime = UserDefaultManager.shared.loadValue(forKey: .kRingTime) as? Date ??
+                   NotificationManager.shared.currentDate(withHour: 20, andMinute: 00)
 
         form.inlineRowHideOptions = [.AnotherInlineRowIsShown, .FirstResponderChanges]
         
@@ -34,11 +45,15 @@ class SettingsViewController: FormViewController {
                             return self.isNotificationsDisabled
                         })
                         
-                        $0.value = trainingNotifications.isSwitchOn
+                        $0.cellSetup({ (cell, row) in
+                            cell.switchControl?.onTintColor = FlatSkyBlueDark()
+                        })
+                        
+                        $0.value = isNotificationsOn
                         
                         $0.title = "Switch on/off"
                     }.onChange({ row in
-                        self.trainingNotifications.changeSwitchValue()
+                        UserDefaultManager.shared.save(value: !self.isNotificationsOn, forKey: .kNotificationsOn)
                         if !row.value! {
                             NotificationManager.shared.cancelAllNotifications()
                         }
@@ -51,11 +66,11 @@ class SettingsViewController: FormViewController {
                         })
                         
                         $0.title = "Notification's time"
-                        $0.value = trainingNotifications.hireDate
+                        $0.value = ringTime
                     }.onChange({ row in
                         NotificationManager.shared.setUpLocalNotification(date: row.value!)
-                        self.trainingNotifications.changeHireDate(withDate: row.value!)
-// MARK: - Need change set up local notification
+                        UserDefaultManager.shared.save(value: row.value!, forKey: .kRingTime)
+
                     }).cellUpdate({ cell, row in
                         NotificationManager.shared.setUpLocalNotification(date: row.value!)
                     })
