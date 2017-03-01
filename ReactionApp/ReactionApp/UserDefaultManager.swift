@@ -13,16 +13,14 @@ enum UserDefaultManagerKeys: String {
     case kFirstStartApp
     case kNotificationsOn
     case kRingTime
+    case kMinPreparationTime
+    case kMaxPreparationTime
+    case kMaxSavingTime
 }
 
 class UserDefaultManager: UserDefaults {
     
     static let shared = UserDefaultManager() // Singletone
-    
-    let kSimpleStartApp     = "kSimpleStartApp"
-    let kFirstStartApp      = "kFirstStartApp"
-    let kNotificationsOn    = "kNotificationsOn"
-    let kRingTime           = "kRingTime"
 
     // MARK: - Save/Load Functions
     

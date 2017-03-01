@@ -56,7 +56,7 @@ class ReactionViewController: UIViewController {
         self.shortInstructionLabel.morphingDuration = 0.2
         self.reactionResultLabel.morphingDuration = 0.2
         
-        self.circleView.transform  = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
+        //self.circleView.transform  = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
         self.circleView.alpha = 0.0
         
         UserDefaultManager.shared.save(value: true, forKey: .kSimpleStartApp)
@@ -93,7 +93,7 @@ class ReactionViewController: UIViewController {
         
         UIView.animate(withDuration: 0.25) {
             
-            self.circleView.transform  = CGAffineTransform.identity
+            //self.circleView.transform  = CGAffineTransform.identity
             self.circleView.alpha = 1.0
         }
     }
@@ -102,12 +102,15 @@ class ReactionViewController: UIViewController {
         super.viewDidAppear(true)
         
         self.shortInstructionLabel.setShortInstruction(duringCircleState: .none)
+        
+        self.reactionResultLabel.adjustFontSizeToFitText(newText: self.reactionResultLabel.text!)
+        //self.shortInstructionLabel.adjustFontSizeToFitText(newText: self.shortInstructionLabel.text!)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         
-        self.circleView.transform  = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
+        //self.circleView.transform  = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
         self.circleView.alpha = 0.0
     }
 

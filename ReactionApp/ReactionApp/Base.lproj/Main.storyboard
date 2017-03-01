@@ -96,7 +96,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="clip" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="XwT-bF-u6c" customClass="ShortInstructionLabel" customModule="ReactionApp">
                                         <rect key="frame" x="21.5" y="419" width="300" height="119"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="100"/>
-                                        <color key="textColor" red="0.15410047769999999" green="0.41306763889999998" blue="0.69063264130000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="clip" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="FKr-1j-BSp" customClass="ShrinkingLTMortphingLabel" customModule="ReactionApp">
@@ -105,7 +105,7 @@
                                             <constraint firstAttribute="width" secondItem="FKr-1j-BSp" secondAttribute="height" multiplier="156:103" id="Jqa-rM-j7M"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="100"/>
-                                        <color key="textColor" red="0.15410047769546509" green="0.41306763887405396" blue="0.69063264131546021" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.42655369639396667" green="0.47584608197212219" blue="0.48026475310325623" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=compact">
                                             <mask key="constraints">
@@ -115,7 +115,7 @@
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41j-pY-I8Q" customClass="CircleView" customModule="ReactionApp">
                                         <rect key="frame" x="21" y="119" width="300" height="300"/>
-                                        <color key="backgroundColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="41j-pY-I8Q" secondAttribute="height" multiplier="1:1" id="ROh-ih-pKH"/>
                                             <constraint firstAttribute="width" secondItem="41j-pY-I8Q" secondAttribute="height" multiplier="1:1" id="wsu-Z0-Hcd"/>
@@ -133,7 +133,7 @@
                                         </variation>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="FKr-1j-BSp" firstAttribute="width" secondItem="41j-pY-I8Q" secondAttribute="width" multiplier="0.52" id="0dl-mO-1S3"/>
                                     <constraint firstAttribute="bottom" secondItem="XwT-bF-u6c" secondAttribute="bottom" id="2nu-lH-jj2"/>
@@ -199,7 +199,7 @@
                                 </variation>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="QLh-FF-6z8" firstAttribute="trailing" secondItem="HRq-Cc-HLn" secondAttribute="trailingMargin" priority="999" id="1Rs-El-7hZ"/>
                             <constraint firstItem="QLh-FF-6z8" firstAttribute="top" secondItem="Ot6-VJ-pcq" secondAttribute="bottom" constant="8" id="BJ0-0x-age"/>
@@ -359,24 +359,24 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LhA-Yq-9kc" customClass="BarChartView" customModule="Charts">
                                 <rect key="frame" x="16" y="39" width="343" height="515"/>
-                                <color key="backgroundColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.12637259070000001" green="0.12639245390000001" blue="0.1263653636" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VGo-cy-lEQ" customClass="LineChartView" customModule="Charts">
                                 <rect key="frame" x="16" y="39" width="343" height="515"/>
-                                <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.12637259070000001" green="0.12639245390000001" blue="0.1263653636" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sWf-FW-B4f" customClass="BarChartView" customModule="Charts">
                                 <rect key="frame" x="16" y="39" width="343" height="515"/>
-                                <color key="backgroundColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.12637259070000001" green="0.12639245390000001" blue="0.1263653636" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X8P-3x-vgT">
                                 <rect key="frame" x="16" y="8" width="343" height="22"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="18"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.12637259066104889" green="0.12639245390892029" blue="0.12636536359786987" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="X8P-3x-vgT" firstAttribute="trailing" secondItem="3Bv-y0-qvm" secondAttribute="trailingMargin" id="9tI-vy-VzN"/>
                             <constraint firstItem="d8Q-AG-JDX" firstAttribute="top" secondItem="VGo-cy-lEQ" secondAttribute="bottom" id="BRf-Ja-N26"/>
@@ -398,7 +398,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="MYj-NK-4Ws">
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="5iv-2q-KTW">
-                            <rect key="frame" x="16" y="8" width="343" height="29"/>
+                            <rect key="frame" x="16" y="7.5" width="343" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Day"/>

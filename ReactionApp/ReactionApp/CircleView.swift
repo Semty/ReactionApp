@@ -20,7 +20,7 @@ class CircleView: UIView {
         if circleLayer.superlayer == nil {
             
             self.circleLayer.path = CGPath(ellipseIn: rect, transform: nil)
-            circleLayer.lineWidth = 3.0
+            circleLayer.lineWidth = 2.5
             circleLayer.fillColor = Circle.sharedCircle.currentColor.cgColor
             circleLayer.strokeColor = FlatBlackDark().cgColor
             

@@ -29,10 +29,10 @@ class Circle: NSObject {
     
     public var animationDuration: TimeInterval  = 0.15           // default
     
-    public var preparationTimeFrom              = 2.0            // default
-    public var preparationTimeUntil             = 8.0            // default
+    public var preparationTimeFrom              = UserDefaultManager.shared.loadValue(forKey: .kMinPreparationTime) as? Double ?? 2.0
+    public var preparationTimeUntil             = UserDefaultManager.shared.loadValue(forKey: .kMaxPreparationTime) as? Double ?? 8.0
     
-    public var maxSavingTime                    = 1000           // default
+    public var maxSavingTime                    = UserDefaultManager.shared.loadValue(forKey: .kMaxSavingTime) as? Int ?? 1000
     
     public var currentColor: UIColor {
         

@@ -31,7 +31,7 @@ class RealmDemoBaseViewController: UIViewController {
         chartView.alpha = 0.0
         
         chartView.noDataFont = UIFont.init(name: "HelveticaNeue-CondensedBold", size: 12)!
-        chartView.noDataTextColor = FlatBlue()
+        chartView.noDataTextColor = UIColor.white
         chartView.noDataText = "We cannot find reaction stats for this period :("
         
         chartView.chartDescription?.enabled = false
@@ -42,7 +42,7 @@ class RealmDemoBaseViewController: UIViewController {
         chartView.setScaleEnabled(false)
         
         chartView.dragEnabled = true
-        chartView.leftAxis.drawLimitLinesBehindDataEnabled = true
+        //chartView.leftAxis.drawLimitLinesBehindDataEnabled = true
         chartView.pinchZoomEnabled = true
         chartView.scaleXEnabled = true
         chartView.clipValuesToContentEnabled = true
@@ -52,12 +52,14 @@ class RealmDemoBaseViewController: UIViewController {
         let xAxis = chartView.xAxis;
         xAxis.labelPosition = .bottom
         xAxis.labelFont = UIFont.init(name: "HelveticaNeue-CondensedBold", size: fontSize)!
-        xAxis.labelTextColor = FlatBlue()
+        xAxis.labelTextColor = UIColor.white
         //xAxis.avoidFirstLastClippingEnabled = true
         //xAxis.labelCount = 7
         //xAxis.granularity = 1
         
         chartView.rightAxis.enabled = false
+        
+        chartView.legend.textColor = UIColor.white
         
         let msFormatter = NumberFormatter()
         msFormatter.positiveSuffix = " ms"
@@ -65,7 +67,7 @@ class RealmDemoBaseViewController: UIViewController {
         
         let leftAxis = chartView.leftAxis
         leftAxis.labelFont = UIFont.init(name: "HelveticaNeue-CondensedBold", size: fontSize)!
-        leftAxis.labelTextColor = FlatBlue()
+        leftAxis.labelTextColor = UIColor.white
         leftAxis.valueFormatter = DefaultAxisValueFormatter.init(formatter: msFormatter)
         
         if chartView is LineChartView {
@@ -82,7 +84,7 @@ class RealmDemoBaseViewController: UIViewController {
         
         let marker = XYMarkerView(color: FlatGray(),
                                   font: UIFont.systemFont(ofSize: 12),
-                                  textColor: FlatWhite(),
+                                  textColor: UIColor.white,
                                   insets: UIEdgeInsetsMake(8, 8, 20, 8),
                                   xAxisValueFormatter: xAxisValueFormatter)
         
@@ -95,7 +97,7 @@ class RealmDemoBaseViewController: UIViewController {
         
         let marker = BalloonMarker(color: FlatGray(),
                                   font: UIFont.systemFont(ofSize: 12),
-                                  textColor: FlatWhite(),
+                                  textColor: UIColor.white,
                                   insets: UIEdgeInsetsMake(8, 8, 20, 8))
         
         marker.chartView = chartView
@@ -111,6 +113,7 @@ class RealmDemoBaseViewController: UIViewController {
         let limitLine = ChartLimitLine(limit: limitTime, label: String.init(format: "%1.1f ms", limitTime))
         limitLine.lineColor = FlatSkyBlue().withAlphaComponent(0.3)
         limitLine.valueFont = .boldSystemFont(ofSize: 8.0)
+        limitLine.valueTextColor = UIColor.white
         
         limitLine.lineDashLengths = [8.0]
         
@@ -133,7 +136,7 @@ class RealmDemoBaseViewController: UIViewController {
         chartDataSet.drawFilledEnabled = true
         chartDataSet.fillAlpha = 0.2
         chartDataSet.fillColor = FlatSkyBlue()
-        chartDataSet.setDrawHighlightIndicators(true)
+        chartDataSet.setDrawHighlightIndicators(false)
         
         chartDataSet.lineWidth = 2
         /*
@@ -156,6 +159,7 @@ class RealmDemoBaseViewController: UIViewController {
                                             label: "Average Reaction Time Per Last 7 Days")
         
         chartDataSet.colors = ChartColorTemplates.material()
+        chartDataSet.valueTextColor = UIColor.white
         
         let dataSets = [chartDataSet]
         
@@ -172,6 +176,7 @@ class RealmDemoBaseViewController: UIViewController {
                                            label: "Average Reaction per all Time")
         
         chartDataSet.colors = ChartColorTemplates.colorful()
+        chartDataSet.valueTextColor = UIColor.white
         
         let dataSets = [chartDataSet]
         
