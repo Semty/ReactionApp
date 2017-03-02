@@ -60,7 +60,7 @@ class SettingsViewController: FormViewController {
                         
                     $0.value = isNotificationsOn
                         
-                    $0.title = "Switch on/off"
+                    $0.title = "On/Off"
                 }.onChange({ row in
                     UserDefaultManager.shared.save(value: !self.isNotificationsOn, forKey: .kNotificationsOn)
                     if !row.value! {
@@ -74,7 +74,7 @@ class SettingsViewController: FormViewController {
                         return !((form.rowBy(tag: "switchRowTag") as? SwitchRow)?.value ?? false)
                     })
                         
-                    $0.title = "Notification's time"
+                    $0.title = "Time"
                     $0.value = ringTime
                 }.onChange({ row in
                     NotificationManager.shared.setUpLocalNotification(date: row.value!)
@@ -85,7 +85,7 @@ class SettingsViewController: FormViewController {
                 })
 
         
-        form +++ Section(header: "Change Min and Max \"Red Circle Time\"", footer: "")
+        form +++ Section(header: "Min and Max \"Red Circle Time\"", footer: "")
         
                 <<< PickerInlineRow<Double>() { (row : PickerInlineRow<Double>) -> Void in
                     row.title = "Min"
@@ -116,7 +116,7 @@ class SettingsViewController: FormViewController {
                 })
         
         
-        form +++ Section(header: "Change max Reaction Time for Save", footer: "")
+        form +++ Section(header: "Max Reaction Time for Save", footer: "")
         
             <<< PickerInlineRow<Int>() { (row : PickerInlineRow<Int>) -> Void in
                 row.title = "Reaction Time (in ms)"

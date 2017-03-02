@@ -19,6 +19,7 @@
 		44B90D031E584EB1001BC546 /* shortInstructionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B90D021E584EB1001BC546 /* shortInstructionLabel.swift */; };
 		44B90D051E5875CC001BC546 /* ReactionResultObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B90D041E5875CC001BC546 /* ReactionResultObject.swift */; };
 		44B90D0C1E589CA4001BC546 /* RealmDemoBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B90D0B1E589CA4001BC546 /* RealmDemoBaseViewController.swift */; };
+		44C6C3971E68868B0087601E /* PermissionsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C6C3961E68868B0087601E /* PermissionsDataSource.swift */; };
 		44CB3E351E64536C00141735 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CB3E341E64536C00141735 /* NotificationManager.swift */; };
 		44D087981E547DAF00180DD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D087971E547DAF00180DD9 /* AppDelegate.swift */; };
 		44D0879D1E547DAF00180DD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44D0879B1E547DAF00180DD9 /* Main.storyboard */; };
@@ -62,6 +63,7 @@
 		44B90D021E584EB1001BC546 /* shortInstructionLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shortInstructionLabel.swift; sourceTree = "<group>"; };
 		44B90D041E5875CC001BC546 /* ReactionResultObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionResultObject.swift; sourceTree = "<group>"; };
 		44B90D0B1E589CA4001BC546 /* RealmDemoBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmDemoBaseViewController.swift; sourceTree = "<group>"; };
+		44C6C3961E68868B0087601E /* PermissionsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionsDataSource.swift; sourceTree = "<group>"; };
 		44CB3E341E64536C00141735 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		44D087941E547DAF00180DD9 /* ReactionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReactionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44D087971E547DAF00180DD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				446241B71E55B0EC00240B93 /* CircleView.swift */,
 				44B90D021E584EB1001BC546 /* shortInstructionLabel.swift */,
 				44F5C2761E6208D800087667 /* ShrinkingLTMortphingLabel.swift */,
+				44C6C3961E68868B0087601E /* PermissionsDataSource.swift */,
 			);
 			name = Training;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				44B90D0C1E589CA4001BC546 /* RealmDemoBaseViewController.swift in Sources */,
 				443466341E5F0A2C006214EE /* DayAxisValueFormatter.swift in Sources */,
 				44B90D031E584EB1001BC546 /* shortInstructionLabel.swift in Sources */,
+				44C6C3971E68868B0087601E /* PermissionsDataSource.swift in Sources */,
 				446241B81E55B0EC00240B93 /* CircleView.swift in Sources */,
 				44CB3E351E64536C00141735 /* NotificationManager.swift in Sources */,
 				44E46FEC1E54AA5300F453B9 /* ReactionViewController.swift in Sources */,

@@ -17,6 +17,9 @@ PODS:
   - RealmSwift (1.1.0):
     - Realm (= 1.1.0)
   - ShiftOperations (1.0.0)
+  - Sparrow/Core (1.0.1)
+  - Sparrow/Modules/RequestPermission (1.0.1):
+    - Sparrow/Core
 
 DEPENDENCIES:
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
@@ -25,15 +28,21 @@ DEPENDENCIES:
   - LTMorphingLabel
   - RAMAnimatedTabBarController (~> 2.0.13)
   - RandomKit (~> 3.0.0)
+  - Sparrow/Modules/RequestPermission (from `https://github.com/IvanVorobei/Sparrow.git`)
 
 EXTERNAL SOURCES:
   ChameleonFramework:
     :git: https://github.com/ViccAlexander/Chameleon.git
+  Sparrow:
+    :git: https://github.com/IvanVorobei/Sparrow.git
 
 CHECKOUT OPTIONS:
   ChameleonFramework:
-    :commit: dcf98f9bf3a632a7f40679b7da46f09681e48526
+    :commit: acc480fbe023c6e5fe40f68593f4a70a8c4c7ad5
     :git: https://github.com/ViccAlexander/Chameleon.git
+  Sparrow:
+    :commit: b5d6176d8684313977b361738d2366bf2a6671a8
+    :git: https://github.com/IvanVorobei/Sparrow.git
 
 SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
@@ -45,7 +54,8 @@ SPEC CHECKSUMS:
   Realm: ceecf1a4540c4ce9efe196fe73fa9855bce05bd8
   RealmSwift: 838058b2db95b12cb86bd0cf209df642c33fb60a
   ShiftOperations: 0c77c06851e7976c2665d601b46af123dbffeade
+  Sparrow: 4b7826e69656f4745b0b4f74afadefa4f19cb9ee
 
-PODFILE CHECKSUM: 8f28f9a6847fd186a8b6a44cf39deb94ea672d15
+PODFILE CHECKSUM: add25164aee979a242338a3551537bd5f12ee580
 
 COCOAPODS: 1.2.0

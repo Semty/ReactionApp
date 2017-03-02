@@ -10,10 +10,11 @@ import UIKit
 import LTMorphingLabel
 import RandomKit
 import RealmSwift
+import Sparrow
 
-class ReactionViewController: UIViewController {
+class ReactionViewController: UIViewController, SPRequestPermissionEventsDelegate {
     
-// MARK: - Properties
+// MARK: - IBOutlet Properties
     
     @IBOutlet weak var circleView: CircleView!
     
@@ -46,9 +47,21 @@ class ReactionViewController: UIViewController {
             return nil
         }
     }
+    
+    public var permissionAssistant = SPRequestPermissionAssistant.modules.dialog.interactive.create(with: [.Notification])
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        permissionAssistant.eventsDelegate = self
+        
+        if UserDefaultManager.shared.loadValue(forKey: .kShowPermissions) == nil {
+            permissionAssistant.present(on: self.tabBarController!)
+            
+            let defaultRingTime = NotificationManager.shared.currentDate(withHour: 20, andMinute: 00)
+            NotificationManager.shared.setUpLocalNotification(date: defaultRingTime)
+            UserDefaultManager.shared.save(value: defaultRingTime, forKey: .kRingTime)
+        }
         
         self.shortInstructionLabel.morphingEffect   = .evaporate
         self.reactionResultLabel.morphingEffect     = .evaporate
@@ -282,6 +295,24 @@ class ReactionViewController: UIViewController {
             
             self.shortInstructionLabel.setShortInstruction(duringCircleState: .action)
         }
+    }
+    
+// MARK: - SPRequestPermissionEventsDelegate
+    
+    func didHide() {
+        
+    }
+    
+    func didAllowPermission(permission: SPRequestPermissionType) {
+        UserDefaultManager.shared.save(value: true, forKey: .kShowPermissions)
+    }
+    
+    func didDeniedPermission(permission: SPRequestPermissionType) {
+        UserDefaultManager.shared.save(value: false, forKey: .kShowPermissions)
+    }
+    
+    func didSelectedPermission(permission: SPRequestPermissionType) {
+        
     }
 
     /*

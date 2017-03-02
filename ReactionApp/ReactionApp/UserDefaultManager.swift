@@ -16,6 +16,7 @@ enum UserDefaultManagerKeys: String {
     case kMinPreparationTime
     case kMaxPreparationTime
     case kMaxSavingTime
+    case kShowPermissions
 }
 
 class UserDefaultManager: UserDefaults {

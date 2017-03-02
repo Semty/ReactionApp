@@ -22,6 +22,8 @@ target 'ReactionApp' do
   pod 'LTMorphingLabel'
   
   pod 'Eureka', '~> 2.0'
+  
+  pod 'Sparrow/Modules/RequestPermission', :git => 'https://github.com/IvanVorobei/Sparrow.git’
 
   target 'ReactionAppTests' do
     inherit! :search_paths

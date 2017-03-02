@@ -69,6 +69,11 @@
 			<key>orderHint</key>
 			<integer>7</integer>
 		</dict>
+		<key>Sparrow.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>14</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -88,6 +93,11 @@
 			<true/>
 		</dict>
 		<key>12E0D88CFFAD0B3362B8A374979E80AF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>184AC30A890D459822DF2EC9054EB565</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -123,6 +133,11 @@
 			<true/>
 		</dict>
 		<key>3278524A96A851FC3B0FE7A54780B553</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3CF954E16E49466A4977DF18B020CE72</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -212,7 +227,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C85595F6FEEBC5450F776120A6BDB279</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D4E4B99EF6459E82D12CB3FF8FA95664</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>E7A5DEEA04DF6A63B58794787F23BF89</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E8A5115C6D378F2E37199B17CD66FAFE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
