@@ -719,7 +719,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ruslan Timchenko (V5B5XZ4F9U)";
 				DEVELOPMENT_TEAM = XWGY2HKNAY;
 				INFOPLIST_FILE = ReactionApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -738,7 +738,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Руслан Тимченко (XWGY2HKNAY)";
 				DEVELOPMENT_TEAM = XWGY2HKNAY;
 				INFOPLIST_FILE = ReactionApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

@@ -20,20 +20,23 @@ class CircleView: UIView {
         if circleLayer.superlayer == nil {
             
             self.circleLayer.path = CGPath(ellipseIn: rect, transform: nil)
-            circleLayer.lineWidth = 2.5
-            circleLayer.fillColor = Circle.sharedCircle.currentColor.cgColor
+            circleLayer.lineWidth = 1.0
+            circleLayer.fillColor = GradientColor(.radial, frame: bounds,
+                                                  colors: Circle.sharedCircle.currentColors).cgColor
             circleLayer.strokeColor = FlatBlackDark().cgColor
-            
+
             self.layer.addSublayer(circleLayer)
         } else {
-            
             self.circleLayer.path = CGPath(ellipseIn: rect, transform: nil)
+            
             if Circle.sharedCircle.state == .action {
                 CATransaction.setDisableActions(true)
-                circleLayer.fillColor = Circle.sharedCircle.currentColor.cgColor
+                circleLayer.fillColor = GradientColor(.radial, frame: bounds,
+                                                      colors: Circle.sharedCircle.currentColors).cgColor
                 CATransaction.commit()
             } else {
-                circleLayer.fillColor = Circle.sharedCircle.currentColor.cgColor
+                circleLayer.fillColor = GradientColor(.radial, frame: bounds,
+                                                      colors: Circle.sharedCircle.currentColors).cgColor
             }
         }
  

@@ -23,28 +23,28 @@ class Circle: NSObject {
     
     public var state: CircleState               = .none
     
-    public var colorNone                        = FlatSkyBlueDark()  // default
-    public var colorPreparation                 = FlatRed()      // default
-    public var colorAction                      = FlatGreen()    // default
+    public var colorsNone                        = [FlatSkyBlue().withAlphaComponent(0.75), FlatSkyBlueDark()]  // default
+    public var colorsPreparation                 = [FlatRed().withAlphaComponent(0.75), FlatRedDark()]          // default
+    public var colorsAction                      = [FlatGreen().withAlphaComponent(0.75), FlatGreenDark()]      // default
     
-    public var animationDuration: TimeInterval  = 0.15           // default
+    public var animationDuration: TimeInterval  = 0.15               // default
     
     public var preparationTimeFrom              = UserDefaultManager.shared.loadValue(forKey: .kMinPreparationTime) as? Double ?? 2.0
     public var preparationTimeUntil             = UserDefaultManager.shared.loadValue(forKey: .kMaxPreparationTime) as? Double ?? 8.0
     
     public var maxSavingTime                    = UserDefaultManager.shared.loadValue(forKey: .kMaxSavingTime) as? Int ?? 1000
     
-    public var currentColor: UIColor {
+    public var currentColors: [UIColor] {
         
         let circle = Circle.sharedCircle
         
         switch circle.state {
         case .none:
-            return circle.colorNone
+            return circle.colorsNone
         case .preparation:
-            return circle.colorPreparation
+            return circle.colorsPreparation
         case .action:
-            return circle.colorAction
+            return circle.colorsAction
         }
     }
     
@@ -52,7 +52,6 @@ class Circle: NSObject {
         
         return Circle.sharedCircle.preparationTimeFrom...Circle.sharedCircle.preparationTimeUntil
     }
-    
 }
 
 

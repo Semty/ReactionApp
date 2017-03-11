@@ -161,37 +161,23 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="RYy-vF-hYQ"/>
-                                        <exclude reference="UIM-N0-9Eb"/>
-                                        <exclude reference="sMt-2v-lWg"/>
+                                        <exclude reference="OsW-ZX-wwM"/>
+                                        <exclude reference="WAm-1s-uun"/>
+                                        <exclude reference="ceg-4O-hYK"/>
+                                        <exclude reference="eic-8O-28n"/>
                                         <exclude reference="4PI-vr-dfW"/>
                                         <exclude reference="F7v-Kf-Ldt"/>
                                         <exclude reference="cRe-SH-vhy"/>
                                         <exclude reference="hKg-EW-gsF"/>
                                         <exclude reference="lFm-RH-Qpw"/>
                                         <exclude reference="szo-Jo-7FR"/>
-                                        <exclude reference="OsW-ZX-wwM"/>
-                                        <exclude reference="WAm-1s-uun"/>
-                                        <exclude reference="ceg-4O-hYK"/>
-                                        <exclude reference="eic-8O-28n"/>
+                                        <exclude reference="RYy-vF-hYQ"/>
+                                        <exclude reference="UIM-N0-9Eb"/>
+                                        <exclude reference="sMt-2v-lWg"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
                                     <mask key="constraints">
-                                        <exclude reference="2nu-lH-jj2"/>
-                                        <include reference="RYy-vF-hYQ"/>
-                                        <include reference="UIM-N0-9Eb"/>
-                                        <exclude reference="p3c-9M-vza"/>
-                                        <exclude reference="r4m-3U-xWy"/>
-                                        <exclude reference="rfi-BC-P1E"/>
-                                        <include reference="sMt-2v-lWg"/>
-                                        <include reference="F7v-Kf-Ldt"/>
-                                        <exclude reference="LZt-7n-7LZ"/>
-                                        <include reference="cRe-SH-vhy"/>
-                                        <exclude reference="hTd-bB-zu2"/>
-                                        <include reference="lFm-RH-Qpw"/>
-                                        <exclude reference="qGe-LL-LD9"/>
-                                        <include reference="szo-Jo-7FR"/>
                                         <exclude reference="0dl-mO-1S3"/>
                                         <exclude reference="5ew-V5-VE3"/>
                                         <exclude reference="FNI-gc-eVG"/>
@@ -199,6 +185,20 @@
                                         <include reference="WAm-1s-uun"/>
                                         <include reference="ceg-4O-hYK"/>
                                         <include reference="eic-8O-28n"/>
+                                        <include reference="F7v-Kf-Ldt"/>
+                                        <exclude reference="LZt-7n-7LZ"/>
+                                        <include reference="cRe-SH-vhy"/>
+                                        <exclude reference="hTd-bB-zu2"/>
+                                        <include reference="lFm-RH-Qpw"/>
+                                        <exclude reference="qGe-LL-LD9"/>
+                                        <include reference="szo-Jo-7FR"/>
+                                        <exclude reference="2nu-lH-jj2"/>
+                                        <include reference="RYy-vF-hYQ"/>
+                                        <include reference="UIM-N0-9Eb"/>
+                                        <exclude reference="p3c-9M-vza"/>
+                                        <exclude reference="r4m-3U-xWy"/>
+                                        <exclude reference="rfi-BC-P1E"/>
+                                        <include reference="sMt-2v-lWg"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact-widthClass=compact">
@@ -414,7 +414,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="MYj-NK-4Ws">
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="5iv-2q-KTW">
-                            <rect key="frame" x="8" y="8" width="304" height="29"/>
+                            <rect key="frame" x="8" y="7.5" width="304" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Day"/>

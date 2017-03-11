@@ -87,7 +87,7 @@ class ReactionViewController: UIViewController, SPRequestPermissionEventsDelegat
             } catch let deleteError as NSError {
                 fatalError(deleteError.localizedDescription)
             }
-            
+         
             
             // *** ADDING RANDOM REACTIONS FOR DEBUG ***
             
