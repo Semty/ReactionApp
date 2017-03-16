@@ -12,6 +12,70 @@ import RealmSwift
 
 class ShortInstructionLabel: ShrinkingLTMortphingLabel {
     
+// MARK: - Localizable Strings
+    
+    let circleStateNoneLString =
+        NSLocalizedString("circleStateNoneLString", tableName: "Training",
+                          bundle: Bundle.main,
+                          value: "Tap and Hold Circle to Start!",
+                          comment: "circleStateNoneLString")
+    
+    let circleStatePreparationLString =
+        NSLocalizedString("circleStatePreparationLString", tableName: "Training",
+                          bundle: Bundle.main,
+                          value: "Wait Green Color",
+                          comment: "circleStatePreparationLString")
+    
+    let circleStateActionLString =
+        NSLocalizedString("circleStateActionLString", tableName: "Training",
+                          bundle: Bundle.main,
+                          value: "Throw the Circle!",
+                          comment: "circleStateActionLString")
+    
+    let greetingLString =
+        NSLocalizedString("greetingLString", tableName: "Training",
+                          bundle: Bundle.main,
+                          value: "Nice to see you again!",
+                          comment: "Greeting")
+    
+    let shortNoteIfLess150LString =
+        NSLocalizedString("shortNoteIfLess150LString", tableName: "Training",
+                          bundle: Bundle.main,
+                          value: "What? It is incredible!",
+                          comment: "Short Note if Result less than 150 ms")
+    
+    let shortNoteIfBetween150And200LString =
+        NSLocalizedString("shortNoteIfBetween150And200LString", tableName: "Training",
+                          bundle: Bundle.main,
+                          value: "That's time better than 90% people have!",
+                          comment: "Short Note if Result Between 150 ms and 200 ms")
+    
+    let shortNoteIfBetween200And230LString =
+        NSLocalizedString("shortNoteIfBetween200And230LString", tableName: "Training",
+                          bundle: Bundle.main,
+                          value: "Nice job! It's cool time",
+                          comment: "Short Note if Result Between 200 ms and 230 ms")
+    
+    let shortNoteIfBetween230And260LString =
+        NSLocalizedString("shortNoteIfBetween230And260LString", tableName: "Training",
+                          bundle: Bundle.main,
+                          value: "Normal time, it's ok",
+                          comment: "Short Note if Result Between 230 ms and 260 ms")
+    
+    let shortNoteIfBetween260And300LString =
+        NSLocalizedString("shortNoteIfBetween260And300LString", tableName: "Training",
+                          bundle: Bundle.main,
+                          value: "A few slowly, but it's ok",
+                          comment: "Short Note if Result Between 260 ms and 300 ms")
+    
+    let shortNoteIfGreater300LString =
+        NSLocalizedString("shortNoteIfGreater300LString", tableName: "Training",
+                          bundle: Bundle.main,
+                          value: "It is slowly, try again!",
+                          comment: "Short Note if Result Greater than 300 ms")
+    
+// MARK: - shortInstructionLabel
+    
     let realm = try! Realm()
 
     /*
@@ -28,11 +92,11 @@ class ShortInstructionLabel: ShrinkingLTMortphingLabel {
             
             switch circleState {
             case .none:
-                self.text = "Tap and Hold Circle to Start!"
+                self.text = circleStateNoneLString
             case .preparation:
-                self.text = "Wait Green Color"
+                self.text = circleStatePreparationLString
             case .action:
-                self.text = "Throw the Circle!"
+                self.text = circleStateActionLString
             }
             
         } else {
@@ -42,7 +106,7 @@ class ShortInstructionLabel: ShrinkingLTMortphingLabel {
                 UserDefaultManager.shared.save(value: false, forKey: .kSimpleStartApp)
                 
                 if self.text == "" {
-                    self.text = "Nice to see you again!"
+                    self.text = greetingLString
                     
                 } else {
                     self.text = nil
@@ -58,17 +122,17 @@ class ShortInstructionLabel: ShrinkingLTMortphingLabel {
         
         switch resultTime {
         case Int.min..<150:
-            self.text = "What? It is incredible!"
+            self.text = shortNoteIfLess150LString
         case 150..<200:
-            self.text = "That's time better than 90% people have!"
+            self.text = shortNoteIfBetween150And200LString
         case 200..<230:
-            self.text = "Nice job! It's cool time"
+            self.text = shortNoteIfBetween200And230LString
         case 230..<260:
-            self.text = "Normal time, it's ok"
+            self.text = shortNoteIfBetween230And260LString
         case 260..<300:
-            self.text = "A few slowly, but it's ok"
+            self.text = shortNoteIfBetween260And300LString
         case 300..<Int.max:
-            self.text = "It is slowly, try again!"
+            self.text = shortNoteIfGreater300LString
         default:
             break
         }

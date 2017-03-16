@@ -1,0 +1,33 @@
+/* Max Saving Time Header */
+"maxSavingTimeHeader" = "Максимальное Время Реакции для Сохранения";
+
+/* Max Saving Time Title */
+"maxSavingTimeTitle" = "Время Реакции (в мс)";
+
+/* ms */
+"ms" = "мс";
+
+/* Notifications Settings Footer */
+"notificationDisabledFooter" = "Уведомления Отключены. Вы Можете Активировать их: Настройки -> ReactionApp -> Уведомления -> Допуск Уведомлений";
+
+/* Red Circle Time Header */
+"redCircleTimeHeader" = "Минимальное и Максимальное \"Время Красного Круга\"";
+
+/* Red Circle Time Max Title */
+"redCircleTimeMaxTitle" = "Максимум";
+
+/* Red Circle Time Min Title */
+"redCircleTimeMinTitle" = "Минимум";
+
+/* sec */
+"sec" = "сек";
+
+/* Training Settings Header */
+"trainingNotificationHeader" = "Уведомления о Тренировке";
+
+/* Notifications Settings Ring Time */
+"trainingNotificationRingTime" = "Время";
+
+/* Training Settings Title */
+"trainingNotificationTitle" = "Включить/Выключить";
+

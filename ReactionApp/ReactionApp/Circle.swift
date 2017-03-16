@@ -17,7 +17,7 @@ enum CircleState {
     
 }
 
-class Circle: NSObject {
+class Circle : NSObject {
     
     static let sharedCircle                     = Circle()    // singleton
     

@@ -1,0 +1,27 @@
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "5JA-qC-UAc"; */
+"5JA-qC-UAc.title" = "Настройки";
+
+/* Class = "UITabBarItem"; title = "Training"; ObjectID = "5T0-j1-cCN"; */
+"5T0-j1-cCN.title" = "Тренировка";
+
+/* Class = "UISegmentedControl"; 5iv-2q-KTW.segmentTitles[0] = "Day"; ObjectID = "5iv-2q-KTW"; */
+"5iv-2q-KTW.segmentTitles[0]" = "День";
+
+/* Class = "UISegmentedControl"; 5iv-2q-KTW.segmentTitles[1] = "Week"; ObjectID = "5iv-2q-KTW"; */
+"5iv-2q-KTW.segmentTitles[1]" = "Неделя";
+
+/* Class = "UISegmentedControl"; 5iv-2q-KTW.segmentTitles[2] = "All Time"; ObjectID = "5iv-2q-KTW"; */
+"5iv-2q-KTW.segmentTitles[2]" = "Всё Время";
+
+/* Class = "UITabBarItem"; title = "Stats"; ObjectID = "E2z-G7-MGd"; */
+"E2z-G7-MGd.title" = "Статистика";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "JTO-wh-MpQ"; */
+"JTO-wh-MpQ.title" = "Настройки";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "X8P-3x-vgT"; */
+"X8P-3x-vgT.text" = "Дата";
+
+/* Class = "UINavigationItem"; title = "Reaction Test"; ObjectID = "g91-sU-dbe"; */
+"g91-sU-dbe.title" = "Тест на Реакцию";
+

@@ -13,7 +13,80 @@ import Eureka
 
 class SettingsViewController: FormViewController {
     
-    let notificationDisabledFooter = "Notifications disabled. You can activate it:\nSettings -> ReactionApp -> Push Notifications -> Allow Notifications"
+// MARK: - Localizable Strings
+    
+    let notificationDisabledFooter =
+        NSLocalizedString("notificationDisabledFooter",
+                          tableName: "Settings", bundle: Bundle.main,
+                          value: "Notifications disabled. You can activate it:\nSettings -> ReactionApp -> Push Notifications -> Allow Notifications",
+                          comment: "Notifications Settings Footer")
+    
+    let trainingNotificationHeader =
+        NSLocalizedString("trainingNotificationHeader",
+                          tableName: "Settings",
+                          bundle: Bundle.main,
+                          value: "Training Notifications",
+                          comment: "Training Settings Header")
+    
+    let trainingNotificationTitle =
+        NSLocalizedString("trainingNotificationTitle",
+                          tableName: "Settings",
+                          bundle: Bundle.main,
+                          value: "On/Off",
+                          comment: "Training Settings Title")
+    
+    let trainingNotificationRingTime =
+        NSLocalizedString("trainingNotificationRingTime",
+                          tableName: "Settings",
+                          bundle: Bundle.main,
+                          value: "Time",
+                          comment: "Notifications Settings Ring Time")
+    
+    let redCircleTimeHeader =
+        NSLocalizedString("redCircleTimeHeader",
+                          tableName: "Settings",
+                          bundle: Bundle.main,
+                          value: "Min and Max \"Red Circle Time\"",
+                          comment: "Red Circle Time Header")
+    
+    let redCircleTimeMinTitle =
+        NSLocalizedString("redCircleTimeMinTitle",
+                          tableName: "Settings",
+                          bundle: Bundle.main,
+                          value: "Min",
+                          comment: "Red Circle Time Min Title")
+    
+    let secLString =
+        NSLocalizedString("sec", tableName: "Settings",
+                          bundle: Bundle.main,
+                          value: "sec", comment: "sec")
+    
+    let redCircleTimeMaxTitle =
+        NSLocalizedString("redCircleTimeMaxTitle",
+                          tableName: "Settings",
+                          bundle: Bundle.main,
+                          value: "Max",
+                          comment: "Red Circle Time Max Title")
+    
+    let maxSavingTimeHeader =
+        NSLocalizedString("maxSavingTimeHeader",
+                          tableName: "Settings",
+                          bundle: Bundle.main,
+                          value: "Max Reaction Time for Save",
+                          comment: "Max Saving Time Header")
+    
+    let maxSavingTimeTitle =
+        NSLocalizedString("maxSavingTimeTitle",
+                          tableName: "Settings",
+                          bundle: Bundle.main,
+                          value: "Reaction Time (in ms)",
+                          comment: "Max Saving Time Title")
+    
+    let msLString = NSLocalizedString("ms", tableName: "Settings",
+                                      bundle: Bundle.main,
+                                      value: "ms", comment: "ms")
+    
+// MARK: - Variables
     
     var isNotificationsDisabled = Bool()
     var isNotificationsOn = Bool()
@@ -23,6 +96,8 @@ class SettingsViewController: FormViewController {
     var maxPreparationTime = Double()
     
     var maxSavingTime = Int()
+    
+// MARK: - Functions
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +118,7 @@ class SettingsViewController: FormViewController {
         form.inlineRowHideOptions = [.AnotherInlineRowIsShown, .FirstResponderChanges]
 
         
-        form +++ Section(header: "Training Notifications",
+        form +++ Section(header: trainingNotificationHeader,
                          footer: isNotificationsDisabled
                                  ? notificationDisabledFooter
                                  : "")
@@ -60,7 +135,7 @@ class SettingsViewController: FormViewController {
                         
                     $0.value = isNotificationsOn
                         
-                    $0.title = "On/Off"
+                    $0.title = trainingNotificationTitle
                 }.onChange({ row in
                     UserDefaultManager.shared.save(value: !self.isNotificationsOn, forKey: .kNotificationsOn)
                     if !row.value! {
@@ -74,7 +149,7 @@ class SettingsViewController: FormViewController {
                         return !((form.rowBy(tag: "switchRowTag") as? SwitchRow)?.value ?? false)
                     })
                         
-                    $0.title = "Time"
+                    $0.title = trainingNotificationRingTime
                     $0.value = ringTime
                 }.onChange({ row in
                     NotificationManager.shared.setUpLocalNotification(date: row.value!)
@@ -85,12 +160,13 @@ class SettingsViewController: FormViewController {
                 })
 
         
-        form +++ Section(header: "Min and Max \"Red Circle Time\"", footer: "")
+        form +++ Section(header: redCircleTimeHeader,
+                         footer: "")
         
                 <<< PickerInlineRow<Double>() { (row : PickerInlineRow<Double>) -> Void in
-                    row.title = "Min"
+                    row.title = redCircleTimeMinTitle
                     row.displayValueFor = { (rowValue: Double?) in
-                        return rowValue.map { "\($0) sec" }
+                        return rowValue.map { "\($0) \(self.secLString)" }
                     }
                     row.options = [1, 2, 3, 4]
                     row.value = minPreparationTime
@@ -102,9 +178,9 @@ class SettingsViewController: FormViewController {
                 })
         
                 <<< PickerInlineRow<Double>() { (row : PickerInlineRow<Double>) -> Void in
-                    row.title = "Max"
+                    row.title = redCircleTimeMaxTitle
                     row.displayValueFor = { (rowValue: Double?) in
-                        return rowValue.map { "\($0) sec" }
+                        return rowValue.map { "\($0) \(self.secLString)" }
                     }
                     row.options = [5, 6, 7, 8]
                     row.value = maxPreparationTime
@@ -116,12 +192,13 @@ class SettingsViewController: FormViewController {
                 })
         
         
-        form +++ Section(header: "Max Reaction Time for Save", footer: "")
+        form +++ Section(header: maxSavingTimeHeader,
+                         footer: "")
         
             <<< PickerInlineRow<Int>() { (row : PickerInlineRow<Int>) -> Void in
-                row.title = "Reaction Time (in ms)"
+                row.title = maxSavingTimeTitle
                 row.displayValueFor = { (rowValue: Int?) in
-                    return rowValue.map { "\($0) ms" }
+                    return rowValue.map { "\($0) \(self.msLString)" }
                 }
                 row.options = [400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000]
                 row.value = maxSavingTime

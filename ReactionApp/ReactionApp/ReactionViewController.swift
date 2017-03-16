@@ -14,6 +14,31 @@ import Sparrow
 
 class ReactionViewController: UIViewController, SPRequestPermissionEventsDelegate {
     
+// MARK: - Localizable Strings
+    
+    let tooEarlyLString =
+        NSLocalizedString("tooEarlyLString", tableName: "Training",
+                          bundle: Bundle.main, value: "Too Early!",
+                          comment: "tooEarlyLString")
+    
+    let instructionForTimeLString =
+        NSLocalizedString("instructionForTimeLString", tableName: "Training",
+                          bundle: Bundle.main, value: "Here will be your time :)",
+                          comment: "instructionForTimeLString")
+    
+    let instructionForNoteLString =
+        NSLocalizedString("instructionForNoteLString", tableName: "Training",
+                          bundle: Bundle.main, value: "That's all, Let's go!",
+                          comment: "instructionForNoteLString")
+    
+    let msLString = NSLocalizedString("ms", tableName: "Training",
+                                      bundle: Bundle.main,
+                                      value: "ms", comment: "ms")
+    
+    let errorLString = NSLocalizedString("error", tableName: "Training",
+                                      bundle: Bundle.main,
+                                      value: "Error", comment: "error")
+    
 // MARK: - IBOutlet Properties
     
     @IBOutlet weak var circleView: CircleView!
@@ -189,7 +214,7 @@ class ReactionViewController: UIViewController, SPRequestPermissionEventsDelegat
             
             self.startTime = nil
             
-            self.reactionResultLabel.text = "Too Early!"
+            self.reactionResultLabel.text = tooEarlyLString
             
             self.timer.invalidate()
             
@@ -210,8 +235,8 @@ class ReactionViewController: UIViewController, SPRequestPermissionEventsDelegat
                         UserDefaultManager.shared.save(value: false, forKey: .kFirstStartApp)
                         
                         DispatchQueue.main.async {
-                            self.reactionResultLabel.text = "Here will be your time :)"
-                            self.shortInstructionLabel.text = "That's all, Let's go!"
+                            self.reactionResultLabel.text = self.instructionForTimeLString
+                            self.shortInstructionLabel.text = self.instructionForNoteLString
                         }
                         
                     } else {                                                            // Default Situation
@@ -219,7 +244,7 @@ class ReactionViewController: UIViewController, SPRequestPermissionEventsDelegat
                         DispatchQueue.main.async {
                             self.reactionResultLabel.numberOfLines = 1
                             
-                            self.reactionResultLabel.text = "\(reactionResult) ms"
+                            self.reactionResultLabel.text = "\(reactionResult) \(self.msLString)"
                             
                             self.shortInstructionLabel.setShortNotes(withResultTime: reactionResult)
                         }
@@ -230,7 +255,7 @@ class ReactionViewController: UIViewController, SPRequestPermissionEventsDelegat
                     }
                 }
             } else {
-                self.reactionResultLabel.text = "Error"
+                self.reactionResultLabel.text = errorLString
             }
         }
     }

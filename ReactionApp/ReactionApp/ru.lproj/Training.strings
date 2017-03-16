@@ -1,0 +1,45 @@
+/* circleStateActionLString */
+"circleStateActionLString" = "Отпускай Круг!";
+
+/* circleStateNoneLString */
+"circleStateNoneLString" = "Нажми и Держи круг, Чтобы Начать!";
+
+/* circleStatePreparationLString */
+"circleStatePreparationLString" = "Жди Появления Зеленого Круга";
+
+/* error */
+"error" = "Ошибка";
+
+/* Greeting */
+"greetingLString" = "С Возвращением :)";
+
+/* instructionForNoteLString */
+"instructionForNoteLString" = "Это всё, Вперёд!";
+
+/* instructionForTimeLString */
+"instructionForTimeLString" = "Здесь Будет твоё Время :)";
+
+/* ms */
+"ms" = "мс";
+
+/* Short Note if Result Between 150 ms and 200 ms */
+"shortNoteIfBetween150And200LString" = "Твое Время Лучше, чем у 90% p Людей!";
+
+/* Short Note if Result Between 200 ms and 230 ms */
+"shortNoteIfBetween200And230LString" = "Отличное Время";
+
+/* Short Note if Result Between 230 ms and 260 ms */
+"shortNoteIfBetween230And260LString" = "Нормальное Время";
+
+/* Short Note if Result Between 260 ms and 300 ms */
+"shortNoteIfBetween260And300LString" = "Немного Медленно";
+
+/* Short Note if Result Greater than 300 ms */
+"shortNoteIfGreater300LString" = "Медленно, Попытайся Снова!";
+
+/* Short Note if Result less than 150 ms */
+"shortNoteIfLess150LString" = "Что? Это Невероятно!";
+
+/* tooEarlyLString */
+"tooEarlyLString" = "Слишком рано";
+

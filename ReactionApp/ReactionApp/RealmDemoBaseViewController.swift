@@ -12,7 +12,35 @@ import ChameleonFramework
 import Charts
 
 class RealmDemoBaseViewController: UIViewController {
+    
+// MARK: - Localizable Strings
+    
+    let msLString = NSLocalizedString("ms", tableName: "Stats",
+                                      bundle: Bundle.main,
+                                      value: " ms", comment: "ms")
 
+    let noDataTextLString =
+        NSLocalizedString("chartView.noDataText",
+                          tableName: "Stats", bundle: Bundle.main,
+                          value: "We cannot find reaction stats for this period :(",
+                          comment: "No data text in chart")
+    
+    let dayStatsLString = NSLocalizedString("reactionTimePerDay", tableName: "Stats",
+                                            bundle: Bundle.main,
+                                            value: "Reaction Time Per Day",
+                                            comment: "Reaction Time Per Day")
+    
+    let weekStatsLString = NSLocalizedString("reactionTimePerWeek", tableName: "Stats",
+                                             bundle: Bundle.main,
+                                             value: "Average Reaction Time Per Last 7 Days",
+                                             comment: "Average Reaction Time Per Week")
+    
+    let allTimeStatsLString = NSLocalizedString("reactionTimePerAllTime",
+                                                tableName: "Stats",
+                                                bundle: Bundle.main,
+                                                value: "Average Reaction per all Time",
+                                                comment: "Average Reaction per all Time")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,7 +60,7 @@ class RealmDemoBaseViewController: UIViewController {
         
         chartView.noDataFont = UIFont.init(name: "HelveticaNeue-CondensedBold", size: 12)!
         chartView.noDataTextColor = UIColor.white
-        chartView.noDataText = "We cannot find reaction stats for this period :("
+        chartView.noDataText = noDataTextLString
         
         chartView.chartDescription?.enabled = false
         
@@ -62,8 +90,8 @@ class RealmDemoBaseViewController: UIViewController {
         chartView.legend.textColor = UIColor.white
         
         let msFormatter = NumberFormatter()
-        msFormatter.positiveSuffix = " ms"
-        msFormatter.negativeSuffix = " ms"
+        msFormatter.positiveSuffix = msLString
+        msFormatter.negativeSuffix = msLString
         
         let leftAxis = chartView.leftAxis
         leftAxis.labelFont = UIFont.init(name: "HelveticaNeue-CondensedBold", size: fontSize)!
@@ -110,7 +138,7 @@ class RealmDemoBaseViewController: UIViewController {
         chartView.leftAxis.removeAllLimitLines()
         
         let limitTime = (Double)(overallTime) / (Double)(count)
-        let limitLine = ChartLimitLine(limit: limitTime, label: String.init(format: "%1.1f ms", limitTime))
+        let limitLine = ChartLimitLine(limit: limitTime, label: String.init(format: "%1.1f\(msLString)", limitTime))
         limitLine.lineColor = FlatSkyBlue().withAlphaComponent(0.3)
         limitLine.valueFont = .boldSystemFont(ofSize: 8.0)
         limitLine.valueTextColor = UIColor.white
@@ -124,7 +152,7 @@ class RealmDemoBaseViewController: UIViewController {
                              andrResultsCount resultsCount: Int) -> LineChartData {
         
         let chartDataSet = LineChartDataSet(values: dataEntries,
-                                            label: "Reaction Time Per Day")
+                                            label: dayStatsLString)
         
         chartDataSet.circleRadius = 4
         chartDataSet.setCircleColor(FlatSkyBlue())
@@ -156,7 +184,7 @@ class RealmDemoBaseViewController: UIViewController {
         chartView.xAxis.granularity = 1.0
         
         let chartDataSet = BarChartDataSet(values: dataEntries,
-                                            label: "Average Reaction Time Per Last 7 Days")
+                                            label: weekStatsLString)
         
         chartDataSet.colors = ChartColorTemplates.material()
         chartDataSet.valueTextColor = UIColor.white
@@ -173,7 +201,7 @@ class RealmDemoBaseViewController: UIViewController {
         chartView.xAxis.granularity = 1.0
         
         let chartDataSet = BarChartDataSet(values: dataEntries,
-                                           label: "Average Reaction per all Time")
+                                           label: allTimeStatsLString)
         
         chartDataSet.colors = ChartColorTemplates.colorful()
         chartDataSet.valueTextColor = UIColor.white

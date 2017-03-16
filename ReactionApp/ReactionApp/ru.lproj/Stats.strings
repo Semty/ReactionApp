@@ -1,0 +1,15 @@
+/* No data text in chart */
+"chartView.noDataText" = "Мы не можем найти какой-либо информации по данному периоду";
+
+/* ms */
+"ms" = " мс";
+
+/* Average Reaction per all Time */
+"reactionTimePerAllTime" = "Среднее Время Реакции за все Время";
+
+/* Reaction Time Per Day */
+"reactionTimePerDay" = "Время Реакции в течение дня";
+
+/* Average Reaction Time Per Week */
+"reactionTimePerWeek" = "Среднее Время Реакции за последние 7 дней";
+
