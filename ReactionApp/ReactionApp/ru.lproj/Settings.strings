@@ -8,7 +8,7 @@
 "ms" = "мс";
 
 /* Notifications Settings Footer */
-"notificationDisabledFooter" = "Уведомления Отключены. Вы Можете Активировать их: Настройки -> ReactionApp -> Уведомления -> Допуск Уведомлений";
+"notificationDisabledFooter" = "Уведомления Отключены. Вы Можете Активировать их: Настройки -> Tap and Up -> Уведомления -> Допуск Уведомлений";
 
 /* Red Circle Time Header */
 "redCircleTimeHeader" = "Минимальное и Максимальное \"Время Красного Круга\"";
@@ -30,4 +30,10 @@
 
 /* Training Settings Title */
 "trainingNotificationTitle" = "Включить/Выключить";
+
+/* Switch Language Header */
+"switchLanguageHeader" = "Сменить Язык";
+
+/* Switch Language Title */
+"switchLanguageTitle" = "Язык";
 

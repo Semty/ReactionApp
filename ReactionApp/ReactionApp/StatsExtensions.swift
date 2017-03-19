@@ -15,6 +15,17 @@ enum DateStats: Int {
     case day = 0, week, allTime
 }
 
+extension Calendar {
+    
+    static var sharedCurrent: Calendar {
+        
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.locale = Locale(identifier: Language.currentAppleLanguageFull())
+        
+        return calendar
+    }
+}
+
 extension Array where Element: Integer {
     
     var total: Element {

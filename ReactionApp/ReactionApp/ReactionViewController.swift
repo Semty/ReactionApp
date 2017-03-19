@@ -73,8 +73,8 @@ class ReactionViewController: UIViewController, SPRequestPermissionEventsDelegat
         }
     }
     
-    public var permissionAssistant = SPRequestPermissionAssistant.modules.dialog.interactive.create(with: [.Notification])
-
+    public var permissionAssistant = SPRequestPermissionAssistant.modules.dialog.interactive.create(with: [.Notification], dataSourceForController: PermissionsDataSource())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

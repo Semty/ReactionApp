@@ -41,7 +41,7 @@ CHECKOUT OPTIONS:
     :commit: acc480fbe023c6e5fe40f68593f4a70a8c4c7ad5
     :git: https://github.com/ViccAlexander/Chameleon.git
   Sparrow:
-    :commit: b5d6176d8684313977b361738d2366bf2a6671a8
+    :commit: 9d11788d25ab9ab283e8cc3ea5d24b011a6c8415
     :git: https://github.com/IvanVorobei/Sparrow.git
 
 SPEC CHECKSUMS:

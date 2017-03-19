@@ -10,6 +10,16 @@ import UIKit
 
 class NotificationManager {
     
+// MARK: - Localizable Strings
+    
+    var alertBodyLString =
+        NSLocalizedString("alertBodyLString", tableName: "Notification",
+                          bundle: Bundle.main,
+                          value: "It is Time to Train Your Reaction!",
+                          comment: "Notification Alert Body")
+    
+// MARK: - NotificationManager
+    
     static let shared = NotificationManager()
     
     func setUpLocalNotification(date: Date) {
@@ -23,7 +33,7 @@ class NotificationManager {
         
         let localNotification = UILocalNotification()
         localNotification.fireDate = dateFire
-        localNotification.alertBody = "It is Time to Train Your Reaction!"
+        localNotification.alertBody = alertBodyLString
         localNotification.alertTitle = dateToHourString(dateFire)
         localNotification.repeatInterval = NSCalendar.Unit.day
         localNotification.soundName = UILocalNotificationDefaultSoundName;

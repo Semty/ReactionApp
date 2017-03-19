@@ -33,6 +33,8 @@
 		44FABE291E58DAD500D38A07 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FABE281E58DAD500D38A07 /* BalloonMarker.swift */; };
 		7A9555973A8F3EE74B094D1C /* Pods_ReactionApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 934F4D896946D687B7047B20 /* Pods_ReactionApp.framework */; };
 		D545A4F51E7B18DA001CDE44 /* ru.lproj in Resources */ = {isa = PBXBuildFile; fileRef = D545A4F41E7B18DA001CDE44 /* ru.lproj */; };
+		D55E49A11E7E8D36003DB146 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E49A01E7E8D36003DB146 /* Language.swift */; };
+		D55E49A41E7E9F27003DB146 /* Localizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E49A31E7E9F27003DB146 /* Localizer.swift */; };
 		D5F118401E7B230F00138F8D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5F118421E7B230F00138F8D /* InfoPlist.strings */; };
 		D5F39ED71E7B242200746551 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5F39ED91E7B242200746551 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
@@ -94,6 +96,8 @@
 		D545A4F11E7B1862001CDE44 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		D545A4F21E7B1862001CDE44 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		D545A4F41E7B18DA001CDE44 /* ru.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ru.lproj; sourceTree = "<group>"; };
+		D55E49A01E7E8D36003DB146 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		D55E49A31E7E9F27003DB146 /* Localizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizer.swift; sourceTree = "<group>"; };
 		D5F118411E7B230F00138F8D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D5F39ED81E7B242200746551 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F438793F6FC39C17F09DF974 /* Pods-ReactionApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactionApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactionApp/Pods-ReactionApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -270,6 +274,8 @@
 		D545A4F31E7B18C0001CDE44 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
+				D55E49A01E7E8D36003DB146 /* Language.swift */,
+				D55E49A31E7E9F27003DB146 /* Localizer.swift */,
 				D545A4F41E7B18DA001CDE44 /* ru.lproj */,
 			);
 			name = Localization;
@@ -574,6 +580,7 @@
 				446241BA1E55B5D200240B93 /* Circle.swift in Sources */,
 				448F64411E5A1084003504C0 /* StatsExtensions.swift in Sources */,
 				44B90D0C1E589CA4001BC546 /* RealmDemoBaseViewController.swift in Sources */,
+				D55E49A11E7E8D36003DB146 /* Language.swift in Sources */,
 				443466341E5F0A2C006214EE /* DayAxisValueFormatter.swift in Sources */,
 				44B90D031E584EB1001BC546 /* shortInstructionLabel.swift in Sources */,
 				44C6C3971E68868B0087601E /* PermissionsDataSource.swift in Sources */,
@@ -582,6 +589,7 @@
 				44E46FEC1E54AA5300F453B9 /* ReactionViewController.swift in Sources */,
 				44B90D051E5875CC001BC546 /* ReactionResultObject.swift in Sources */,
 				44A81AB31E65DACA00DA3B44 /* UserDefaultManager.swift in Sources */,
+				D55E49A41E7E9F27003DB146 /* Localizer.swift in Sources */,
 				44F5C2771E6208D800087667 /* ShrinkingLTMortphingLabel.swift in Sources */,
 				44D087981E547DAF00180DD9 /* AppDelegate.swift in Sources */,
 				446EF25B1E6488F100D01771 /* SettingsViewController.swift in Sources */,

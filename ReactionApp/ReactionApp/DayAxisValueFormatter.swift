@@ -11,6 +11,58 @@ import Charts
 
 class DayAxisValueFormatter: NSObject, IAxisValueFormatter {
     
+// MARK: - Localizable Strings
+    /*
+    let janLString = NSLocalizedString("january", tableName: "DayAxisValueFormatter",
+                                       bundle: Bundle.main, value: "Jan",
+                                       comment: "January, Short form")
+    
+    let febLString = NSLocalizedString("february", tableName: "DayAxisValueFormatter",
+                                       bundle: Bundle.main, value: "Feb",
+                                       comment: "February, Short form")
+    
+    let marLString = NSLocalizedString("march", tableName: "DayAxisValueFormatter",
+                                       bundle: Bundle.main, value: "Mar",
+                                       comment: "March, Short form")
+    
+    let aprLString = NSLocalizedString("april", tableName: "DayAxisValueFormatter",
+                                       bundle: Bundle.main, value: "Apr",
+                                       comment: "April, Short form")
+    
+    let mayLString = NSLocalizedString("may", tableName: "DayAxisValueFormatter",
+                                       bundle: Bundle.main, value: "May",
+                                       comment: "may, Short form")
+    
+    let junLString = NSLocalizedString("june", tableName: "DayAxisValueFormatter",
+                                       bundle: Bundle.main, value: "Jun",
+                                       comment: "June, Short form")
+    let julLString = NSLocalizedString("july", tableName: "DayAxisValueFormatter",
+                                       bundle: Bundle.main, value: "Jul",
+                                       comment: "July, Short form")
+    
+    let augLString = NSLocalizedString("august", tableName: "DayAxisValueFormatter",
+                                       bundle: Bundle.main, value: "Aug",
+                                       comment: "August, Short form")
+    
+    let sepLString = NSLocalizedString("september", tableName: "DayAxisValueFormatter",
+                                       bundle: Bundle.main, value: "Sep",
+                                       comment: "September, Short form")
+    
+    let octLString = NSLocalizedString("october", tableName: "DayAxisValueFormatter",
+                                       bundle: Bundle.main, value: "Oct",
+                                       comment: "October, Short form")
+    
+    let novLString = NSLocalizedString("november", tableName: "DayAxisValueFormatter",
+                                       bundle: Bundle.main, value: "Nov",
+                                       comment: "November, Short form")
+    
+    let DecLString = NSLocalizedString("december", tableName: "DayAxisValueFormatter",
+                                       bundle: Bundle.main, value: "Dec",
+                                       comment: "December, Short form")
+    */
+    
+// MARK: - DayAxisValueFormatter
+    
     let months: [String]
     weak var chart: BarLineChartViewBase?
     
@@ -18,10 +70,7 @@ class DayAxisValueFormatter: NSObject, IAxisValueFormatter {
         
         self.chart = chart
         
-        self.months = ["Jan", "Feb", "Mar",
-                       "Apr", "May", "Jun",
-                       "Jul", "Aug", "Sep",
-                       "Oct", "Nov", "Dec"]
+        self.months = Calendar.sharedCurrent.shortMonthSymbols
     }
     
     func stringForValue(_ value: Double,
@@ -62,7 +111,11 @@ class DayAxisValueFormatter: NSObject, IAxisValueFormatter {
                 break
             }
             
-            return dayOfMonth == 0 ? "" : "\(dayOfMonth)\(appendix) \(monthName)"
+            if Language.currentAppleLanguage() == "en" {
+                return dayOfMonth == 0 ? "" : "\(dayOfMonth)\(appendix) \(monthName)"
+            } else {
+                return dayOfMonth == 0 ? "" : "\(dayOfMonth) \(monthName)"
+            }
         }
     }
     

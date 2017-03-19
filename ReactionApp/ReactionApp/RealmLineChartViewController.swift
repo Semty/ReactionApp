@@ -128,18 +128,21 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
             
             let dayFormatter = DateFormatter()
             dayFormatter.dateFormat = "dd MMMM"
+            dayFormatter.locale = Locale(identifier: Language.currentAppleLanguageFull())
             
             self.currentDateLabel.text = dayFormatter.string(from: currentDate)
         case .week:
             
             let weekFormatter = DateFormatter()
             weekFormatter.dateFormat = "dd MMMM"
+            weekFormatter.locale = Locale(identifier: Language.currentAppleLanguageFull())
             
             self.currentDateLabel.text = "\(weekFormatter.string(from: Date(timeInterval: -518_400, since: currentDate.startOfDay()))) - \(weekFormatter.string(from: currentDate.endOfDay()))"
         case .allTime:
             
             let allTimeFormatter = DateFormatter()
             allTimeFormatter.dateFormat = "dd MMM yyy"
+            allTimeFormatter.locale = Locale(identifier: Language.currentAppleLanguageFull())
             
             self.currentDateLabel.text = "\(allTimeFormatter.string(from: (allTimeResults?.min(ofProperty: "reactionDate")) ?? Date(timeInterval: -518_400, since: currentDate.startOfDay()))) - " +
                                          "\(allTimeFormatter.string(from: (allTimeResults?.max(ofProperty: "reactionDate")) ?? currentDate.endOfDay()))"

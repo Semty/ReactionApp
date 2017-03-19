@@ -18,7 +18,7 @@ class SettingsViewController: FormViewController {
     let notificationDisabledFooter =
         NSLocalizedString("notificationDisabledFooter",
                           tableName: "Settings", bundle: Bundle.main,
-                          value: "Notifications disabled. You can activate it:\nSettings -> ReactionApp -> Push Notifications -> Allow Notifications",
+                          value: "Notifications disabled. You can activate it:\nSettings -> Tap and Up -> Push Notifications -> Allow Notifications",
                           comment: "Notifications Settings Footer")
     
     let trainingNotificationHeader =
@@ -81,6 +81,20 @@ class SettingsViewController: FormViewController {
                           bundle: Bundle.main,
                           value: "Reaction Time (in ms)",
                           comment: "Max Saving Time Title")
+    
+    let switchLanguageHeader =
+        NSLocalizedString("switchLanguageHeader",
+                          tableName: "Settings",
+                          bundle: Bundle.main,
+                          value: "Switch Language",
+                          comment: "Switch Language Header")
+    
+    let switchLanguageTitle =
+        NSLocalizedString("switchLanguageTitle",
+                          tableName: "Settings",
+                          bundle: Bundle.main,
+                          value: "Language",
+                          comment: "Switch Language Title")
     
     let msLString = NSLocalizedString("ms", tableName: "Settings",
                                       bundle: Bundle.main,
@@ -208,6 +222,39 @@ class SettingsViewController: FormViewController {
                     UserDefaultManager.shared.save(value: row.value!, forKey: .kMaxSavingTime)
                     Circle.sharedCircle.maxSavingTime = row.value!
             })
+        
+        form +++ Section(header: switchLanguageHeader,
+                         footer: "")
+        
+            <<< PickerInlineRow<Flags>() {
+                $0.title = switchLanguageTitle
+                $0.options = [en, ru]
+                $0.value = currentFlag()
+                
+            }.onChange({ (row: PickerInlineRow<SettingsViewController.Flags>) in
+                
+                switch row.value! {
+                case self.en:
+                    Language.setAppleLAnguageTo(lang: "en")
+                case self.ru:
+                    Language.setAppleLAnguageTo(lang: "ru")
+                default:
+                    break
+                }
+                
+                let rootviewcontroller: UIWindow = ((UIApplication.shared.delegate?.window)!)!
+                rootviewcontroller.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "rootnav")
+                let mainwindow = (UIApplication.shared.delegate?.window!)!
+                UIView.transition(with: mainwindow,
+                                  duration: 0.55,
+                                  options: .transitionFlipFromBottom,
+                                  animations: { () -> Void in
+                                    
+                }) { (finished) -> Void in
+                    
+                }
+                
+            })
     }
 
     override func didReceiveMemoryWarning() {
@@ -215,6 +262,19 @@ class SettingsViewController: FormViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    typealias Flags = String
+    let en = "🇺🇸", ru = "🇷🇺"
+    
+    private func currentFlag() -> Flags {
+        switch Language.currentAppleLanguage() {
+        case "en":
+            return en
+        case "ru":
+            return ru
+        default:
+            return ""
+        }
+    }
 
     /*
     // MARK: - Navigation

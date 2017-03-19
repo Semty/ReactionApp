@@ -25,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         */
+        
+        Localizer.DoTheMagic()
+        
         return true
     }
 

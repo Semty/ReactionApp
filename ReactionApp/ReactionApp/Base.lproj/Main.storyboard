@@ -14,7 +14,7 @@
         <!--Animated Tab Bar Controller-->
         <scene sceneID="RCc-JL-7ny">
             <objects>
-                <tabBarController id="FO8-5U-4ff" customClass="RAMAnimatedTabBarController" customModule="RAMAnimatedTabBarController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="rootnav" id="FO8-5U-4ff" customClass="RAMAnimatedTabBarController" customModule="RAMAnimatedTabBarController" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="Amj-MT-vCo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
@@ -86,7 +86,7 @@
                         <viewControllerLayoutGuide type="top" id="Ot6-VJ-pcq"/>
                         <viewControllerLayoutGuide type="bottom" id="Frm-1J-ATg"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="HRq-Cc-HLn">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="HRq-Cc-HLn">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -94,13 +94,13 @@
                                 <rect key="frame" x="16" y="8" width="288" height="439"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="clip" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="XwT-bF-u6c" customClass="ShortInstructionLabel" customModule="ReactionApp">
-                                        <rect key="frame" x="21.5" y="342" width="245" height="97"/>
+                                        <rect key="frame" x="22" y="342" width="245" height="97"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="100"/>
                                         <color key="textColor" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="clip" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="FKr-1j-BSp" customClass="ShrinkingLTMortphingLabel" customModule="ReactionApp">
-                                        <rect key="frame" x="80.5" y="0.0" width="127" height="84"/>
+                                        <rect key="frame" x="81" y="0.0" width="127" height="84"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="FKr-1j-BSp" secondAttribute="height" multiplier="156:103" id="Jqa-rM-j7M"/>
                                         </constraints>
@@ -414,7 +414,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="MYj-NK-4Ws">
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="5iv-2q-KTW">
-                            <rect key="frame" x="8" y="7.5" width="304" height="29"/>
+                            <rect key="frame" x="8" y="8" width="304" height="29"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Day"/>

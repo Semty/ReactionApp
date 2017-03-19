@@ -1,0 +1,32 @@
+/* Title for Camera Permission */
+"titleForPermissionCameraLString" = "Разрешить Камеру";
+
+/* Title for Photo Library Permission */
+"titleForPermissionPhotoLibraryLString" = "Разрешить Библиотеку Фотографий";
+
+/* Title for Notifications Permission */
+"titleForPermissionNotificationLString" = "Разрешить Уведомления";
+
+/* Title for Microphone Permission */
+"titleForPermissionMicrophoneLString" = "Разрешить Микрофон";
+
+/* Title for Calendar Permission */
+"titleForPermissionCalendarLString" = "Разрешить Календарь";
+
+/* Title for Location Permission */
+"titleForPermissionLocationLString" = "Разрешить Геолокацию";
+
+/* Header Title */
+"headerTitleLString" = "Привет!";
+
+/* Header Subtitle */
+"headerSubtitleLString" = "Данному Приложению Требуется Твоя Помощь";
+
+/* Top Advice Title */
+"topAdviceTitleLString" = "Предоставив Доступ, Ты Сможешь Использовать все Функции Данного Приложения";
+
+/* Bottom Advice Title */
+"bottomAdviceTitleLString" = "Ты Можешь Управлять Доступом в Настройках";
+
+/* Under Dialog Advice Title */
+"underDialogAdviceTitleLString" = "Потяни, Чтобы Пропустить";
