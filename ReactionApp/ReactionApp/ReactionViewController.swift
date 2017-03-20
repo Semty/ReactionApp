@@ -18,7 +18,7 @@ class ReactionViewController: UIViewController, SPRequestPermissionEventsDelegat
     
     let tooEarlyLString =
         NSLocalizedString("tooEarlyLString", tableName: "Training",
-                          bundle: Bundle.main, value: "Too Early!",
+                          bundle: Bundle.main, value: "Too Early",
                           comment: "tooEarlyLString")
     
     let instructionForTimeLString =

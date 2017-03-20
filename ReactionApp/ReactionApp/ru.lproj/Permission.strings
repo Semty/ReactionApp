@@ -20,13 +20,13 @@
 "headerTitleLString" = "Привет!";
 
 /* Header Subtitle */
-"headerSubtitleLString" = "Данному Приложению Требуется Твоя Помощь";
+"headerSubtitleLString" = "Данному Приложению Требуется твое Благословление :)";
 
 /* Top Advice Title */
-"topAdviceTitleLString" = "Предоставив Доступ, Ты Сможешь Использовать все Функции Данного Приложения";
+"topAdviceTitleLString" = "Предоставив Нужные Права, Ты Сможешь Использовать его на все 100%, честно-честно";
 
 /* Bottom Advice Title */
-"bottomAdviceTitleLString" = "Ты Можешь Управлять Доступом в Настройках";
+"bottomAdviceTitleLString" = "Управлять Разрешениями Можно в Настрйоках";
 
 /* Under Dialog Advice Title */
 "underDialogAdviceTitleLString" = "Потяни, Чтобы Пропустить";

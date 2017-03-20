@@ -1,0 +1,33 @@
+/* Bottom Advice Title */
+"bottomAdviceTitleLString" = "Vous pouvez gérer les autorisations dans les paramètres";
+
+/* Header Subtitle */
+"headerSubtitleLString" = "Pouvez-vous nous aider avec un petit problème? :)";
+
+/* Header Title */
+"headerTitleLString" = "Salut!";
+
+/* Title for Calendar Permission */
+"titleForPermissionCalendarLString" = "Activer le calendrier";
+
+/* Title for Camera Permission */
+"titleForPermissionCameraLString" = "Activer la caméra";
+
+/* Title for Location Permission */
+"titleForPermissionLocationLString" = "Activer l'emplacement";
+
+/* Title for Microphone Permission */
+"titleForPermissionMicrophoneLString" = "Activer le microphone";
+
+/* Title for Notifications Permission */
+"titleForPermissionNotificationLString" = "Activer les notifications";
+
+/* Title for Photo Library Permission */
+"titleForPermissionPhotoLibraryLString" = "Activer la photothèque";
+
+/* Top Advice Title */
+"topAdviceTitleLString" = "Autoriser l'autorisation, s'il vous plaît. Cela vous permet d'utiliser Application";
+
+/* Under Dialog Advice Title */
+"underDialogAdviceTitleLString" = "Glisser pour masquer";
+

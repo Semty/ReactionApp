@@ -35,7 +35,7 @@ class ShortInstructionLabel: ShrinkingLTMortphingLabel {
     let greetingLString =
         NSLocalizedString("greetingLString", tableName: "Training",
                           bundle: Bundle.main,
-                          value: "Nice to see you again!",
+                          value: "Nice to see you again :)",
                           comment: "Greeting")
     
     let shortNoteIfLess150LString =
@@ -59,13 +59,13 @@ class ShortInstructionLabel: ShrinkingLTMortphingLabel {
     let shortNoteIfBetween230And260LString =
         NSLocalizedString("shortNoteIfBetween230And260LString", tableName: "Training",
                           bundle: Bundle.main,
-                          value: "Normal time, it's ok",
+                          value: "Normal time",
                           comment: "Short Note if Result Between 230 ms and 260 ms")
     
     let shortNoteIfBetween260And300LString =
         NSLocalizedString("shortNoteIfBetween260And300LString", tableName: "Training",
                           bundle: Bundle.main,
-                          value: "A few slowly, but it's ok",
+                          value: "A few slowly",
                           comment: "Short Note if Result Between 260 ms and 300 ms")
     
     let shortNoteIfGreater300LString =
