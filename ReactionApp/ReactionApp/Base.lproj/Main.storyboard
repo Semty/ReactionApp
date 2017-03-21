@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FO8-5U-4ff">
-    <device id="retina4_0" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -87,20 +87,20 @@
                         <viewControllerLayoutGuide type="bottom" id="Frm-1J-ATg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="HRq-Cc-HLn">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QLh-FF-6z8">
-                                <rect key="frame" x="16" y="8" width="288" height="439"/>
+                                <rect key="frame" x="16" y="8" width="343" height="538"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="clip" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="XwT-bF-u6c" customClass="ShortInstructionLabel" customModule="ReactionApp">
-                                        <rect key="frame" x="21.5" y="342" width="245" height="49"/>
+                                        <rect key="frame" x="21.5" y="419" width="300" height="59.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="100"/>
                                         <color key="textColor" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="clip" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="FKr-1j-BSp" customClass="ShrinkingLTMortphingLabel" customModule="ReactionApp">
-                                        <rect key="frame" x="80.5" y="0.0" width="127" height="84"/>
+                                        <rect key="frame" x="93" y="0.0" width="157" height="103"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="FKr-1j-BSp" secondAttribute="height" multiplier="156:103" id="Jqa-rM-j7M"/>
                                         </constraints>
@@ -114,7 +114,7 @@
                                         </variation>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41j-pY-I8Q" customClass="CircleView" customModule="ReactionApp">
-                                        <rect key="frame" x="21" y="97" width="245" height="245"/>
+                                        <rect key="frame" x="21" y="119" width="300" height="300"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="41j-pY-I8Q" secondAttribute="height" multiplier="1:1" id="ROh-ih-pKH"/>
@@ -375,11 +375,11 @@
                         <viewControllerLayoutGuide type="bottom" id="1UV-JD-H5B"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="FYu-D9-xW7">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="HMn-LR-RTd">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -411,23 +411,23 @@
                         <viewControllerLayoutGuide type="bottom" id="d8Q-AG-JDX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3Bv-y0-qvm">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LhA-Yq-9kc" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="16" y="39" width="288" height="416"/>
+                                <rect key="frame" x="16" y="39" width="343" height="515"/>
                                 <color key="backgroundColor" red="0.12637259070000001" green="0.12639245390000001" blue="0.1263653636" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VGo-cy-lEQ" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="16" y="39" width="288" height="416"/>
+                                <rect key="frame" x="16" y="39" width="343" height="515"/>
                                 <color key="backgroundColor" red="0.12637259070000001" green="0.12639245390000001" blue="0.1263653636" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sWf-FW-B4f" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="16" y="39" width="288" height="416"/>
+                                <rect key="frame" x="16" y="39" width="343" height="515"/>
                                 <color key="backgroundColor" red="0.12637259070000001" green="0.12639245390000001" blue="0.1263653636" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X8P-3x-vgT">
-                                <rect key="frame" x="16" y="8" width="288" height="22"/>
+                                <rect key="frame" x="16" y="8" width="343" height="22"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -455,7 +455,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="MYj-NK-4Ws">
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="5iv-2q-KTW">
-                            <rect key="frame" x="17.5" y="7.5" width="285" height="29"/>
+                            <rect key="frame" x="17.5" y="7.5" width="340" height="29"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Day"/>
