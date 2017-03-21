@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         */
+        
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-8402016319891167~1371026933")
         
         Localizer.DoTheMagic()
         

@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import GoogleMobileAds
 import LTMorphingLabel
 import RandomKit
 import RealmSwift
 import Sparrow
 
-class ReactionViewController: UIViewController, SPRequestPermissionEventsDelegate {
+class ReactionViewController:   UIViewController, SPRequestPermissionEventsDelegate,
+                                GADBannerViewDelegate {
     
 // MARK: - Localizable Strings
     
@@ -41,6 +43,7 @@ class ReactionViewController: UIViewController, SPRequestPermissionEventsDelegat
     
 // MARK: - IBOutlet Properties
     
+    @IBOutlet var rootView: UIView!
     @IBOutlet weak var circleView: CircleView!
     
     @IBOutlet weak var reactionResultLabel: ShrinkingLTMortphingLabel!
@@ -73,10 +76,22 @@ class ReactionViewController: UIViewController, SPRequestPermissionEventsDelegat
         }
     }
     
+    lazy var adBannerView: GADBannerView = {
+        let adBannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        adBannerView.adUnitID = "ca-app-pub-8402016319891167/2847760134"
+        adBannerView.delegate = self
+        adBannerView.rootViewController = self
+        
+        return adBannerView
+    }()
+    
     public var permissionAssistant = SPRequestPermissionAssistant.modules.dialog.interactive.create(with: [.Notification], dataSourceForController: PermissionsDataSource())
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        updateAdBanner()
+        self.view.addSubview(adBannerView)
         
         permissionAssistant.eventsDelegate = self
         
@@ -338,6 +353,30 @@ class ReactionViewController: UIViewController, SPRequestPermissionEventsDelegat
     
     func didSelectedPermission(permission: SPRequestPermissionType) {
         
+    }
+    
+// MARK: - GADBannerViewDelegate
+    
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("Banner loaded successfully")
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print("Fail to receive ads")
+        print(error)
+    }
+    
+// MARK: - Ad Banner
+    
+    func updateAdBanner() {
+        adBannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait,
+                                     origin: CGPoint.init(x: 0,
+                                                          y: rootView.frame.maxY -
+                                                            adBannerView.bounds.height + 8))
+        adBannerView.adUnitID = "ca-app-pub-8402016319891167/2847760134"
+        adBannerView.delegate = self
+        adBannerView.rootViewController = self
+        adBannerView.load(GADRequest())
     }
 
     /*

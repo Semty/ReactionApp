@@ -86,7 +86,7 @@
                         <viewControllerLayoutGuide type="top" id="Ot6-VJ-pcq"/>
                         <viewControllerLayoutGuide type="bottom" id="Frm-1J-ATg"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="HRq-Cc-HLn">
+                    <view key="view" contentMode="scaleToFill" id="HRq-Cc-HLn">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -94,13 +94,13 @@
                                 <rect key="frame" x="16" y="8" width="288" height="439"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="clip" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="XwT-bF-u6c" customClass="ShortInstructionLabel" customModule="ReactionApp">
-                                        <rect key="frame" x="22" y="342" width="245" height="97"/>
+                                        <rect key="frame" x="21.5" y="342" width="245" height="49"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="100"/>
                                         <color key="textColor" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="clip" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="FKr-1j-BSp" customClass="ShrinkingLTMortphingLabel" customModule="ReactionApp">
-                                        <rect key="frame" x="81" y="0.0" width="127" height="84"/>
+                                        <rect key="frame" x="80.5" y="0.0" width="127" height="84"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="FKr-1j-BSp" secondAttribute="height" multiplier="156:103" id="Jqa-rM-j7M"/>
                                         </constraints>
@@ -141,11 +141,17 @@
                                     <constraint firstItem="FKr-1j-BSp" firstAttribute="top" secondItem="QLh-FF-6z8" secondAttribute="top" id="5ew-V5-VE3"/>
                                     <constraint firstItem="41j-pY-I8Q" firstAttribute="height" secondItem="QLh-FF-6z8" secondAttribute="height" multiplier="0.91623" id="F7v-Kf-Ldt"/>
                                     <constraint firstItem="FKr-1j-BSp" firstAttribute="centerX" secondItem="QLh-FF-6z8" secondAttribute="centerX" id="FNI-gc-eVG"/>
+                                    <constraint firstItem="XwT-bF-u6c" firstAttribute="centerX" secondItem="QLh-FF-6z8" secondAttribute="centerX" id="FOX-6Y-gD7"/>
+                                    <constraint firstItem="XwT-bF-u6c" firstAttribute="width" secondItem="41j-pY-I8Q" secondAttribute="width" id="GI0-Gr-GnO"/>
+                                    <constraint firstItem="XwT-bF-u6c" firstAttribute="width" secondItem="41j-pY-I8Q" secondAttribute="width" id="Kui-Cn-tRr"/>
                                     <constraint firstItem="41j-pY-I8Q" firstAttribute="height" secondItem="QLh-FF-6z8" secondAttribute="height" multiplier="0.557621" id="LZt-7n-7LZ"/>
+                                    <constraint firstItem="XwT-bF-u6c" firstAttribute="top" secondItem="41j-pY-I8Q" secondAttribute="bottom" id="Mxl-W2-lGU"/>
                                     <constraint firstItem="FKr-1j-BSp" firstAttribute="centerY" secondItem="QLh-FF-6z8" secondAttribute="centerY" id="OsW-ZX-wwM"/>
                                     <constraint firstItem="XwT-bF-u6c" firstAttribute="leading" secondItem="QLh-FF-6z8" secondAttribute="leading" id="RYy-vF-hYQ"/>
                                     <constraint firstItem="XwT-bF-u6c" firstAttribute="height" secondItem="41j-pY-I8Q" secondAttribute="height" multiplier="0.245714" id="UIM-N0-9Eb"/>
                                     <constraint firstItem="FKr-1j-BSp" firstAttribute="leading" secondItem="41j-pY-I8Q" secondAttribute="trailing" constant="8" id="WAm-1s-uun"/>
+                                    <constraint firstItem="XwT-bF-u6c" firstAttribute="height" secondItem="41j-pY-I8Q" secondAttribute="height" multiplier="0.2" id="X8j-F3-AwF"/>
+                                    <constraint firstItem="XwT-bF-u6c" firstAttribute="centerX" secondItem="QLh-FF-6z8" secondAttribute="centerX" id="XjF-uH-9Wc"/>
                                     <constraint firstItem="41j-pY-I8Q" firstAttribute="centerX" secondItem="QLh-FF-6z8" secondAttribute="centerX" id="cRe-SH-vhy"/>
                                     <constraint firstAttribute="trailing" secondItem="FKr-1j-BSp" secondAttribute="trailing" id="ceg-4O-hYK"/>
                                     <constraint firstItem="FKr-1j-BSp" firstAttribute="height" secondItem="41j-pY-I8Q" secondAttribute="height" multiplier="0.245714" id="eic-8O-28n"/>
@@ -158,6 +164,8 @@
                                     <constraint firstItem="XwT-bF-u6c" firstAttribute="centerX" secondItem="QLh-FF-6z8" secondAttribute="centerX" id="rfi-BC-P1E"/>
                                     <constraint firstItem="XwT-bF-u6c" firstAttribute="centerY" secondItem="QLh-FF-6z8" secondAttribute="centerY" id="sMt-2v-lWg"/>
                                     <constraint firstItem="41j-pY-I8Q" firstAttribute="centerY" secondItem="QLh-FF-6z8" secondAttribute="centerY" id="szo-Jo-7FR"/>
+                                    <constraint firstItem="XwT-bF-u6c" firstAttribute="top" secondItem="41j-pY-I8Q" secondAttribute="bottom" id="u7N-6J-9Ct"/>
+                                    <constraint firstItem="XwT-bF-u6c" firstAttribute="height" secondItem="41j-pY-I8Q" secondAttribute="height" multiplier="0.2" id="uZu-D1-BeI"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -171,9 +179,17 @@
                                         <exclude reference="hKg-EW-gsF"/>
                                         <exclude reference="lFm-RH-Qpw"/>
                                         <exclude reference="szo-Jo-7FR"/>
+                                        <exclude reference="FOX-6Y-gD7"/>
+                                        <exclude reference="GI0-Gr-GnO"/>
+                                        <exclude reference="Kui-Cn-tRr"/>
+                                        <exclude reference="Mxl-W2-lGU"/>
                                         <exclude reference="RYy-vF-hYQ"/>
                                         <exclude reference="UIM-N0-9Eb"/>
+                                        <exclude reference="X8j-F3-AwF"/>
+                                        <exclude reference="XjF-uH-9Wc"/>
                                         <exclude reference="sMt-2v-lWg"/>
+                                        <exclude reference="u7N-6J-9Ct"/>
+                                        <exclude reference="uZu-D1-BeI"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
@@ -213,6 +229,30 @@
                                         <exclude reference="lFm-RH-Qpw"/>
                                     </mask>
                                 </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="2nu-lH-jj2"/>
+                                        <include reference="FOX-6Y-gD7"/>
+                                        <include reference="Kui-Cn-tRr"/>
+                                        <exclude reference="p3c-9M-vza"/>
+                                        <exclude reference="r4m-3U-xWy"/>
+                                        <exclude reference="rfi-BC-P1E"/>
+                                        <include reference="u7N-6J-9Ct"/>
+                                        <include reference="uZu-D1-BeI"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <exclude reference="2nu-lH-jj2"/>
+                                        <include reference="GI0-Gr-GnO"/>
+                                        <include reference="Mxl-W2-lGU"/>
+                                        <include reference="X8j-F3-AwF"/>
+                                        <include reference="XjF-uH-9Wc"/>
+                                        <exclude reference="p3c-9M-vza"/>
+                                        <exclude reference="r4m-3U-xWy"/>
+                                        <exclude reference="rfi-BC-P1E"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -228,6 +268,7 @@
                     <connections>
                         <outlet property="circleView" destination="41j-pY-I8Q" id="IVz-gX-ASV"/>
                         <outlet property="reactionResultLabel" destination="FKr-1j-BSp" id="cJt-dz-cJV"/>
+                        <outlet property="rootView" destination="QLh-FF-6z8" id="2eU-rb-05V"/>
                         <outlet property="shortInstructionLabel" destination="XwT-bF-u6c" id="YkS-Lh-Ab6"/>
                     </connections>
                 </viewController>
@@ -414,7 +455,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="MYj-NK-4Ws">
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="5iv-2q-KTW">
-                            <rect key="frame" x="8" y="8" width="304" height="29"/>
+                            <rect key="frame" x="17.5" y="7.5" width="285" height="29"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Day"/>

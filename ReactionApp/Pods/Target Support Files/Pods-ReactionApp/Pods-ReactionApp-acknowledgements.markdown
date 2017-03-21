@@ -258,6 +258,10 @@ SOFTWARE.
 
 
 
+## Google-Mobile-Ads-SDK
+
+Copyright 2017 Google
+
 ## LTMorphingLabel
 
 The MIT License (MIT)
