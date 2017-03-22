@@ -8,22 +8,22 @@
 "headerTitleLString" = "Salut!";
 
 /* Title for Calendar Permission */
-"titleForPermissionCalendarLString" = "Activer le calendrier";
+"titleForPermissionCalendarLString" = "Le calendrier";
 
 /* Title for Camera Permission */
-"titleForPermissionCameraLString" = "Activer la caméra";
+"titleForPermissionCameraLString" = "La caméra";
 
 /* Title for Location Permission */
-"titleForPermissionLocationLString" = "Activer l'emplacement";
+"titleForPermissionLocationLString" = "L'emplacement";
 
 /* Title for Microphone Permission */
-"titleForPermissionMicrophoneLString" = "Activer le microphone";
+"titleForPermissionMicrophoneLString" = "Le microphone";
 
 /* Title for Notifications Permission */
-"titleForPermissionNotificationLString" = "Activer les notifications";
+"titleForPermissionNotificationLString" = "Les notifications";
 
 /* Title for Photo Library Permission */
-"titleForPermissionPhotoLibraryLString" = "Activer la photothèque";
+"titleForPermissionPhotoLibraryLString" = "La photothèque";
 
 /* Top Advice Title */
 "topAdviceTitleLString" = "Autoriser l'autorisation, s'il vous plaît. Cela vous permet d'utiliser Application";

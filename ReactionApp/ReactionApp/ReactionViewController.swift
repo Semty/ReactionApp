@@ -304,6 +304,13 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) in
             
+            if size.height < size.width {
+                self.adBannerView.isHidden = true
+            } else {
+                self.adBannerView.isHidden = false
+                self.relayoutViews()
+            }
+            
             self.circleView.setNeedsDisplay()
             
             self.reactionResultLabel.adjustFontSizeToFitText(newText: self.reactionResultLabel.text!)
@@ -359,6 +366,7 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         print("Banner loaded successfully")
+        relayoutViews()
     }
     
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
@@ -377,6 +385,14 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
         adBannerView.delegate = self
         adBannerView.rootViewController = self
         adBannerView.load(GADRequest())
+    }
+    
+    func relayoutViews() {
+        var bannerFrame = adBannerView.frame
+        bannerFrame.origin.x =  0
+        bannerFrame.origin.y =  rootView.frame.maxY -
+                                adBannerView.bounds.height + 8
+        adBannerView.frame = bannerFrame
     }
 
     /*

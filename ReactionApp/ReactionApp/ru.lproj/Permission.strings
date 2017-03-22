@@ -1,26 +1,26 @@
 /* Title for Camera Permission */
-"titleForPermissionCameraLString" = "Разрешить Камеру";
+"titleForPermissionCameraLString" = "Камера";
 
 /* Title for Photo Library Permission */
-"titleForPermissionPhotoLibraryLString" = "Разрешить Библиотеку Фотографий";
+"titleForPermissionPhotoLibraryLString" = "Библиотека Фотографий";
 
 /* Title for Notifications Permission */
-"titleForPermissionNotificationLString" = "Разрешить Уведомления";
+"titleForPermissionNotificationLString" = "Уведомления";
 
 /* Title for Microphone Permission */
-"titleForPermissionMicrophoneLString" = "Разрешить Микрофон";
+"titleForPermissionMicrophoneLString" = "Микрофон";
 
 /* Title for Calendar Permission */
-"titleForPermissionCalendarLString" = "Разрешить Календарь";
+"titleForPermissionCalendarLString" = "Календарь";
 
 /* Title for Location Permission */
-"titleForPermissionLocationLString" = "Разрешить Геолокацию";
+"titleForPermissionLocationLString" = "Геолокация";
 
 /* Header Title */
 "headerTitleLString" = "Привет!";
 
 /* Header Subtitle */
-"headerSubtitleLString" = "Данному Приложению Требуется твое Благословление :)";
+"headerSubtitleLString" = "Данному Приложению Требуется твое Благословение :)";
 
 /* Top Advice Title */
 "topAdviceTitleLString" = "Предоставив Нужные Права, Ты Сможешь Использовать его на все 100%, честно-честно";
