@@ -56,8 +56,10 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
     
     private var timer = Timer()
     
-    private var backgroundQueue = DispatchQueue(label: "com.rstimchenko.backgroundQueue", qos: .background,
-                                                attributes: DispatchQueue.Attributes.concurrent,
+    private var backgroundQueue = DispatchQueue(label: "com.rstimchenko.backgroundQueue",
+                                                qos: .background,
+                                                attributes:
+                                                DispatchQueue.Attributes.concurrent,
                                                 autoreleaseFrequency: .inherit,
                                                 target: nil)
     
@@ -145,10 +147,10 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
         super.viewWillAppear(true)
         
         UIView.animate(withDuration: 0.25) {
-            
-            //self.circleView.transform  = CGAffineTransform.identity
             self.circleView.alpha = 1.0
         }
+        
+        self.checkPortraitTransition(forSize: self.view.bounds.size)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -304,12 +306,7 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) in
             
-            if size.height < size.width {
-                self.adBannerView.isHidden = true
-            } else {
-                self.adBannerView.isHidden = false
-                self.relayoutViews()
-            }
+            self.checkPortraitTransition(forSize: size)
             
             self.circleView.setNeedsDisplay()
             
@@ -384,7 +381,9 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
         adBannerView.adUnitID = "ca-app-pub-8402016319891167/2847760134"
         adBannerView.delegate = self
         adBannerView.rootViewController = self
-        adBannerView.load(GADRequest())
+        backgroundQueue.async {
+            self.adBannerView.load(GADRequest())
+        }
     }
     
     func relayoutViews() {
@@ -393,6 +392,15 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
         bannerFrame.origin.y =  rootView.frame.maxY -
                                 adBannerView.bounds.height + 8
         adBannerView.frame = bannerFrame
+    }
+    
+    func checkPortraitTransition(forSize size: CGSize) {
+        if size.height < size.width {
+            self.adBannerView.isHidden = true
+        } else {
+            self.adBannerView.isHidden = false
+            self.relayoutViews()
+        }
     }
 
     /*

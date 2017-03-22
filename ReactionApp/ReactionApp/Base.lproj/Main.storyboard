@@ -127,7 +127,7 @@
                                         </variation>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="clip" minimumFontSize="1" translatesAutoresizingMaskIntoConstraints="NO" id="XwT-bF-u6c" customClass="ShortInstructionLabel" customModule="ReactionApp">
-                                        <rect key="frame" x="21.5" y="357" width="245" height="49"/>
+                                        <rect key="frame" x="21.5" y="353" width="245" height="49"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="100"/>
                                         <color key="textColor" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -164,7 +164,7 @@
                                     <constraint firstItem="XwT-bF-u6c" firstAttribute="centerX" secondItem="QLh-FF-6z8" secondAttribute="centerX" id="rfi-BC-P1E"/>
                                     <constraint firstItem="XwT-bF-u6c" firstAttribute="centerY" secondItem="QLh-FF-6z8" secondAttribute="centerY" id="sMt-2v-lWg"/>
                                     <constraint firstItem="41j-pY-I8Q" firstAttribute="centerY" secondItem="QLh-FF-6z8" secondAttribute="centerY" id="szo-Jo-7FR"/>
-                                    <constraint firstItem="XwT-bF-u6c" firstAttribute="top" secondItem="41j-pY-I8Q" secondAttribute="bottom" constant="15" id="u7N-6J-9Ct"/>
+                                    <constraint firstItem="XwT-bF-u6c" firstAttribute="top" secondItem="41j-pY-I8Q" secondAttribute="bottom" constant="11" id="u7N-6J-9Ct"/>
                                     <constraint firstItem="XwT-bF-u6c" firstAttribute="height" secondItem="41j-pY-I8Q" secondAttribute="height" multiplier="0.2" id="uZu-D1-BeI"/>
                                 </constraints>
                                 <variation key="default">
