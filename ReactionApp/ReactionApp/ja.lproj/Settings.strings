@@ -1,0 +1,39 @@
+/* Max Saving Time Header */
+"maxSavingTimeHeader" = "保存する最大応答時間";
+
+/* Max Saving Time Title */
+"maxSavingTimeTitle" = "反応時間 (ミリ秒)";
+
+/* ms */
+"ms" = "ミリ秒";
+
+/* Notifications Settings Footer */
+"notificationDisabledFooter" = "通知が無効になっています。 それを有効にすることができます：設定 -> Tap and Up - >プッシュ通知 -> 通知を許可";
+
+/* Red Circle Time Header */
+"redCircleTimeHeader" = "最小値と最大待機時間緑色の円";
+
+/* Red Circle Time Max Title */
+"redCircleTimeMaxTitle" = "最大";
+
+/* Red Circle Time Min Title */
+"redCircleTimeMinTitle" = "最小";
+
+/* sec */
+"sec" = "秒";
+
+/* Switch Language Header */
+"switchLanguageHeader" = "言語の変更";
+
+/* Switch Language Title */
+"switchLanguageTitle" = "言語";
+
+/* Training Settings Header */
+"trainingNotificationHeader" = "トレーニングについての通知";
+
+/* Notifications Settings Ring Time */
+"trainingNotificationRingTime" = "時間";
+
+/* Training Settings Title */
+"trainingNotificationTitle" = "オンオフ";
+

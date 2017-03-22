@@ -1,0 +1,44 @@
+/* circleStateActionLString */
+"circleStateActionLString" = "円を投げます！";
+
+/* circleStateNoneLString */
+"circleStateNoneLString" = "開始するには、円を押し続けると";
+
+/* circleStatePreparationLString */
+"circleStatePreparationLString" = "緑色の円の出演を待ち";
+
+/* error */
+"error" = "誤差";
+
+/* Greeting */
+"greetingLString" = "もう一度会えてよかった :)";
+
+/* instructionForNoteLString */
+"instructionForNoteLString" = "それで全部です";
+
+/* instructionForTimeLString */
+"instructionForTimeLString" = "それはあなたの結果になります";
+
+/* ms */
+"ms" = "ミリ秒";
+
+/* Short Note if Result Between 150 ms and 200 ms */
+"shortNoteIfBetween150And200LString" = "それはちょうど信じられないほど高速です";
+
+/* Short Note if Result Between 200 ms and 230 ms */
+"shortNoteIfBetween200And230LString" = "優れた結果";
+
+/* Short Note if Result Between 230 ms and 260 ms */
+"shortNoteIfBetween230And260LString" = "通常の結果";
+
+/* Short Note if Result Between 260 ms and 300 ms */
+"shortNoteIfBetween260And300LString" = "少し遅いです";
+
+/* Short Note if Result Greater than 300 ms */
+"shortNoteIfGreater300LString" = "ゆっくりと、再び試してみてください";
+
+/* Short Note if Result less than 150 ms */
+"shortNoteIfLess150LString" = "何？それは信じられないです！";
+
+/* tooEarlyLString */
+"tooEarlyLString" = "早すぎる";

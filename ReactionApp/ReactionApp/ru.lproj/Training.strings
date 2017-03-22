@@ -2,7 +2,7 @@
 "circleStateActionLString" = "Отпускай Круг!";
 
 /* circleStateNoneLString */
-"circleStateNoneLString" = "Нажми и Держи круг, Чтобы Начать!";
+"circleStateNoneLString" = "Нажми и Держи круг, Чтобы Начать";
 
 /* circleStatePreparationLString */
 "circleStatePreparationLString" = "Жди Появления Зеленого Круга";

@@ -76,10 +76,10 @@ class NotificationManager {
     
     private func dateToHourString(_ date: Date) -> String {
         
-        let hour = Calendar.current.component(.hour, from: date)
-        let minute = Calendar.current.component(.minute, from: date)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "hh:mm"
         
-        return "\(hour):\(minute)"
+        return formatter.string(from: date)
     }
 }
 

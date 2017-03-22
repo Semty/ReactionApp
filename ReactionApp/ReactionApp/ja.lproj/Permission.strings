@@ -1,0 +1,33 @@
+/* Bottom Advice Title */
+"bottomAdviceTitleLString" = "電話機の設定で権限を管理できます";
+
+/* Header Subtitle */
+"headerSubtitleLString" = "このアプリケーションは、あなたの助けが必要";
+
+/* Header Title */
+"headerTitleLString" = "こんにちは!";
+
+/* Title for Calendar Permission */
+"titleForPermissionCalendarLString" = "暦";
+
+/* Title for Camera Permission */
+"titleForPermissionCameraLString" = "写真機";
+
+/* Title for Location Permission */
+"titleForPermissionLocationLString" = "場所";
+
+/* Title for Microphone Permission */
+"titleForPermissionMicrophoneLString" = "マイクロフォン";
+
+/* Title for Notifications Permission */
+"titleForPermissionNotificationLString" = "通知";
+
+/* Title for Photo Library Permission */
+"titleForPermissionPhotoLibraryLString" = "フォトライブラリー";
+
+/* Top Advice Title */
+"topAdviceTitleLString" = "適切な権限を与える、あなたは百パーセントのためにそれを使用することができます";
+
+/* Under Dialog Advice Title */
+"underDialogAdviceTitleLString" = "スワイプして非表示にする";
+

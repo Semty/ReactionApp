@@ -1,0 +1,33 @@
+/* Bottom Advice Title */
+"bottomAdviceTitleLString" = "您可以在手机设置管理权限";
+
+/* Header Subtitle */
+"headerSubtitleLString" = "此应用程序需要你的帮助";
+
+/* Header Title */
+"headerTitleLString" = "你好 !";
+
+/* Title for Calendar Permission */
+"titleForPermissionCalendarLString" = "日历";
+
+/* Title for Camera Permission */
+"titleForPermissionCameraLString" = "相机";
+
+/* Title for Location Permission */
+"titleForPermissionLocationLString" = "位置";
+
+/* Title for Microphone Permission */
+"titleForPermissionMicrophoneLString" = "麦克风";
+
+/* Title for Notifications Permission */
+"titleForPermissionNotificationLString" = "通知";
+
+/* Title for Photo Library Permission */
+"titleForPermissionPhotoLibraryLString" = "照片库";
+
+/* Top Advice Title */
+"topAdviceTitleLString" = "提供适当的权限，你可以使用没有限制的应用程序";
+
+/* Under Dialog Advice Title */
+"underDialogAdviceTitleLString" = "滑动屏幕跳过";
+

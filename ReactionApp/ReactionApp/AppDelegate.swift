@@ -16,16 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        /*
-        if(UIApplication.instancesRespond(to: #selector(UIApplication.registerUserNotificationSettings(_:)))) {
-            UIApplication.shared.registerUserNotificationSettings(.init(types: [.alert, .sound], categories: nil))
-            
-            if UserDefaultManager.shared.loadValue(forKey: .kRingTime) == nil {
-                let defaultRingTime = NotificationManager.shared.currentDate(withHour: 20, andMinute: 00)
-                NotificationManager.shared.setUpLocalNotification(date: defaultRingTime)
-            }
+        
+        if Language.currentAppleLanguage() == "zh" {
+            Language.setAppleLAnguageTo(lang: "zh-Hans")
         }
-        */
         
         GADMobileAds.configure(withApplicationID: "ca-app-pub-8402016319891167~1371026933")
         

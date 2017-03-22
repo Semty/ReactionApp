@@ -19,10 +19,20 @@ extension Calendar {
     
     static var sharedCurrent: Calendar {
         
-        var calendar = Calendar(identifier: .gregorian)
-        calendar.locale = Locale(identifier: Language.currentAppleLanguageFull())
-        
-        return calendar
+        switch Language.currentAppleLanguage() {
+        case "ja":
+            var calendar = Calendar(identifier: .japanese)
+            calendar.locale = Locale(identifier: Language.currentAppleLanguageFull())
+            return calendar
+        case "zh":
+            var calendar = Calendar(identifier: .buddhist)
+            calendar.locale = Locale(identifier: Language.currentAppleLanguageFull())
+            return calendar
+        default:
+            var calendar = Calendar(identifier: .gregorian)
+            calendar.locale = Locale(identifier: Language.currentAppleLanguageFull())
+            return calendar
+        }
     }
 }
 

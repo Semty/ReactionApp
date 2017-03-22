@@ -1,27 +1,27 @@
-
 /* Class = "UITabBarItem"; title = "Settings"; ObjectID = "5JA-qC-UAc"; */
-"5JA-qC-UAc.title" = "Settings";
+"5JA-qC-UAc.title" = "設定";
 
 /* Class = "UITabBarItem"; title = "Training"; ObjectID = "5T0-j1-cCN"; */
-"5T0-j1-cCN.title" = "Training";
+"5T0-j1-cCN.title" = "実習";
 
 /* Class = "UISegmentedControl"; 5iv-2q-KTW.segmentTitles[0] = "Day"; ObjectID = "5iv-2q-KTW"; */
-"5iv-2q-KTW.segmentTitles[0]" = "Day";
+"5iv-2q-KTW.segmentTitles[0]" = "日";
 
 /* Class = "UISegmentedControl"; 5iv-2q-KTW.segmentTitles[1] = "Week"; ObjectID = "5iv-2q-KTW"; */
-"5iv-2q-KTW.segmentTitles[1]" = "Week";
+"5iv-2q-KTW.segmentTitles[1]" = "週間";
 
 /* Class = "UISegmentedControl"; 5iv-2q-KTW.segmentTitles[2] = "All Time"; ObjectID = "5iv-2q-KTW"; */
-"5iv-2q-KTW.segmentTitles[2]" = "All Time";
+"5iv-2q-KTW.segmentTitles[2]" = "すべての時間に";
 
 /* Class = "UITabBarItem"; title = "Stats"; ObjectID = "E2z-G7-MGd"; */
-"E2z-G7-MGd.title" = "Stats";
+"E2z-G7-MGd.title" = "統計";
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "JTO-wh-MpQ"; */
-"JTO-wh-MpQ.title" = "Settings";
+"JTO-wh-MpQ.title" = "設定";
 
 /* Class = "UILabel"; text = "Date"; ObjectID = "X8P-3x-vgT"; */
-"X8P-3x-vgT.text" = "Date";
+"X8P-3x-vgT.text" = "日付";
 
 /* Class = "UINavigationItem"; title = "Reaction Test"; ObjectID = "g91-sU-dbe"; */
-"g91-sU-dbe.title" = "Reaction Test";
+"g91-sU-dbe.title" = "反応速度試験";
+

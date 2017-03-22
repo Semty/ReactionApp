@@ -32,6 +32,8 @@
 		44FABE261E58A70300D38A07 /* RealmLineChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FABE251E58A70300D38A07 /* RealmLineChartViewController.swift */; };
 		44FABE291E58DAD500D38A07 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FABE281E58DAD500D38A07 /* BalloonMarker.swift */; };
 		7A9555973A8F3EE74B094D1C /* Pods_ReactionApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 934F4D896946D687B7047B20 /* Pods_ReactionApp.framework */; };
+		D5119CE71E82E71D0013A98E /* ja.lproj in Resources */ = {isa = PBXBuildFile; fileRef = D5119CE61E82E71D0013A98E /* ja.lproj */; };
+		D5119D091E82F8630013A98E /* zh-Hans.lproj in Resources */ = {isa = PBXBuildFile; fileRef = D5119D081E82F8630013A98E /* zh-Hans.lproj */; };
 		D545A4F51E7B18DA001CDE44 /* ru.lproj in Resources */ = {isa = PBXBuildFile; fileRef = D545A4F41E7B18DA001CDE44 /* ru.lproj */; };
 		D55E49A11E7E8D36003DB146 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E49A01E7E8D36003DB146 /* Language.swift */; };
 		D55E49A41E7E9F27003DB146 /* Localizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E49A31E7E9F27003DB146 /* Localizer.swift */; };
@@ -94,6 +96,12 @@
 		84DBFF92BC89DA48170448B0 /* Pods_ReactionAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactionAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		934F4D896946D687B7047B20 /* Pods_ReactionApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactionApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0CD1E2A79C9225FD965FF2C /* Pods-ReactionAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactionAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactionAppTests/Pods-ReactionAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		D5119CC61E82E6ED0013A98E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D5119CE51E82E6F30013A98E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D5119CE61E82E71D0013A98E /* ja.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ja.lproj; sourceTree = "<group>"; };
+		D5119CE81E82F8390013A98E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D5119D071E82F83F0013A98E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D5119D081E82F8630013A98E /* zh-Hans.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "zh-Hans.lproj"; sourceTree = "<group>"; };
 		D545A4F11E7B1862001CDE44 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		D545A4F21E7B1862001CDE44 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		D545A4F41E7B18DA001CDE44 /* ru.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ru.lproj; sourceTree = "<group>"; };
@@ -294,6 +302,8 @@
 			children = (
 				D55E49A01E7E8D36003DB146 /* Language.swift */,
 				D55E49A31E7E9F27003DB146 /* Localizer.swift */,
+				D5119D081E82F8630013A98E /* zh-Hans.lproj */,
+				D5119CE61E82E71D0013A98E /* ja.lproj */,
 				D55E49D71E8073D9003DB146 /* fr.lproj */,
 				D545A4F41E7B18DA001CDE44 /* ru.lproj */,
 			);
@@ -432,8 +442,10 @@
 			files = (
 				D545A4F51E7B18DA001CDE44 /* ru.lproj in Resources */,
 				44D087A51E547DAF00180DD9 /* LaunchScreen.storyboard in Resources */,
+				D5119D091E82F8630013A98E /* zh-Hans.lproj in Resources */,
 				44D087A21E547DAF00180DD9 /* Assets.xcassets in Resources */,
 				D55E49D81E8073D9003DB146 /* fr.lproj in Resources */,
+				D5119CE71E82E71D0013A98E /* ja.lproj in Resources */,
 				44D0879D1E547DAF00180DD9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -690,6 +702,8 @@
 			children = (
 				D5F118411E7B230F00138F8D /* ru */,
 				D55E49B71E8073AD003DB146 /* fr */,
+				D5119CC61E82E6ED0013A98E /* ja */,
+				D5119CE81E82F8390013A98E /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -699,6 +713,8 @@
 			children = (
 				D5F39ED81E7B242200746551 /* ru */,
 				D55E49D61E8073B3003DB146 /* fr */,
+				D5119CE51E82E6F30013A98E /* ja */,
+				D5119D071E82F83F0013A98E /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

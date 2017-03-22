@@ -1,0 +1,39 @@
+/* Max Saving Time Header */
+"maxSavingTimeHeader" = "保存的结果不超过";
+
+/* Max Saving Time Title */
+"maxSavingTimeTitle" = "反应时间以毫秒为单位";
+
+/* ms */
+"ms" = "毫秒";
+
+/* Notifications Settings Footer */
+"notificationDisabledFooter" = "通知被禁用。你可以让他们：设置 -> Tap and Up -> 通知 -> 允许通知";
+
+/* Red Circle Time Header */
+"redCircleTimeHeader" = "时间的红色圆圈的最低和最高量";
+
+/* Red Circle Time Max Title */
+"redCircleTimeMaxTitle" = "最小";
+
+/* Red Circle Time Min Title */
+"redCircleTimeMinTitle" = "最大值";
+
+/* sec */
+"sec" = "秒";
+
+/* Switch Language Header */
+"switchLanguageHeader" = "更改语言";
+
+/* Switch Language Title */
+"switchLanguageTitle" = "语言";
+
+/* Training Settings Header */
+"trainingNotificationHeader" = "关于培训的通知";
+
+/* Notifications Settings Ring Time */
+"trainingNotificationRingTime" = "时间";
+
+/* Training Settings Title */
+"trainingNotificationTitle" = "开 / 关";
+
