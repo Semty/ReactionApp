@@ -214,7 +214,7 @@ class RealmDemoBaseViewController: UIViewController {
     }
 
     func getCurrentDateInfo(unit: Calendar.Component, from date: Date) -> Int {
-        return Calendar.current.component(unit, from: date)
+        return Calendar.sharedCurrent.component(unit, from: date)
     }
     
     func fontSizeForCurrentUIDevice() -> CGFloat {

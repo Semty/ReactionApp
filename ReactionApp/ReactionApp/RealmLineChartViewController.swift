@@ -213,8 +213,8 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
             print("setWeekData, OBJECTS = \(resultCount)")
             
             var dataEntries: [BarChartDataEntry] = []
-            let minDayOfYear: Int = (Calendar.current.ordinality(of: .day, in: .year, for: currentDate))! - 6
-            let maxDayOfYear: Int = (Calendar.current.ordinality(of: .day, in: .year, for: currentDate))!
+            let minDayOfYear: Int = (Calendar.sharedCurrent.ordinality(of: .day, in: .year, for: currentDate))! - 6
+            let maxDayOfYear: Int = (Calendar.sharedCurrent.ordinality(of: .day, in: .year, for: currentDate))!
             
             for index in minDayOfYear...maxDayOfYear {
                 

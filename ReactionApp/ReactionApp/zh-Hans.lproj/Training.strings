@@ -23,7 +23,7 @@
 "ms" = "毫秒";
 
 /* Short Note if Result Between 150 ms and 200 ms */
-"shortNoteIfBetween150And200LString" = "你的时间比人的90％更好! % p";
+"shortNoteIfBetween150And200LString" = "你的时间比人的90％更好!";
 
 /* Short Note if Result Between 200 ms and 230 ms */
 "shortNoteIfBetween200And230LString" = "出色的速度";

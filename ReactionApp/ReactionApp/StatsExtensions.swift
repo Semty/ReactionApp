@@ -24,10 +24,6 @@ extension Calendar {
             var calendar = Calendar(identifier: .japanese)
             calendar.locale = Locale(identifier: Language.currentAppleLanguageFull())
             return calendar
-        case "zh":
-            var calendar = Calendar(identifier: .buddhist)
-            calendar.locale = Locale(identifier: Language.currentAppleLanguageFull())
-            return calendar
         default:
             var calendar = Calendar(identifier: .gregorian)
             calendar.locale = Locale(identifier: Language.currentAppleLanguageFull())
@@ -64,34 +60,34 @@ extension Array where Element: FloatingPoint {
 extension Date {
     
     func startOfDay() -> Date {
-        return Calendar.current.date(from:
-            Calendar.current.dateComponents([.year, .month, .weekOfMonth, .day, .hour, .minute, .second],
-                                                                           from: Calendar.current.startOfDay(for: self)))!
+        return Calendar.sharedCurrent.date(from:
+            Calendar.sharedCurrent.dateComponents([.year, .month, .weekOfMonth, .day, .hour, .minute, .second],
+                                                                           from: Calendar.sharedCurrent.startOfDay(for: self)))!
     }
     
     func endOfDay() -> Date {
-        return Calendar.current.date(byAdding: DateComponents.init(day: 1, second: -1),
+        return Calendar.sharedCurrent.date(byAdding: DateComponents.init(day: 1, second: -1),
                                      to: self.startOfDay())!
     }
     
     func startOfMonth() -> Date {
-        return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month],
-                                                                           from: Calendar.current.startOfDay(for: self)))!
+        return Calendar.sharedCurrent.date(from: Calendar.sharedCurrent.dateComponents([.year, .month],
+                                                                           from: Calendar.sharedCurrent.startOfDay(for: self)))!
         
     }
     
     func endOfMonth() -> Date {
-        return Calendar.current.date(byAdding: DateComponents(month: 1, second: -1),
+        return Calendar.sharedCurrent.date(byAdding: DateComponents(month: 1, second: -1),
                                      to: self.startOfMonth())!
     }
     
     func startOfWeek() -> Date {
-        return Calendar.current.date(from: Calendar.current.dateComponents([.weekOfYear, .yearForWeekOfYear],
-                                                                           from: Calendar.current.startOfDay(for: self)))!
+        return Calendar.sharedCurrent.date(from: Calendar.sharedCurrent.dateComponents([.weekOfYear, .yearForWeekOfYear],
+                                                                           from: Calendar.sharedCurrent.startOfDay(for: self)))!
     }
     
     func endOfWeek() -> Date {
-        return Calendar.current.date(byAdding: DateComponents.init(second: -1, weekOfYear: 1),
+        return Calendar.sharedCurrent.date(byAdding: DateComponents.init(second: -1, weekOfYear: 1),
                                      to: self.startOfWeek())!
     }
 }

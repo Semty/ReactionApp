@@ -1,0 +1,39 @@
+/* Max Saving Time Header */
+"maxSavingTimeHeader" = "Tiempo de reacción máximo para guardar";
+
+/* Max Saving Time Title */
+"maxSavingTimeTitle" = "Tiempo de reacción (en ms)";
+
+/* ms */
+"ms" = "ms";
+
+/* Notifications Settings Footer */
+"notificationDisabledFooter" = "Notificaciones desactivadas. Puede activarlo: Ajustes -> Tap and Up -> Notificaciones Push -> Permitir Notificaciones";
+
+/* Red Circle Time Header */
+"redCircleTimeHeader" = "El tiempo mínimo y máximo de permanencia del círculo rojo";
+
+/* Red Circle Time Max Title */
+"redCircleTimeMaxTitle" = "Max";
+
+/* Red Circle Time Min Title */
+"redCircleTimeMinTitle" = "Min";
+
+/* sec */
+"sec" = "seg";
+
+/* Switch Language Header */
+"switchLanguageHeader" = "Cambio de idioma";
+
+/* Switch Language Title */
+"switchLanguageTitle" = "Idioma";
+
+/* Training Settings Header */
+"trainingNotificationHeader" = "Notificación sobre el entrenamiento";
+
+/* Notifications Settings Ring Time */
+"trainingNotificationRingTime" = "Hora";
+
+/* Training Settings Title */
+"trainingNotificationTitle" = "Encendido/Apagado";
+

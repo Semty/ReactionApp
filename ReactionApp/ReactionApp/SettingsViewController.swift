@@ -228,7 +228,7 @@ class SettingsViewController: FormViewController {
         
             <<< PickerInlineRow<Flags>() {
                 $0.title = switchLanguageTitle
-                $0.options = [en, zh, ja, fr, ru]
+                $0.options = [en, zh, ja, es, fr, ru]
                 $0.value = currentFlag()
                 
             }.onChange({ (row: PickerInlineRow<SettingsViewController.Flags>) in
@@ -244,6 +244,8 @@ class SettingsViewController: FormViewController {
                     Language.setAppleLAnguageTo(lang: "ru")
                 case self.zh:
                     Language.setAppleLAnguageTo(lang: "zh-Hans")
+                case self.es:
+                    Language.setAppleLAnguageTo(lang: "es")
                 default:
                     break
                 }
@@ -268,8 +270,10 @@ class SettingsViewController: FormViewController {
         // Dispose of any resources that can be recreated.
     }
     
+// MARK: - Language Switching
+    
     typealias Flags = String
-    let en = "🇺🇸", ja = "🇯🇵", zh = "🇨🇳", fr = "🇫🇷", ru = "🇷🇺"
+    let en = "🇺🇸", ja = "🇯🇵", zh = "🇨🇳", fr = "🇫🇷", ru = "🇷🇺", es = "🇪🇸"
     
     private func currentFlag() -> Flags {
         switch Language.currentAppleLanguage() {
@@ -283,6 +287,8 @@ class SettingsViewController: FormViewController {
             return ja
         case "zh":
             return zh
+        case "es":
+            return es
         default:
             return ""
         }

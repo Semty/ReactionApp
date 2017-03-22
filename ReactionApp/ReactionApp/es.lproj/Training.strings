@@ -1,0 +1,45 @@
+/* circleStateActionLString */
+"circleStateActionLString" = "Lanza el círculo";
+
+/* circleStateNoneLString */
+"circleStateNoneLString" = "Mantenga pulsado el círculo para empezar";
+
+/* circleStatePreparationLString */
+"circleStatePreparationLString" = "Esperar color verde";
+
+/* error */
+"error" = "Error";
+
+/* Greeting */
+"greetingLString" = "Qué gusto verte de nuevo :)";
+
+/* instructionForNoteLString */
+"instructionForNoteLString" = "Eso es todo";
+
+/* instructionForTimeLString */
+"instructionForTimeLString" = "Aquí estará el tiempo :)";
+
+/* ms */
+"ms" = "ms";
+
+/* Short Note if Result Between 150 ms and 200 ms */
+"shortNoteIfBetween150And200LString" = "Su tiempo es mejor que el 90% p de las personas!";
+
+/* Short Note if Result Between 200 ms and 230 ms */
+"shortNoteIfBetween200And230LString" = "Excelentes resultados";
+
+/* Short Note if Result Between 230 ms and 260 ms */
+"shortNoteIfBetween230And260LString" = "Los resultados normales";
+
+/* Short Note if Result Between 260 ms and 300 ms */
+"shortNoteIfBetween260And300LString" = "Poco lento";
+
+/* Short Note if Result Greater than 300 ms */
+"shortNoteIfGreater300LString" = "Lentamente, vuelve a intentarlo!";
+
+/* Short Note if Result less than 150 ms */
+"shortNoteIfLess150LString" = "¿Qué? Es increíble!";
+
+/* tooEarlyLString */
+"tooEarlyLString" = "Demasiado Temprano";
+

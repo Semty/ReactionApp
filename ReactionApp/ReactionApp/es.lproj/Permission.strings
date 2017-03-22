@@ -1,0 +1,33 @@
+/* Bottom Advice Title */
+"bottomAdviceTitleLString" = "Puede administrar los permisos en Ajustes";
+
+/* Header Subtitle */
+"headerSubtitleLString" = "Esta aplicación requiere su ayuda :)";
+
+/* Header Title */
+"headerTitleLString" = "¡Hola!";
+
+/* Title for Calendar Permission */
+"titleForPermissionCalendarLString" = "Calendario";
+
+/* Title for Camera Permission */
+"titleForPermissionCameraLString" = "Cámara";
+
+/* Title for Location Permission */
+"titleForPermissionLocationLString" = "Ubicación";
+
+/* Title for Microphone Permission */
+"titleForPermissionMicrophoneLString" = "Micrófono";
+
+/* Title for Notifications Permission */
+"titleForPermissionNotificationLString" = "Notificaciones";
+
+/* Title for Photo Library Permission */
+"titleForPermissionPhotoLibraryLString" = "Biblioteca de fotos";
+
+/* Top Advice Title */
+"topAdviceTitleLString" = "Haciendo suya la resolución a continuación, usted será capaz de utilizar toda la funcionalidad de la aplicación";
+
+/* Under Dialog Advice Title */
+"underDialogAdviceTitleLString" = "Deslizar para ocultar";
+

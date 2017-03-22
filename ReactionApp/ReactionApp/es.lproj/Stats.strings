@@ -1,0 +1,15 @@
+/* No data text in chart */
+"chartView.noDataText" = "No podemos encontrar ninguna información sobre el período";
+
+/* ms */
+"ms" = " ms";
+
+/* Average Reaction per all Time */
+"reactionTimePerAllTime" = "Reacción media por todo el tiempo";
+
+/* Reaction Time Per Day */
+"reactionTimePerDay" = "El tiempo de reacción durante el día";
+
+/* Average Reaction Time Per Week */
+"reactionTimePerWeek" = "Tiempo de respuesta promedio de 7 Días";
+
