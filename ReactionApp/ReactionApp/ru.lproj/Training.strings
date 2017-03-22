@@ -11,7 +11,7 @@
 "error" = "Ошибка";
 
 /* Greeting */
-"greetingLString" = "С Возвращением :)";
+"greetingLString" = " С Возвращением :) ";
 
 /* instructionForNoteLString */
 "instructionForNoteLString" = "Это всё, Вперёд!";

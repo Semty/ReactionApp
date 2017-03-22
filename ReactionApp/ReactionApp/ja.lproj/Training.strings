@@ -1,5 +1,5 @@
 /* circleStateActionLString */
-"circleStateActionLString" = "円を投げます！";
+"circleStateActionLString" = "   円を投げます！  ";
 
 /* circleStateNoneLString */
 "circleStateNoneLString" = "開始するには、円を押し続けると";
@@ -26,13 +26,13 @@
 "shortNoteIfBetween150And200LString" = "それはちょうど信じられないほど高速です";
 
 /* Short Note if Result Between 200 ms and 230 ms */
-"shortNoteIfBetween200And230LString" = "優れた結果";
+"shortNoteIfBetween200And230LString" = "    優れた結果    ";
 
 /* Short Note if Result Between 230 ms and 260 ms */
-"shortNoteIfBetween230And260LString" = "通常の結果";
+"shortNoteIfBetween230And260LString" = "    通常の結果    ";
 
 /* Short Note if Result Between 260 ms and 300 ms */
-"shortNoteIfBetween260And300LString" = "少し遅いです";
+"shortNoteIfBetween260And300LString" = "  少し遅いです  ";
 
 /* Short Note if Result Greater than 300 ms */
 "shortNoteIfGreater300LString" = "ゆっくりと、再び試してみてください";

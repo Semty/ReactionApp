@@ -1,41 +1,41 @@
 /* circleStateActionLString */
-"circleStateActionLString" = "    投掷圈    ";
+"circleStateActionLString" = "         投掷圈         ";
 
 /* circleStateNoneLString */
-"circleStateNoneLString" = " 按住圆开始 ";
+"circleStateNoneLString" = "      按住圆开始      ";
 
 /* circleStatePreparationLString */
-"circleStatePreparationLString" = "等待降临绿圆";
+"circleStatePreparationLString" = "    等待降临绿圆    ";
 
 /* error */
 "error" = "   错误   ";
 
 /* Greeting */
-"greetingLString" = "很高兴再次见到你 :)";
+"greetingLString" = " 很高兴再次见到你 :) ";
 
 /* instructionForNoteLString */
-"instructionForNoteLString" = "    就这样    ";
+"instructionForNoteLString" = "         就这样         ";
 
 /* instructionForTimeLString */
 "instructionForTimeLString" = "这将是你的时间 :)";
 
 /* ms */
-"ms" = "毫秒";
+"ms" = " 毫秒 ";
 
 /* Short Note if Result Between 150 ms and 200 ms */
 "shortNoteIfBetween150And200LString" = "你的时间比人的90％更好!";
 
 /* Short Note if Result Between 200 ms and 230 ms */
-"shortNoteIfBetween200And230LString" = "出色的速度";
+"shortNoteIfBetween200And230LString" = "    出色的速度    ";
 
 /* Short Note if Result Between 230 ms and 260 ms */
-"shortNoteIfBetween230And260LString" = "正常速度";
+"shortNoteIfBetween230And260LString" = "       正常速度       ";
 
 /* Short Note if Result Between 260 ms and 300 ms */
-"shortNoteIfBetween260And300LString" = "    有点慢    ";
+"shortNoteIfBetween260And300LString" = "         有点慢         ";
 
 /* Short Note if Result Greater than 300 ms */
-"shortNoteIfGreater300LString" = "慢慢地，再试试";
+"shortNoteIfGreater300LString" = " 慢慢地，再试试 ";
 
 /* Short Note if Result less than 150 ms */
 "shortNoteIfLess150LString" = "什么？真是难以置信";
