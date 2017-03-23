@@ -64,7 +64,7 @@ class PermissionsDataSource: SPRequestPermissionDialogInteractiveDataSource {
     let topAdviceTitleLString =
         NSLocalizedString("topAdviceTitleLString", tableName: "Permission",
                           bundle: Bundle.main,
-                          value: "Allow Permission, Please. This Helps to use Application",
+                          value: "Give your Permission, Please. This will Enhance the Application's Usefulness",
                           comment: "Top Advice Title")
     
     let bottomAdviceTitleLString =
