@@ -14,7 +14,7 @@
 "greetingLString" = "Qué gusto verte de nuevo :)";
 
 /* instructionForNoteLString */
-"instructionForNoteLString" = "Eso es todo";
+"instructionForNoteLString" = "   Eso es todo   ";
 
 /* instructionForTimeLString */
 "instructionForTimeLString" = "Aquí estará el tiempo :)";
@@ -32,7 +32,7 @@
 "shortNoteIfBetween230And260LString" = "Los resultados normales";
 
 /* Short Note if Result Between 260 ms and 300 ms */
-"shortNoteIfBetween260And300LString" = "Poco lento";
+"shortNoteIfBetween260And300LString" = "    Poco lento    ";
 
 /* Short Note if Result Greater than 300 ms */
 "shortNoteIfGreater300LString" = "Lentamente, vuelve a intentarlo!";

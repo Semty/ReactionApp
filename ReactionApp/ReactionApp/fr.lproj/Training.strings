@@ -8,7 +8,7 @@
 "circleStatePreparationLString" = "Attendre la couleur verte";
 
 /* error */
-"error" = "Erreur";
+"error" = " Erreur ";
 
 /* Greeting */
 "greetingLString" = "C'est un plaisir de vous revoir :)";
@@ -29,10 +29,10 @@
 "shortNoteIfBetween200And230LString" = "Bon travail! C'est le temps cool";
 
 /* Short Note if Result Between 230 ms and 260 ms */
-"shortNoteIfBetween230And260LString" = "Temps normal";
+"shortNoteIfBetween230And260LString" = " Temps normal ";
 
 /* Short Note if Result Between 260 ms and 300 ms */
-"shortNoteIfBetween260And300LString" = "Peu lent";
+"shortNoteIfBetween260And300LString" = "     Peu lent     ";
 
 /* Short Note if Result Greater than 300 ms */
 "shortNoteIfGreater300LString" = "Il est lentement, essayez de nouveau!";

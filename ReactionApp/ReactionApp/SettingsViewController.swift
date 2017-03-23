@@ -254,14 +254,13 @@ class SettingsViewController: FormViewController {
                 rootviewcontroller.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "rootnav")
                 let mainwindow = (UIApplication.shared.delegate?.window!)!
                 UIView.transition(with: mainwindow,
-                                  duration: 0.55,
+                                  duration: 0.75,
                                   options: .transitionFlipFromBottom,
                                   animations: { () -> Void in
                                     
                 }) { (finished) -> Void in
                     
                 }
-                
             })
     }
 
