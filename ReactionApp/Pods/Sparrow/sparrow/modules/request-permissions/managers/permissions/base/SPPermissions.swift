@@ -64,8 +64,25 @@ class SPNotificationPermission: SPPermissionInterface {
                     complectionHandler()
                 }
             }
-        } else {
-            //TODO: Fallback on earlier versions
+        } // iOS 9 support
+        else if #available(iOS 9, *) {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
+            DispatchQueue.main.async {
+                complectionHandler()
+            }
+        }
+            // iOS 8 support
+        else if #available(iOS 8, *) {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
+            DispatchQueue.main.async {
+                complectionHandler()
+            }
+        }
+            // iOS 7 support
+        else {
+            DispatchQueue.main.async {
+                complectionHandler()
+            }
         }
         UIApplication.shared.registerForRemoteNotifications()
     }

@@ -83,14 +83,25 @@ class SPRequestPermissionDialogInteractivePresenter: SPRequestPermissionPresente
                     self.showDialogForProtectPermissionOnViewController()
                 } else {
                     self.isPresentedNotificationRequest = true
-                    self.showDialogForProtectPermissionOnViewController(cancelHandler: {
+                    
+                    if #available(iOS 10.0, *){
+                        self.showDialogForProtectPermissionOnViewController(cancelHandler: {
+                            let denidedPermission = self.assistantDelegate!.denidedPermission()
+                            if denidedPermission.count == 1 {
+                                if denidedPermission[0] == SPRequestPermissionType.Notification {
+                                    self.viewController.hide()
+                                }
+                            }
+                        })
+                    } else {
+                        control.setSelectedState(animated: true)
                         let denidedPermission = self.assistantDelegate!.denidedPermission()
                         if denidedPermission.count == 1 {
                             if denidedPermission[0] == SPRequestPermissionType.Notification {
                                 self.viewController.hide()
                             }
                         }
-                    })
+                    }
                     
                     return
                 }

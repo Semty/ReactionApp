@@ -68,11 +68,8 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
     public var reactionTime: Int? {
         
         if self.startTime != nil && self.endTime != nil {
-            
             let resultTime = (self.endTime! - self.startTime!) * 1000
-            
             return Int(resultTime)
-            
         } else {
             return nil
         }
@@ -87,7 +84,10 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
         return adBannerView
     }()
     
-    public var permissionAssistant = SPRequestPermissionAssistant.modules.dialog.interactive.create(with: [.Notification], dataSourceForController: PermissionsDataSource())
+    public var permissionAssistant =
+        SPRequestPermissionAssistant.modules.dialog.interactive.create(
+            with: [.Notification],
+            dataSourceForController: PermissionsDataSource())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,9 +109,8 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
         self.reactionResultLabel.morphingEffect     = .evaporate
         
         self.shortInstructionLabel.morphingDuration = 0.2
-        self.reactionResultLabel.morphingDuration = 0.2
+        self.reactionResultLabel.morphingDuration   = 0.2
         
-        //self.circleView.transform  = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
         self.circleView.alpha = 0.0
         
         UserDefaultManager.shared.save(value: true, forKey: .kSimpleStartApp)
@@ -156,16 +155,14 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
-        self.shortInstructionLabel.setShortInstruction(duringCircleState: .none)
+        setShortInstruction(duringCircleState: .none)
         
         self.reactionResultLabel.adjustFontSizeToFitText(newText: self.reactionResultLabel.text!)
-        //self.shortInstructionLabel.adjustFontSizeToFitText(newText: self.shortInstructionLabel.text!)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         
-        //self.circleView.transform  = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
         self.circleView.alpha = 0.0
     }
 
@@ -175,6 +172,21 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
     }
     
 // MARK: - Helpful Functions
+    
+    private func setShortInstruction(duringCircleState circleState: CircleState) {
+        if !isIphone4s() {
+            self.shortInstructionLabel.setShortInstruction(duringCircleState: circleState)
+        }
+    }
+    
+    private func isIphone4s() -> Bool {
+        if UIDevice().userInterfaceIdiom == .phone &&
+            UIScreen.main.nativeBounds.height == 960 {
+            return true
+        } else {
+            return false
+        }
+    }
     
     func saveResult(withTime time: Int) {
         backgroundQueue.async {
@@ -193,7 +205,7 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
             self.circleView.transform  = CGAffineTransform.init(scaleX: 1.1, y: 1.1)
         }
             
-        self.shortInstructionLabel.setShortInstruction(duringCircleState: .preparation)
+        setShortInstruction(duringCircleState: .preparation)
             
         if self.reactionResultLabel.text != nil {
             self.reactionResultLabel.text = nil
@@ -235,7 +247,7 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
             
             self.timer.invalidate()
             
-            self.shortInstructionLabel.setShortInstruction(duringCircleState: .none)
+            setShortInstruction(duringCircleState: .none)
             
         } else if Circle.sharedCircle.state == .action {
             
@@ -253,7 +265,10 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
                         
                         DispatchQueue.main.async {
                             self.reactionResultLabel.text = self.instructionForTimeLString
-                            self.shortInstructionLabel.text = self.instructionForNoteLString
+                            if !self.isIphone4s() {
+                                self.shortInstructionLabel.text
+                                    = self.instructionForNoteLString
+                            }
                         }
                         
                     } else {                                                            // Default Situation
@@ -262,8 +277,10 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
                             self.reactionResultLabel.numberOfLines = 1
                             
                             self.reactionResultLabel.text = "\(reactionResult) \(self.msLString)"
-                            
-                            self.shortInstructionLabel.setShortNotes(withResultTime: reactionResult)
+                            if !self.isIphone4s() {
+                                self.shortInstructionLabel.setShortNotes(
+                                    withResultTime: reactionResult)
+                            }
                         }
                         
                         if reactionResult <= Circle.sharedCircle.maxSavingTime {
@@ -337,7 +354,7 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
             
             self.startTime = CACurrentMediaTime()
             
-            self.shortInstructionLabel.setShortInstruction(duringCircleState: .action)
+            setShortInstruction(duringCircleState: .action)
         }
     }
     

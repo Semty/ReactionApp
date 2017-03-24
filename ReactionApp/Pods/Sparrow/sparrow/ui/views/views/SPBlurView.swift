@@ -21,6 +21,7 @@
 
 import UIKit
 
+@available(iOS 9, *)
 public class SPBlurView: UIVisualEffectView {
     
     private let blurEffect: UIBlurEffect
