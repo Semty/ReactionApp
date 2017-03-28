@@ -1,4 +1,4 @@
-# Tap and Up. Test your reaction.
+# Tap and Up. Test your reaction
 - Application, that will help you to test, track and improve your reaction!
 Benefits:
 - Your reaction is tested with your finger's take away speed, not the tap speed, which makes measuring much more accurate
