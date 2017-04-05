@@ -96,6 +96,7 @@ class PermissionsDataSource: SPRequestPermissionDialogInteractiveDataSource {
             title = titleForPermissionCalendarLString
         case .Location:
             title = titleForPermissionLocationLString
+        default: break
         }
         return title
     }

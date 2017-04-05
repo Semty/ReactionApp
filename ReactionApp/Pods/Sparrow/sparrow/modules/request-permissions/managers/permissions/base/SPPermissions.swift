@@ -24,6 +24,7 @@ import UserNotifications
 import Photos
 import MapKit
 import EventKit
+import Contacts
 
 class SPCameraPermission: SPPermissionInterface {
     
@@ -176,6 +177,70 @@ class SPLocationPermission: SPPermissionInterface {
                 SPRequestPermissionLocationHandler.shared = nil
             }
         }
+    }
+}
+
+class SPContactsPermission: SPPermissionInterface {
+    
+    func isAuthorized() -> Bool {
+        if #available(iOS 9.0, *) {
+            let status = CNContactStore.authorizationStatus(for: .contacts)
+            if status == .authorized {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            let status = ABAddressBookGetAuthorizationStatus()
+            if status == .authorized {
+                return true
+            } else {
+                return false
+            }
+        }
+        
+    }
+    
+    func request(withComlectionHandler complectionHandler: @escaping ()->()?) {
+        if #available(iOS 9.0, *) {
+           let store = CNContactStore()
+            store.requestAccess(for: .contacts, completionHandler: { (granted, error) in
+                DispatchQueue.main.async {
+                    complectionHandler()
+                }
+            })
+        } else {
+            let addressBookRef: ABAddressBook = ABAddressBookCreateWithOptions(nil, nil).takeRetainedValue()
+            ABAddressBookRequestAccessWithCompletion(addressBookRef) {
+                (granted: Bool, error: CFError!) in
+                DispatchQueue.main.async() {
+                    complectionHandler()
+                }
+            }
+        }
+    }
+}
+
+class SPRemindersPermission: SPPermissionInterface {
+    
+    func isAuthorized() -> Bool {
+        let status = EKEventStore.authorizationStatus(for: EKEntityType.reminder)
+        switch (status) {
+        case EKAuthorizationStatus.authorized:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    func request(withComlectionHandler complectionHandler: @escaping ()->()?) {
+        let eventStore = EKEventStore()
+        eventStore.requestAccess(to: EKEntityType.reminder, completion: {
+            (accessGranted: Bool, error: Error?) in
+            DispatchQueue.main.async {
+                complectionHandler()
+            }
+        })
     }
 }
 

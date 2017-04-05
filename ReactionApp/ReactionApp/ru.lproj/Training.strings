@@ -1,44 +1,44 @@
 /* circleStateActionLString */
-"circleStateActionLString" = "Отпускай Круг!";
+"circleStateActionLString" = "Отпускай круг!";
 
 /* circleStateNoneLString */
-"circleStateNoneLString" = "Нажми и Держи круг, Чтобы Начать";
+"circleStateNoneLString" = "Нажми и держи круг, чтобы начать";
 
 /* circleStatePreparationLString */
-"circleStatePreparationLString" = "Жди Появления Зеленого Круга";
+"circleStatePreparationLString" = "Жди появления зеленого круга";
 
 /* error */
 "error" = "Ошибка";
 
 /* Greeting */
-"greetingLString" = " С Возвращением :) ";
+"greetingLString" = " С возвращением :) ";
 
 /* instructionForNoteLString */
-"instructionForNoteLString" = "Это всё, Вперёд!";
+"instructionForNoteLString" = "Это всё, вперёд!";
 
 /* instructionForTimeLString */
-"instructionForTimeLString" = "Здесь Будет твоё Время :)";
+"instructionForTimeLString" = "Здесь будет твоё время :)";
 
 /* ms */
 "ms" = "мс";
 
 /* Short Note if Result Between 150 ms and 200 ms */
-"shortNoteIfBetween150And200LString" = "Твое Время Лучше, чем у 90% p Людей!";
+"shortNoteIfBetween150And200LString" = "Твое время лучше, чем у 90% людей!";
 
 /* Short Note if Result Between 200 ms and 230 ms */
-"shortNoteIfBetween200And230LString" = "Отличное Время";
+"shortNoteIfBetween200And230LString" = "Отличное время";
 
 /* Short Note if Result Between 230 ms and 260 ms */
-"shortNoteIfBetween230And260LString" = "Нормальное Время";
+"shortNoteIfBetween230And260LString" = "Хорошее время";
 
 /* Short Note if Result Between 260 ms and 300 ms */
-"shortNoteIfBetween260And300LString" = "Немного Медленно";
+"shortNoteIfBetween260And300LString" = "Нормальное время";
 
 /* Short Note if Result Greater than 300 ms */
-"shortNoteIfGreater300LString" = "Медленно, Попытайся Снова!";
+"shortNoteIfGreater300LString" = "Медленно, попытайся снова!";
 
 /* Short Note if Result less than 150 ms */
-"shortNoteIfLess150LString" = "Что? Это Невероятно!";
+"shortNoteIfLess150LString" = "Что? Это невероятно!";
 
 /* tooEarlyLString */
 "tooEarlyLString" = "Слишком рано";

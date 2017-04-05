@@ -77,7 +77,7 @@ class NotificationManager {
     private func dateToHourString(_ date: Date) -> String {
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "hh:mm"
+        formatter.timeStyle = .short
         
         return formatter.string(from: date)
     }

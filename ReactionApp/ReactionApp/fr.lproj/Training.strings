@@ -23,7 +23,7 @@
 "ms" = "ms";
 
 /* Short Note if Result Between 150 ms and 200 ms */
-"shortNoteIfBetween150And200LString" = "C'est mieux que 90% p des gens!";
+"shortNoteIfBetween150And200LString" = "C'est mieux que 90% des gens!";
 
 /* Short Note if Result Between 200 ms and 230 ms */
 "shortNoteIfBetween200And230LString" = "Bon travail! C'est le temps cool";

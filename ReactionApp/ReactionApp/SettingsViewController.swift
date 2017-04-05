@@ -96,6 +96,20 @@ class SettingsViewController: FormViewController {
                           value: "Language",
                           comment: "Switch Language Title")
     
+    let writeToDeveloperHeader =
+        NSLocalizedString("writeToDeveloperHeader",
+                          tableName: "Settings",
+                          bundle: Bundle.main,
+                          value: "Write to Developer",
+                          comment: "Write to Developer")
+    
+    let sendToDeveloperTitle =
+        NSLocalizedString("sendToDeveloperTitle",
+                          tableName: "Settings",
+                          bundle: Bundle.main,
+                          value: "Send",
+                          comment: "Send to Developer Title")
+    
     let msLString = NSLocalizedString("ms", tableName: "Settings",
                                       bundle: Bundle.main,
                                       value: "ms", comment: "ms")
@@ -262,6 +276,32 @@ class SettingsViewController: FormViewController {
                     
                 }
             })
+        
+        form +++ Section(header: writeToDeveloperHeader,
+                         footer: "")
+        
+            <<< TextAreaRow("writeToDeveloperTag") {
+                $0.placeholder = "Write your message here"
+            }
+        
+            <<< ButtonRow() {
+                $0.title = sendToDeveloperTitle
+            }.onCellSelection { [unowned self] cell, row in
+                let message = (self.form.rowBy(tag: "writeToDeveloperTag") as? TextAreaRow)?.value
+                if var notEmptyMessage = message {
+                    notEmptyMessage += "\n***** System Language = "
+                                        + Language.currentAppleLanguageFull()
+                                        + " *****"
+                    let writeToDeveloperView = WriteToDeveloperViewController()
+                    self.present(writeToDeveloperView, animated: true, completion: nil)
+                    if writeToDeveloperView.sendEmailButtonTapped(sender: cell, and: notEmptyMessage) {
+                        (self.form.rowBy(tag: "writeToDeveloperTag") as? TextAreaRow)?.value = nil
+                    }
+                } else {
+                    self.present(EmptyMessageHelper().alertController,
+                                 animated: true, completion: nil)
+                }
+            }
     }
 
     override func didReceiveMemoryWarning() {

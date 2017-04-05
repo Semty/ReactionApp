@@ -28,6 +28,8 @@ public enum SPRequestPermissionType {
     case Microphone
     case Calendar
     case Location
+    case Contacts
+    case Reminders
 }
 
 class SPPermissionsManagerBase: SPPermissionManagerInterface {
@@ -58,6 +60,10 @@ class SPPermissionsManagerBase: SPPermissionManagerInterface {
             return SPCalendarPermission()
         case .Location:
             return SPLocationPermission()
+        case .Contacts:
+            return SPContactsPermission()
+        case .Reminders:
+            return SPRemindersPermission()
         }
     }
 }

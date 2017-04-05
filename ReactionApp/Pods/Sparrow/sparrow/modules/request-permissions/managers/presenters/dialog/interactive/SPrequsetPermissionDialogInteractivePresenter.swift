@@ -25,8 +25,8 @@ class SPRequestPermissionDialogInteractivePresenter: SPRequestPermissionPresente
     
     weak var assistantDelegate: SPRequestPermissionAssistantDelegate?
     
-    private let viewController: SPRequestPermissionDialogInteractiveViewControllerInterface
-    private let dataSource: SPRequestPermissionDialogInteractiveDataSourceInterface
+    private var viewController: SPRequestPermissionDialogInteractiveViewControllerInterface
+    private var dataSource: SPRequestPermissionDialogInteractiveDataSourceInterface
     
     private var controls = [SPRequestPermissionTwiceControlInterface]()
     

@@ -8,7 +8,7 @@ PODS:
     - RealmSwift (~> 1.1)
   - Eureka (2.0.1)
   - Google-Mobile-Ads-SDK (7.19.0)
-  - LTMorphingLabel (0.4.0)
+  - LTMorphingLabel (0.5.0)
   - RAMAnimatedTabBarController (2.0.13)
   - RandomKit (3.0.0):
     - ShiftOperations
@@ -43,7 +43,7 @@ CHECKOUT OPTIONS:
     :commit: acc480fbe023c6e5fe40f68593f4a70a8c4c7ad5
     :git: https://github.com/ViccAlexander/Chameleon.git
   Sparrow:
-    :commit: 3422ad0ebde803684767dec0ce950d7af9ce2426
+    :commit: a1f506b48b0ae5ee7de5d328e000402c86384f74
     :git: https://github.com/IvanVorobei/Sparrow.git
 
 SPEC CHECKSUMS:
@@ -51,7 +51,7 @@ SPEC CHECKSUMS:
   Charts: 0e84f4418e87dad6a9edde221fba37ebb51d3ba7
   Eureka: ae837bb1dfae0c07bc1bda7aeef87876eeb537c2
   Google-Mobile-Ads-SDK: d1bcdbd8347a105a687345b8511701172a5074e9
-  LTMorphingLabel: d9a85f16ac306f0e07321d6819964deb2dc69638
+  LTMorphingLabel: bc170be74b219b7dae0e5543a44676d16da70ff7
   RAMAnimatedTabBarController: 2510f3b66954c3f77ea1042a35d34df8f5f3b604
   RandomKit: 03b4be99ecc35850b794e0185689931d72024e93
   Realm: ceecf1a4540c4ce9efe196fe73fa9855bce05bd8
