@@ -19,11 +19,13 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.1</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCalendarsUsageDescription</key>
 	<string>purpose for using calendar</string>
+	<key>NSContactsUsageDescription</key>
+	<string>while doesn't uses contacts</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>while doesn't uses microphone</string>
 	<key>NSPhotoLibraryUsageDescription</key>

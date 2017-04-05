@@ -17,24 +17,20 @@ class WriteToDeveloperViewController:   UIViewController,
         print("WriteToDeveloperViewController DEINIT")
     }
     
-    func sendEmailButtonTapped(sender: AnyObject, and message: String) -> Bool {
-        let mailComposeViewController = configuredMailComposeViewController(with: message)
+    func sendEmailButtonTapped(sender: AnyObject) {
+        let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
             self.present(mailComposeViewController, animated: true, completion: nil)
-            return true
-        } else {
-            self.dismiss(animated: true, completion: nil)
-            return false
         }
     }
     
-    func configuredMailComposeViewController(with message: String) -> MFMailComposeViewController {
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self
         
-        mailComposerVC.setToRecipients(["TupAndUpOfficial@inbox.ru"])
+        mailComposerVC.setToRecipients(["TapAndUpOfficial@inbox.ru"])
         mailComposerVC.setSubject("Tap and Up Feedback")
-        mailComposerVC.setMessageBody(message, isHTML: false)
+        mailComposerVC.setMessageBody("Write your message here:\n", isHTML: false)
         
         return mailComposerVC
     }
@@ -58,6 +54,5 @@ class WriteToDeveloperViewController:   UIViewController,
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
-        self.dismiss(animated: true, completion: nil)
     }
 }

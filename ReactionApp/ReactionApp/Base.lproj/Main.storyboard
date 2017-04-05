@@ -324,7 +324,7 @@
         <!--Settings-->
         <scene sceneID="pgx-98-69H">
             <objects>
-                <navigationController id="R9H-UM-Vuh" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="settingsnav" id="R9H-UM-Vuh" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="settings" id="5JA-qC-UAc" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="iconColor">

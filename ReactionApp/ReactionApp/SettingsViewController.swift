@@ -8,10 +8,11 @@
 
 import UIKit
 import RealmSwift
+import MessageUI
 import ChameleonFramework
 import Eureka
 
-class SettingsViewController: FormViewController {
+class SettingsViewController: FormViewController, MFMailComposeViewControllerDelegate {
     
 // MARK: - Localizable Strings
     
@@ -107,8 +108,8 @@ class SettingsViewController: FormViewController {
         NSLocalizedString("sendToDeveloperTitle",
                           tableName: "Settings",
                           bundle: Bundle.main,
-                          value: "Send",
-                          comment: "Send to Developer Title")
+                          value: "Feedback",
+                          comment: "Send to Developer Title (Feedback)")
     
     let msLString = NSLocalizedString("ms", tableName: "Settings",
                                       bundle: Bundle.main,
@@ -265,7 +266,8 @@ class SettingsViewController: FormViewController {
                 }
                 
                 let rootviewcontroller: UIWindow = ((UIApplication.shared.delegate?.window)!)!
-                rootviewcontroller.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "rootnav")
+                let rootNav = self.storyboard?.instantiateViewController(withIdentifier: "rootnav")
+                rootviewcontroller.rootViewController = rootNav
                 let mainwindow = (UIApplication.shared.delegate?.window!)!
                 UIView.transition(with: mainwindow,
                                   duration: 0.75,
@@ -280,27 +282,10 @@ class SettingsViewController: FormViewController {
         form +++ Section(header: writeToDeveloperHeader,
                          footer: "")
         
-            <<< TextAreaRow("writeToDeveloperTag") {
-                $0.placeholder = "Write your message here"
-            }
-        
             <<< ButtonRow() {
                 $0.title = sendToDeveloperTitle
             }.onCellSelection { [unowned self] cell, row in
-                let message = (self.form.rowBy(tag: "writeToDeveloperTag") as? TextAreaRow)?.value
-                if var notEmptyMessage = message {
-                    notEmptyMessage += "\n***** System Language = "
-                                        + Language.currentAppleLanguageFull()
-                                        + " *****"
-                    let writeToDeveloperView = WriteToDeveloperViewController()
-                    self.present(writeToDeveloperView, animated: true, completion: nil)
-                    if writeToDeveloperView.sendEmailButtonTapped(sender: cell, and: notEmptyMessage) {
-                        (self.form.rowBy(tag: "writeToDeveloperTag") as? TextAreaRow)?.value = nil
-                    }
-                } else {
-                    self.present(EmptyMessageHelper().alertController,
-                                 animated: true, completion: nil)
-                }
+                self.sendEmailButtonTapped(sender: cell)
             }
     }
 
@@ -331,6 +316,35 @@ class SettingsViewController: FormViewController {
         default:
             return ""
         }
+    }
+    
+// MARK: - Write to Developer Functions
+    
+    func sendEmailButtonTapped(sender: AnyObject) {
+        let mailComposeViewController = configuredMailComposeViewController()
+        if MFMailComposeViewController.canSendMail() {
+            self.present(mailComposeViewController, animated: true, completion: nil)
+        }
+    }
+    
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self
+        
+        mailComposerVC.setToRecipients(["TapAndUpOfficial@inbox.ru"])
+        mailComposerVC.setSubject("Tap and Up Feedback")
+        mailComposerVC.setMessageBody("Write your message here:\n\n\n\n"
+                                      + "\n***** System Language = "
+                                      + Language.currentAppleLanguageFull()
+                                      + " *****", isHTML: false)
+        
+        return mailComposerVC
+    }
+    
+// MARK: MFMailComposeViewControllerDelegate
+    
+    private func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: NSError) {
+        controller.dismiss(animated: true, completion: nil)
     }
 
     /*
