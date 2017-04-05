@@ -148,8 +148,6 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
         UIView.animate(withDuration: 0.25) {
             self.circleView.alpha = 1.0
         }
-        
-        self.checkPortraitTransition(forSize: self.view.bounds.size)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -158,6 +156,7 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
         setShortInstruction(duringCircleState: .none)
         
         self.reactionResultLabel.adjustFontSizeToFitText(newText: self.reactionResultLabel.text!)
+        self.checkPortraitTransition(forSize: self.view.bounds.size)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
