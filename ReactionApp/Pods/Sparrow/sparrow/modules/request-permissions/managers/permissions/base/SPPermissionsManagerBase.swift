@@ -28,6 +28,7 @@ public enum SPRequestPermissionType {
     case Microphone
     case Calendar
     case Location
+    case LocationWithBackground
     case Contacts
     case Reminders
 }
@@ -60,6 +61,10 @@ class SPPermissionsManagerBase: SPPermissionManagerInterface {
             return SPCalendarPermission()
         case .Location:
             return SPLocationPermission()
+        case .LocationWithBackground:
+            let permission = SPLocationPermission()
+            permission.withBackground = true
+            return permission
         case .Contacts:
             return SPContactsPermission()
         case .Reminders:

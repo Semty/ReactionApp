@@ -37,3 +37,17 @@
 /* Training Settings Title */
 "trainingNotificationTitle" = "Encendido/Apagado";
 
+/* Write to Developer Header */
+"writeToDeveloperHeader" = "Escribir al desarrollador";
+
+/* Send Feedback Title */
+"sendToDeveloperTitle" = "Enviar comentarios";
+
+/* Help Developer Header */
+"helpDeveloperTitle" = "Contribución al proyecto";
+
+/* Help Developer Footer */
+"helpDeveloperFooter" = "Si desea contribuir al proyecto, siga estos pasos:\n1. Abra el anuncio\n2. Cuando aparece, haga clic en él, si está interesado en el producto propuesto\n3. Además de obtener el karma de un desarrollador pobres :)";
+
+/* Watch Video Ad Title */
+"watchAdTitle" = "Ver anuncio";

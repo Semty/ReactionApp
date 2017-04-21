@@ -102,14 +102,35 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
                           tableName: "Settings",
                           bundle: Bundle.main,
                           value: "Write to Developer",
-                          comment: "Write to Developer")
+                          comment: "Write to Developer Header")
     
     let sendToDeveloperTitle =
         NSLocalizedString("sendToDeveloperTitle",
                           tableName: "Settings",
                           bundle: Bundle.main,
-                          value: "Feedback",
-                          comment: "Send to Developer Title (Feedback)")
+                          value: "Send Feedback",
+                          comment: "Send Feedback Title")
+    
+    let helpDeveloperHeader =
+        NSLocalizedString("helpDeveloperTitle",
+                          tableName: "Settings",
+                          bundle: Bundle.main,
+                          value: "Contribution to the Project",
+                          comment: "Help Developer Header")
+    
+    let helpDeveloperFooter =
+        NSLocalizedString("helpDeveloperFooter",
+                          tableName: "Settings",
+                          bundle: Bundle.main,
+                          value: "If you want to help the project, follow these steps:\n1. Open the advertisement\n2. When it appears, click on it, as if you are interested in the proposed product\n3. Get the plus to the karma from the poor developer :)",
+                          comment: "Help Developer Footer")
+    
+    let watchAdTitle =
+        NSLocalizedString("watchAdTitle",
+                          tableName: "Settings",
+                          bundle: Bundle.main,
+                          value: "Watch Ad",
+                          comment: "Watch Video Ad Title")
     
     let msLString = NSLocalizedString("ms", tableName: "Settings",
                                       bundle: Bundle.main,
@@ -125,6 +146,8 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
     var maxPreparationTime = Double()
     
     var maxSavingTime = Int()
+    
+    var videoAdManager: VideoAdManager!
     
 // MARK: - Functions
 
@@ -146,48 +169,26 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
 
         form.inlineRowHideOptions = [.AnotherInlineRowIsShown, .FirstResponderChanges]
 
+        form +++ Section(header: writeToDeveloperHeader,
+                         footer: "")
+            
+            <<< ButtonRow() {
+                $0.title = sendToDeveloperTitle
+                $0.baseCell.tintColor = FlatSkyBlueDark()
+                }.onCellSelection { cell, row in
+                    self.sendEmailButtonTapped(sender: cell)
+        }
         
-        form +++ Section(header: trainingNotificationHeader,
-                         footer: isNotificationsDisabled
-                                 ? notificationDisabledFooter
-                                 : "")
+        form +++ Section(header: helpDeveloperHeader,
+                         footer: helpDeveloperFooter)
             
-                <<< SwitchRow("switchRowTag") {
-                        
-                    $0.disabled = Condition.function(["switchRowTag"], { form in
-                        return self.isNotificationsDisabled
-                    })
-                        
-                    $0.cellSetup({ (cell, row) in
-                        cell.switchControl?.onTintColor = FlatSkyBlueDark()
-                    })
-                        
-                    $0.value = isNotificationsOn
-                        
-                    $0.title = trainingNotificationTitle
-                }.onChange({ row in
-                    UserDefaultManager.shared.save(value: !self.isNotificationsOn, forKey: .kNotificationsOn)
-                    if !row.value! {
-                        NotificationManager.shared.cancelAllNotifications()
-                    }
-                })
-            
-                <<< TimeInlineRow() {
-                        
-                    $0.hidden = Condition.function(["switchRowTag"], { form in
-                        return !((form.rowBy(tag: "switchRowTag") as? SwitchRow)?.value ?? false)
-                    })
-                        
-                    $0.title = trainingNotificationRingTime
-                    $0.value = ringTime
-                }.onChange({ row in
-                    NotificationManager.shared.setUpLocalNotification(date: row.value!)
-                    UserDefaultManager.shared.save(value: row.value!, forKey: .kRingTime)
-
-                }).cellUpdate({ cell, row in
-                    NotificationManager.shared.setUpLocalNotification(date: row.value!)
-                })
-
+            <<< ButtonRow("videoAdButtonTag") {
+                $0.title = watchAdTitle
+                $0.baseCell.backgroundColor = FlatSkyBlueDark()
+                $0.baseCell.tintColor = .white
+                }.onCellSelection { cell, row in
+                    self.videoAdManager.watchAd()
+        }
         
         form +++ Section(header: redCircleTimeHeader,
                          footer: "")
@@ -279,14 +280,48 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
                 }
             })
         
-        form +++ Section(header: writeToDeveloperHeader,
-                         footer: "")
+        form +++ Section(header: trainingNotificationHeader,
+                         footer: isNotificationsDisabled
+                            ? notificationDisabledFooter
+                            : "")
+            
+            <<< SwitchRow("switchRowTag") {
+                
+                $0.disabled = Condition.function(["switchRowTag"], { form in
+                    return self.isNotificationsDisabled
+                })
+                
+                $0.cellSetup({ (cell, row) in
+                    cell.switchControl?.onTintColor = FlatSkyBlueDark()
+                })
+                
+                $0.value = isNotificationsOn
+                
+                $0.title = trainingNotificationTitle
+                }.onChange({ row in
+                    UserDefaultManager.shared.save(value: !self.isNotificationsOn, forKey: .kNotificationsOn)
+                    if !row.value! {
+                        NotificationManager.shared.cancelAllNotifications()
+                    }
+                })
+            
+            <<< TimeInlineRow() {
+                
+                $0.hidden = Condition.function(["switchRowTag"], { form in
+                    return !((form.rowBy(tag: "switchRowTag") as? SwitchRow)?.value ?? false)
+                })
+                
+                $0.title = trainingNotificationRingTime
+                $0.value = ringTime
+                }.onChange({ row in
+                    NotificationManager.shared.setUpLocalNotification(date: row.value!)
+                    UserDefaultManager.shared.save(value: row.value!, forKey: .kRingTime)
+                    
+                }).cellUpdate({ cell, row in
+                    NotificationManager.shared.setUpLocalNotification(date: row.value!)
+                })
         
-            <<< ButtonRow() {
-                $0.title = sendToDeveloperTitle
-            }.onCellSelection { [unowned self] cell, row in
-                self.sendEmailButtonTapped(sender: cell)
-            }
+        videoAdManager = VideoAdManager(withSettingsVC: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -333,17 +368,17 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
         
         mailComposerVC.setToRecipients(["TapAndUpOfficial@inbox.ru"])
         mailComposerVC.setSubject("Tap and Up Feedback")
-        mailComposerVC.setMessageBody("Write your message here:\n\n\n\n"
-                                      + "\n***** System Language = "
+        mailComposerVC.setMessageBody("\n\n"
+                                      + "\n*** System Language = "
                                       + Language.currentAppleLanguageFull()
-                                      + " *****", isHTML: false)
+                                      + " ***", isHTML: false)
         
         return mailComposerVC
     }
     
 // MARK: MFMailComposeViewControllerDelegate
     
-    private func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: NSError) {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Swift.Error?) {
         controller.dismiss(animated: true, completion: nil)
     }
 

@@ -22,9 +22,9 @@
 import Foundation
 import MapKit
 
-class SPRequestPermissionLocationHandler: NSObject, SPRequestPermissionAuthorizationHandlerInterface, CLLocationManagerDelegate {
+class SPRequestPermissionLocationHandler: NSObject, CLLocationManagerDelegate {
     
-    static var shared:SPRequestPermissionLocationHandler?
+    static var shared: SPRequestPermissionLocationHandler?
     
     lazy var locationManager: CLLocationManager =  {
         return CLLocationManager()
@@ -33,11 +33,10 @@ class SPRequestPermissionLocationHandler: NSObject, SPRequestPermissionAuthoriza
     var complectionHandler: SPRequestPermissionAuthorizationHandlerCompletionBlock?
     
     override init() {
-        
+        super.init()
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        
         if status == .notDetermined {
             return
         }
@@ -50,11 +49,11 @@ class SPRequestPermissionLocationHandler: NSObject, SPRequestPermissionAuthoriza
     func requestPermission(_ complectionHandler: @escaping SPRequestPermissionAuthorizationHandlerCompletionBlock) {
         self.complectionHandler = complectionHandler
         
-        let CLAuthStatus = CLLocationManager.authorizationStatus()
-        if(CLAuthStatus == .notDetermined) {
+        let status = CLLocationManager.authorizationStatus()
+        if status == .notDetermined {
             locationManager.delegate = self
             locationManager.requestAlwaysAuthorization();
-        }else {
+        } else {
             complectionHandler(isAuthorized())
         }
     }
@@ -73,4 +72,19 @@ class SPRequestPermissionLocationHandler: NSObject, SPRequestPermissionAuthoriza
     deinit {
         locationManager.delegate = nil
     }
+}
+
+class SPRequestPermissionLocationWithBackgroundHandler: SPRequestPermissionLocationHandler {
+    
+    override func requestPermission(_ complectionHandler: @escaping SPRequestPermissionLocationHandler.SPRequestPermissionAuthorizationHandlerCompletionBlock) {
+        if #available(iOS 9.0, *) {
+            locationManager.allowsBackgroundLocationUpdates = true
+        }
+        super.requestPermission(complectionHandler)
+    }
+}
+
+extension SPRequestPermissionLocationHandler {
+    
+    typealias SPRequestPermissionAuthorizationHandlerCompletionBlock = (Bool) -> Void
 }

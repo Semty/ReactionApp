@@ -379,7 +379,8 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         print("Banner loaded successfully")
-        relayoutViews()
+        relayoutAdBannerView()
+        animateAdBanner()
     }
     
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
@@ -402,7 +403,8 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
         }
     }
     
-    func relayoutViews() {
+    func relayoutAdBannerView() {
+        
         var bannerFrame = adBannerView.frame
         bannerFrame.origin.x =  0
         bannerFrame.origin.y =  rootView.frame.maxY -
@@ -410,12 +412,22 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
         adBannerView.frame = bannerFrame
     }
     
+    func animateAdBanner() {
+        let translateTransform = CGAffineTransform(translationX: 0,
+                                                   y: adBannerView.bounds.size.height)
+        adBannerView.transform = translateTransform
+        
+        UIView.animate(withDuration: 0.5) {
+            self.adBannerView.transform = CGAffineTransform.identity
+        }
+    }
+    
     func checkPortraitTransition(forSize size: CGSize) {
         if size.height < size.width {
             self.adBannerView.isHidden = true
         } else {
             self.adBannerView.isHidden = false
-            self.relayoutViews()
+            self.relayoutAdBannerView()
         }
     }
 

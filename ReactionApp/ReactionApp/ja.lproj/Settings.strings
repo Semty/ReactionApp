@@ -37,3 +37,17 @@
 /* Training Settings Title */
 "trainingNotificationTitle" = "オンオフ";
 
+/* Write to Developer Header */
+"writeToDeveloperHeader" = "開発者への書き込み";
+
+/* Send Feedback Title */
+"sendToDeveloperTitle" = "フィードバックを送信する";
+
+/* Help Developer Header */
+"helpDeveloperTitle" = "プロジェクトへの貢献";
+
+/* Help Developer Footer */
+"helpDeveloperFooter" = "プロジェクトを手助けしたい場合は、次の手順を実行します\n1。 広告を開きます\n2。 それが表示されたら、あなたが提案された製品に興味があるかのようにそれをクリックしてください";
+
+/* Watch Video Ad Title */
+"watchAdTitle" = "時計広告";

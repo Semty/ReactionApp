@@ -39,6 +39,7 @@
 		D55E49A11E7E8D36003DB146 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E49A01E7E8D36003DB146 /* Language.swift */; };
 		D55E49A41E7E9F27003DB146 /* Localizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E49A31E7E9F27003DB146 /* Localizer.swift */; };
 		D55E49D81E8073D9003DB146 /* fr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = D55E49D71E8073D9003DB146 /* fr.lproj */; };
+		D58C4F621EA90013000533CB /* VideoAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58C4F611EA90013000533CB /* VideoAdManager.swift */; };
 		D5F118401E7B230F00138F8D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5F118421E7B230F00138F8D /* InfoPlist.strings */; };
 		D5F39ED71E7B242200746551 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5F39ED91E7B242200746551 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
@@ -122,6 +123,7 @@
 		D55E49B71E8073AD003DB146 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D55E49D61E8073B3003DB146 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D55E49D71E8073D9003DB146 /* fr.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fr.lproj; sourceTree = "<group>"; };
+		D58C4F611EA90013000533CB /* VideoAdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoAdManager.swift; sourceTree = "<group>"; };
 		D5F118411E7B230F00138F8D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D5F39ED81E7B242200746551 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F438793F6FC39C17F09DF974 /* Pods-ReactionApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactionApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactionApp/Pods-ReactionApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				446EF25A1E6488F100D01771 /* SettingsViewController.swift */,
+				D58C4F611EA90013000533CB /* VideoAdManager.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				446EF25B1E6488F100D01771 /* SettingsViewController.swift in Sources */,
 				44FABE261E58A70300D38A07 /* RealmLineChartViewController.swift in Sources */,
 				44FABE291E58DAD500D38A07 /* BalloonMarker.swift in Sources */,
+				D58C4F621EA90013000533CB /* VideoAdManager.swift in Sources */,
 				4428A8E71E5E024A006766BE /* XYMarkerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -165,16 +165,33 @@ class SPLocationPermission: SPPermissionInterface {
         return false
     }
     
+    var withBackground: Bool = false
+    
     func request(withComlectionHandler complectionHandler: @escaping ()->()?) {
         
-        if SPRequestPermissionLocationHandler.shared == nil {
-            SPRequestPermissionLocationHandler.shared = SPRequestPermissionLocationHandler()
-        }
-        
-        SPRequestPermissionLocationHandler.shared!.requestPermission { (authorized) in
-            DispatchQueue.main.async {
-                complectionHandler()
-                SPRequestPermissionLocationHandler.shared = nil
+        if self.withBackground {
+            
+            if SPRequestPermissionLocationWithBackgroundHandler.shared == nil {
+                SPRequestPermissionLocationWithBackgroundHandler.shared = SPRequestPermissionLocationWithBackgroundHandler()
+            }
+            
+            SPRequestPermissionLocationWithBackgroundHandler.shared!.requestPermission { (authorized) in
+                DispatchQueue.main.async {
+                    complectionHandler()
+                    SPRequestPermissionLocationWithBackgroundHandler.shared = nil
+                }
+            }
+        } else {
+            
+            if SPRequestPermissionLocationHandler.shared == nil {
+                SPRequestPermissionLocationHandler.shared = SPRequestPermissionLocationHandler()
+            }
+            
+            SPRequestPermissionLocationHandler.shared!.requestPermission { (authorized) in
+                DispatchQueue.main.async {
+                    complectionHandler()
+                    SPRequestPermissionLocationHandler.shared = nil
+                }
             }
         }
     }
@@ -212,7 +229,7 @@ class SPContactsPermission: SPPermissionInterface {
         } else {
             let addressBookRef: ABAddressBook = ABAddressBookCreateWithOptions(nil, nil).takeRetainedValue()
             ABAddressBookRequestAccessWithCompletion(addressBookRef) {
-                (granted: Bool, error: CFError!) in
+                (granted: Bool, error: CFError?) in
                 DispatchQueue.main.async() {
                     complectionHandler()
                 }

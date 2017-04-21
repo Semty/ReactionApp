@@ -37,3 +37,23 @@
 /* Switch Language Title */
 "switchLanguageTitle" = "Язык";
 
+/* Write to Developer Header */
+"writeToDeveloperHeader" = "Написать Разработчику";
+
+/* Send Feedback Title */
+"sendToDeveloperTitle" = "Обратная Связь";
+
+/* Help Developer Header */
+"helpDeveloperTitle" = "Вклад в Проект";
+
+/* Help Developer Footer */
+"helpDeveloperFooter" = "Если вы хотите помочь проекту, выполните следующие шаги:\n1. Откройте рекламу\n2. Когда она появится, нажмите на нее, будто вы заинтересовались предложенным продуктом\n3. Получите плюс к карме от бедного разработчика :)";
+
+/* Watch Video Ad Title */
+"watchAdTitle" = "Смотреть Рекламу";
+
+
+
+
+
+

@@ -39,6 +39,8 @@ open class SPRequestPermissionDialogInteractiveDataSource: NSObject, SPRequestPe
             iconBezierPath = SPBezierPathFigure.icons.calendar()
         case .Location:
             iconBezierPath = SPBezierPathFigure.icons.location()
+        case .LocationWithBackground:
+            iconBezierPath = SPBezierPathFigure.icons.location()
         case .Contacts:
             iconBezierPath = SPBezierPathFigure.icons.contacts()
         case .Reminders:
@@ -70,6 +72,8 @@ open class SPRequestPermissionDialogInteractiveDataSource: NSObject, SPRequestPe
         case .Calendar:
             title = SPRequestPermissionData.texts.enable_calendar()
         case .Location:
+            title = SPRequestPermissionData.texts.enable_location()
+        case .LocationWithBackground:
             title = SPRequestPermissionData.texts.enable_location()
         case .Contacts:
             title = SPRequestPermissionData.texts.enable_contacts()

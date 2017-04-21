@@ -1,4 +1,4 @@
-![](/resources/sparrow - banner.png)
+![](/resources/sparrow-banner.png)
 
 ## Readme soon add
 In the near future I will give in the order of projects and add readme for libraries

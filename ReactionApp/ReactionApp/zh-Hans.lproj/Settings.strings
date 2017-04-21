@@ -37,3 +37,17 @@
 /* Training Settings Title */
 "trainingNotificationTitle" = "开 / 关";
 
+/* Write to Developer Header */
+"writeToDeveloperHeader" = "写信给开发人员";
+
+/* Send Feedback Title */
+"sendToDeveloperTitle" = "发送反馈";
+
+/* Help Developer Header */
+"helpDeveloperTitle" = "对项目的贡献";
+
+/* Help Developer Footer */
+"helpDeveloperFooter" = "如果要帮助项目，请按照下列步骤操作：\n1。 打开广告\n2。 当它出现时，点击它，就像你对拟议的产品感兴趣\n3。 从开发人员获得加成的业绩 :)";
+
+/* Watch Video Ad Title */
+"watchAdTitle" = "观看广告";

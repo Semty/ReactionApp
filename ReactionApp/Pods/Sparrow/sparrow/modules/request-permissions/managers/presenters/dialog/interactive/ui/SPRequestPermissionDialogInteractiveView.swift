@@ -75,7 +75,7 @@ public class SPRequestPermissionDialogInteractiveView: UIView {
         self.bottomLabel.numberOfLines = 0
         self.buttonsContainerView.maxItemSideSize = 50
         self.buttonsContainerView.spaceFactor = 0.055
-        self.buttonsContainerView.minSpace = 8
+        self.buttonsContainerView.minSpace = 20
     }
     
     override public func layoutSubviews() {
