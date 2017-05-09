@@ -21,17 +21,15 @@
 
 import UIKit
 
-protocol SPRequestPermissionDialogInteractiveViewControllerInterface {
+public protocol SPRequestPermissionDialogInteractiveViewControllerInterface: class {
     
-    var presenterDelegate: SPRequestPermissionDialogInteractivePresenterDelegate? {get set}
-    
-    func present(on viewController: UIViewController)
+    var presenter: SPRequestPermissionDialogInteractivePresenterDelegate {get set}
     
     func hide()
     
     func addControl(_ control: SPRequestPermissionTwiceControlInterface)
     
-    //MARK: Data
+    //MARK: setting data source
     func setHeaderBackgroundView(_ view: UIView)
     func setHeaderTitle(_ title: String)
     func setHeaderSubtitle(_ title: String)

@@ -11,6 +11,7 @@ import RealmSwift
 import MessageUI
 import ChameleonFramework
 import Eureka
+import Sparrow
 
 class SettingsViewController: FormViewController, MFMailComposeViewControllerDelegate {
     

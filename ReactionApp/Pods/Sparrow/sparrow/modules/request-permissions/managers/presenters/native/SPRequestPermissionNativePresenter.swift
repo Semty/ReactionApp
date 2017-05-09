@@ -21,63 +21,34 @@
 
 import UIKit
 
-public class SPRequestPermissionNativePresenter: SPRequestPermissionPresenterInterface {
+class SPRequestPermissionNativePresenter {
     
-    weak public var assistantDelegate: SPRequestPermissionAssistantDelegate?
+    var eventsDelegate: SPRequestPermissionEventsDelegate?
     
-    private var permissions = [SPRequestPermissionType]()
+    private var permissions: [SPRequestPermissionType] = []
+    private var permissionManager: SPPermissionsManagerInterface = SPPermissionsManager()
     
-    public func present(on viewController: UIViewController) {
-        var subPermissions = [SPRequestPermissionType]()
-        for permission in permissions {
-            if !(assistantDelegate?.isAllowPermission(permission) ?? true) {
-                assistantDelegate?.requestPersmisson(permission, with: {
-                    subPermissions.append(permission)
-                    if subPermissions.count == self.permissions.count {
-                        if !(self.assistantDelegate?.isAllowPermissions() ?? true) {
-                            self.showDialogForProtectPermissionOnViewController(on: viewController)
-                        }
-                    }
-                })
-            }
-        }
+    //MARK: - init
+    init(with permissions: [SPRequestPermissionType]) {
+        self.permissions = permissions
+        self.permissions.removeDuplicates()
     }
     
-    public func set(permissions: [SPRequestPermissionType]) {
-        for permission in permissions {
-            self.permissions.append(permission)
-        }
-    }
-    
-    private func showDialogForProtectPermissionOnViewController(on viewController: UIViewController) {
-        let alert = UIAlertController.init(
-            title: SPRequestPermissionData.texts.titleDisablePermissionAlertText(),
-            message: SPRequestPermissionData.texts.subtitleDisablePermissionAlertText(),
-            preferredStyle: UIAlertControllerStyle.alert
-        )
-        
-        alert.addAction(UIAlertAction.init(
-            title: SPRequestPermissionData.texts.cancel(),
-            style: UIAlertActionStyle.cancel,
-            handler: nil)
-        )
-        
-        alert.addAction(UIAlertAction.init(
-            title: SPRequestPermissionData.texts.settings(),
-            style: UIAlertActionStyle.default,
-            handler: {
-                finished in
-
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(
-                        URL.init(string: UIApplicationOpenSettingsURLString)!,
-                        options: [:],
-                        completionHandler: nil
-                    )
+    func requestPermissions() {
+        for permission in self.permissions {
+            self.eventsDelegate?.didSelectedPermission(permission: permission)
+            self.permissionManager.requestPermission(permission, with: {
+                if self.permissionManager.isAuthorizedPermission(permission) {
+                    self.eventsDelegate?.didAllowPermission(permission: permission)
                 } else {
-                    UIApplication.shared.openURL(URL.init(string: UIApplicationOpenSettingsURLString)!)
+                    self.eventsDelegate?.didDeniedPermission(permission: permission)
                 }
-        }))
-        viewController.present(alert, animated: true, completion: nil)
+                
+                if self.permissions.last == permission {
+                    self.eventsDelegate?.didHide()
+                }
+            })
+        }
     }
+
 }

@@ -84,17 +84,17 @@ class PermissionsDataSource: SPRequestPermissionDialogInteractiveDataSource {
     override func titleForPermissionControl(_ permission: SPRequestPermissionType) -> String {
         var title = String()
         switch permission {
-        case .Camera:
+        case .camera:
             title = titleForPermissionCameraLString
-        case .PhotoLibrary:
+        case .photoLibrary:
             title = titleForPermissionPhotoLibraryLString
-        case .Notification:
+        case .notification:
             title = titleForPermissionNotificationLString
-        case .Microphone:
+        case .microphone:
             title = titleForPermissionMicrophoneLString
-        case .Calendar:
+        case .calendar:
             title = titleForPermissionCalendarLString
-        case .Location:
+        case .locationWhenInUse:
             title = titleForPermissionLocationLString
         default: break
         }

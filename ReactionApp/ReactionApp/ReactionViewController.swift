@@ -84,21 +84,17 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
         return adBannerView
     }()
     
-    public var permissionAssistant =
-        SPRequestPermissionAssistant.modules.dialog.interactive.create(
-            with: [.Notification],
-            dataSourceForController: PermissionsDataSource())
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         updateAdBanner()
         self.view.addSubview(adBannerView)
         
-        permissionAssistant.eventsDelegate = self
-        
         if UserDefaultManager.shared.loadValue(forKey: .kShowPermissions) == nil {
-            permissionAssistant.present(on: self.tabBarController!)
+            SPRequestPermission.dialog.interactive.present(on: self.tabBarController!,
+                                                           with: [.notification],
+                                                           dataSource: PermissionsDataSource(),
+                                                           delegate: self)
             
             let defaultRingTime = NotificationManager.shared.currentDate(withHour: 20, andMinute: 00)
             NotificationManager.shared.setUpLocalNotification(date: defaultRingTime)
