@@ -163,12 +163,17 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
     
     var maxSavingTime = Int()
     
+    var adWatchingIsDisabled = true
+    
     var videoAdManager: VideoAdManager!
     
 // MARK: - Functions
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        videoAdManager = VideoAdManager(withSettingsVC: self)
+        videoAdManager.settingsVC = self
         
         isNotificationsOn = UIApplication.shared.currentUserNotificationSettings?.types == [] ? false
                             : UserDefaultManager.shared.loadValue(forKey: .kNotificationsOn) as? Bool ?? true
@@ -200,11 +205,14 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
             
             <<< ButtonRow("videoAdButtonTag") {
                 $0.title = watchAdTitle
+                $0.disabled = Condition(booleanLiteral: adWatchingIsDisabled)
                 $0.baseCell.backgroundColor = FlatSkyBlueDark()
                 $0.baseCell.tintColor = .white
                 }.onCellSelection { cell, row in
                     self.showAdBunner()
-        }
+                }.cellUpdate { cell, row in
+                    row.disabled = Condition(booleanLiteral: self.adWatchingIsDisabled)
+                }
         
         form +++ Section(header: redCircleTimeHeader,
                          footer: "")
@@ -336,8 +344,6 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
                 }).cellUpdate({ cell, row in
                     NotificationManager.shared.setUpLocalNotification(date: row.value!)
                 })
-        
-        videoAdManager = VideoAdManager(withSettingsVC: self)
     }
 
     override func didReceiveMemoryWarning() {

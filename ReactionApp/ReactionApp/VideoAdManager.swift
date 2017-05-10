@@ -38,6 +38,8 @@ class VideoAdManager: NSObject, GADRewardBasedVideoAdDelegate {
             let request = GADRequest()
             GADRewardBasedVideoAd.sharedInstance().load(request,
                                                         withAdUnitID: videoAdID)
+        } else {
+            changeAdButtonAccess(withDisabled: false)
         }
     }
     
@@ -50,13 +52,15 @@ class VideoAdManager: NSObject, GADRewardBasedVideoAdDelegate {
     
     /// Tells the delegate that the reward based video ad failed to load.
     func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didFailToLoadWithError error: Error) {
+        changeAdButtonAccess(withDisabled: true)
         loadAd()
     }
     
     
     /// Tells the delegate that a reward based video ad was received.
     func rewardBasedVideoAdDidReceive(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
-
+        print("rewardBasedVideoAdDidReceive!")
+        changeAdButtonAccess(withDisabled: false)
     }
     
     
@@ -74,12 +78,24 @@ class VideoAdManager: NSObject, GADRewardBasedVideoAdDelegate {
     
     /// Tells the delegate that the reward based video ad closed.
     func rewardBasedVideoAdDidClose(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
+        changeAdButtonAccess(withDisabled: true)
         loadAd()
     }
     
     
     /// Tells the delegate that the reward based video ad will leave the application.
     func rewardBasedVideoAdWillLeaveApplication(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
-        
+        changeAdButtonAccess(withDisabled: true)
+        loadAd()
+    }
+    
+// MARK: - Change ad button enable
+    
+    func changeAdButtonAccess(withDisabled isDisable: Bool) {
+        if settingsVC?.adWatchingIsDisabled != isDisable {
+            settingsVC?.adWatchingIsDisabled = isDisable
+            settingsVC?.form.rowBy(tag: "videoAdButtonTag")?.updateCell()
+            settingsVC?.form.rowBy(tag: "videoAdButtonTag")?.evaluateDisabled()
+        }
     }
 }
