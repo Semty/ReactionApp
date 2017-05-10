@@ -25,6 +25,8 @@ target 'ReactionApp' do
   
   pod 'Eureka', '~> 2.0'
   
+  pod 'PopupDialog', '~> 0.5'
+  
   pod 'Sparrow/Modules/RequestPermission', :git => 'https://github.com/IvanVorobei/Sparrow.git’
 
   target 'ReactionAppTests' do

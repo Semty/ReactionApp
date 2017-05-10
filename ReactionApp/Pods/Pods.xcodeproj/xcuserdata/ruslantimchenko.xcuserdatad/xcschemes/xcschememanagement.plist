@@ -39,6 +39,11 @@
 			<key>orderHint</key>
 			<integer>7</integer>
 		</dict>
+		<key>PopupDialog.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>14</integer>
+		</dict>
 		<key>RAMAnimatedTabBarController.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -87,6 +92,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>37CDE4E4FE9613EA6B10407FDA5F052E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>3CF954E16E49466A4977DF18B020CE72</key>
 		<dict>
 			<key>primary</key>
@@ -117,7 +127,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>8ADA62363F90D10B8DEA63D7F231C59B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A577E8A55AD110DBD7A81BDB12C8ABBE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A80118EC72E52936494D9EE152AE5969</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C85595F6FEEBC5450F776120A6BDB279</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CB1B2B63E600300A3718413304A30722</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -133,6 +163,11 @@
 			<true/>
 		</dict>
 		<key>E8A5115C6D378F2E37199B17CD66FAFE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E8A6A48ACE05EEA14C866576190ADAB3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

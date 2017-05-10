@@ -11,6 +11,7 @@ import UIKit
 enum UserDefaultManagerKeys: String {
     case kSimpleStartApp
     case kFirstStartApp
+    case kFirstVideoAdWatching
     case kNotificationsOn
     case kRingTime
     case kMinPreparationTime

@@ -44,10 +44,16 @@
 "sendToDeveloperTitle" = "Envoyer des commentaires";
 
 /* Help Developer Header */
-"helpDeveloperTitle" = "Contribution au projet";
+"helpDeveloperHeader" = "Contribution au projet";
 
 /* Help Developer Footer */
 "helpDeveloperFooter" = "Si vous souhaitez aider le projet, procédez comme suit:\n1. Ouvrez le publicité\n2. Lorsque cela apparaît, cliquez dessus, comme si vous étiez intéressé par le produit proposé\n3. Obtenez le plus pour le karma du développeur pauvre :)";
+
+/* Help Developer Confirmation */
+"helpDeveloperConfirmation" = "Je peux cliquer et sans votre explication 😊";
+
+/* Help Developer Title */
+"helpDeveloperTitle" = "Consultez les annonces sans cliquer dessus ñ'a pas de sens";
 
 /* Watch Video Ad Title */
 "watchAdTitle" = "Voir Publicité";

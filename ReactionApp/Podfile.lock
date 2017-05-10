@@ -9,6 +9,7 @@ PODS:
   - Eureka (2.0.1)
   - Google-Mobile-Ads-SDK (7.20.0)
   - LTMorphingLabel (0.5.0)
+  - PopupDialog (0.5.4)
   - RAMAnimatedTabBarController (2.0.13)
   - RandomKit (3.0.0):
     - ShiftOperations
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - Eureka (~> 2.0)
   - Google-Mobile-Ads-SDK
   - LTMorphingLabel
+  - PopupDialog (~> 0.5)
   - RAMAnimatedTabBarController (~> 2.0.13)
   - RandomKit (~> 3.0.0)
   - Sparrow/Modules/RequestPermission (from `https://github.com/IvanVorobei/Sparrow.git`)
@@ -52,6 +54,7 @@ SPEC CHECKSUMS:
   Eureka: ae837bb1dfae0c07bc1bda7aeef87876eeb537c2
   Google-Mobile-Ads-SDK: 168312cdc167fa22746d4ea8e839fc4825dd2966
   LTMorphingLabel: bc170be74b219b7dae0e5543a44676d16da70ff7
+  PopupDialog: 75cf955693590b0cb2fdde00223fb65d99c57247
   RAMAnimatedTabBarController: 2510f3b66954c3f77ea1042a35d34df8f5f3b604
   RandomKit: 03b4be99ecc35850b794e0185689931d72024e93
   Realm: ceecf1a4540c4ce9efe196fe73fa9855bce05bd8
@@ -59,6 +62,6 @@ SPEC CHECKSUMS:
   ShiftOperations: 0c77c06851e7976c2665d601b46af123dbffeade
   Sparrow: 30b0e315a27798d7a56757250499449ac6b663c3
 
-PODFILE CHECKSUM: c1f80558dec43556d83670680566784708865346
+PODFILE CHECKSUM: a240f53aef5d825167aa593a9396fb05bba55f5e
 
 COCOAPODS: 1.2.0

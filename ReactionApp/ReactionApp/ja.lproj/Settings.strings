@@ -44,10 +44,16 @@
 "sendToDeveloperTitle" = "フィードバックを送信する";
 
 /* Help Developer Header */
-"helpDeveloperTitle" = "プロジェクトへの貢献";
+"helpDeveloperHeader" = "プロジェクトへの貢献";
 
 /* Help Developer Footer */
 "helpDeveloperFooter" = "プロジェクトを手助けしたい場合は、次の手順を実行します\n1。 広告を開きます\n2。 それが表示されたら、あなたが提案された製品に興味があるかのようにそれをクリックしてください";
+
+/* Help Developer Confirmation */
+"helpDeveloperConfirmation" = "私は広告をクリックすることができます 😊";
+
+/* Help Developer Title */
+"helpDeveloperTitle" = "表示しているときに広告をクリックして下さい";
 
 /* Watch Video Ad Title */
 "watchAdTitle" = "時計広告";

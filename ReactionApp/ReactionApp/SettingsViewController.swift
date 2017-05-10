@@ -11,6 +11,7 @@ import RealmSwift
 import MessageUI
 import ChameleonFramework
 import Eureka
+import PopupDialog
 import Sparrow
 
 class SettingsViewController: FormViewController, MFMailComposeViewControllerDelegate {
@@ -112,8 +113,15 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
                           value: "Send Feedback",
                           comment: "Send Feedback Title")
     
-    let helpDeveloperHeader =
+    let helpDeveloperTitle =
         NSLocalizedString("helpDeveloperTitle",
+                          tableName: "Settings",
+                          bundle: Bundle.main,
+                          value: "Viewing ad Without Clicking on it Doesn't Make Sense",
+                          comment: "Help Developer Title")
+    
+    let helpDeveloperHeader =
+        NSLocalizedString("helpDeveloperHeader",
                           tableName: "Settings",
                           bundle: Bundle.main,
                           value: "Contribution to the Project",
@@ -125,6 +133,13 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
                           bundle: Bundle.main,
                           value: "If you want to help the project, follow these steps:\n1. Open the advertisement\n2. When it appears, click on it, as if you are interested in the proposed product\n3. Get the plus to the karma from the poor developer :)",
                           comment: "Help Developer Footer")
+    
+    let helpDeveloperConfirmation =
+        NSLocalizedString("helpDeveloperConfirmation",
+                          tableName: "Settings",
+                          bundle: Bundle.main,
+                          value: "I can click without your explanation 😊",
+                          comment: "Help Developer Confirmation")
     
     let watchAdTitle =
         NSLocalizedString("watchAdTitle",
@@ -181,14 +196,14 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
         }
         
         form +++ Section(header: helpDeveloperHeader,
-                         footer: helpDeveloperFooter)
+                         footer: "")
             
             <<< ButtonRow("videoAdButtonTag") {
                 $0.title = watchAdTitle
                 $0.baseCell.backgroundColor = FlatSkyBlueDark()
                 $0.baseCell.tintColor = .white
                 }.onCellSelection { cell, row in
-                    self.videoAdManager.watchAd()
+                    self.showAdBunner()
         }
         
         form +++ Section(header: redCircleTimeHeader,
@@ -381,6 +396,33 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Swift.Error?) {
         controller.dismiss(animated: true, completion: nil)
+    }
+    
+// MARK: - First Video Ad Watching
+    
+    func showAdBunner() {
+        
+        if UserDefaultManager.shared.loadValue(forKey: .kFirstVideoAdWatching) == nil {
+            let title = helpDeveloperTitle
+            let message = helpDeveloperFooter
+            
+            let popup = PopupDialog(title: title,
+                                    message: message,
+                                    buttonAlignment: .horizontal,
+                                    transitionStyle: .zoomIn,
+                                    gestureDismissal: false)
+            
+            let okButton = CancelButton(title: helpDeveloperConfirmation) {
+                UserDefaultManager.shared.save(value: false, forKey: .kFirstVideoAdWatching)
+                self.videoAdManager.watchAd()
+            }
+            
+            popup.addButton(okButton)
+            
+            self.present(popup, animated: true, completion: nil)
+        } else {
+            self.videoAdManager.watchAd()
+        }
     }
 
     /*

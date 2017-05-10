@@ -44,10 +44,16 @@
 "sendToDeveloperTitle" = "发送反馈";
 
 /* Help Developer Header */
-"helpDeveloperTitle" = "对项目的贡献";
+"helpDeveloperHeader" = "对项目的贡献";
 
 /* Help Developer Footer */
 "helpDeveloperFooter" = "如果要帮助项目，请按照下列步骤操作：\n1。 打开广告\n2。 当它出现时，点击它，就像你对拟议的产品感兴趣\n3。 从开发人员获得加成的业绩 :)";
+
+/* Help Developer Confirmation */
+"helpDeveloperConfirmation" = "我可以点击广告 😊";
+
+/* Help Developer Title */
+"helpDeveloperTitle" = "观看时点击广告";
 
 /* Watch Video Ad Title */
 "watchAdTitle" = "观看广告";
