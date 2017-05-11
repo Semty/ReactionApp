@@ -12,6 +12,7 @@ enum UserDefaultManagerKeys: String {
     case kSimpleStartApp
     case kFirstStartApp
     case kFirstVideoAdWatching
+    case kStartAppCount
     case kNotificationsOn
     case kRingTime
     case kMinPreparationTime

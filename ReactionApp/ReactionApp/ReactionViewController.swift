@@ -12,6 +12,7 @@ import LTMorphingLabel
 import RandomKit
 import RealmSwift
 import Sparrow
+import StoreKit
 
 class ReactionViewController:   UIViewController, SPRequestPermissionEventsDelegate,
                                 GADBannerViewDelegate {
@@ -136,6 +137,9 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
  
         }
         */
+        
+        // Rate App Alert for iOS 10.3 and higher
+        rateApp(afterStartAppTimes: 3)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -424,6 +428,17 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
         } else {
             self.adBannerView.isHidden = false
             self.relayoutAdBannerView()
+        }
+    }
+    
+// MARK: - Rate App
+    
+    func rateApp(afterStartAppTimes times: Int) {
+        if #available(iOS 10.3, *) {
+            let startappCount = UserDefaultManager.shared.loadValue(forKey: .kStartAppCount) as! Int
+            if startappCount >= times {
+                SKStoreReviewController.requestReview()
+            }
         }
     }
 

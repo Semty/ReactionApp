@@ -25,6 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Localizer.DoTheMagic()
         
+        if let startAppCount = UserDefaultManager.shared.loadValue(forKey: .kStartAppCount) as? Int {
+            UserDefaultManager.shared.save(value: startAppCount + 1, forKey: .kStartAppCount)
+        } else {
+            UserDefaultManager.shared.save(value: 1, forKey: .kStartAppCount)
+        }
+        
         return true
     }
 
