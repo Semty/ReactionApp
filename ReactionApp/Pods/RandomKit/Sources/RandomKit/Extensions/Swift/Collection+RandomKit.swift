@@ -4,7 +4,7 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2015-2016 Nikolai Vazquez
+//  Copyright (c) 2015-2017 Nikolai Vazquez
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,135 +25,373 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+extension Collection {
 
-extension Collection where Index: RandomWithinRange {
-
-    /// Returns a random element of `self`, or `nil` if `self` is empty.
-    public var random: Iterator.Element? {
-        return random(using: .default)
+    internal var _indexRange: Range<Index> {
+        return Range(uncheckedBounds: (startIndex, endIndex))
     }
 
-    /// Returns a random element of `self`, or `nil` if `self` is empty.
-    public func random(using randomGenerator: RandomGenerator) -> Iterator.Element? {
-        guard let index = Index.random(within: Range(uncheckedBounds: (startIndex, endIndex))) else {
-            return nil
+    fileprivate func _boundsCheck(range: Range<Index>, line: UInt = #line) {
+        if range.lowerBound < startIndex || range.upperBound > endIndex {
+            fatalError("Range \(range) out of bounds", line: line)
         }
-        return self[index]
     }
 
 }
 
-extension Collection where Index: RandomWithinRange, IndexDistance: RandomToValue {
+extension Collection where Self: RandomRetrievable {
 
-    /// Returns a random element of `self`, or `nil` if `self` is empty.
-    public var random: Iterator.Element? {
-        return random(using: .default)
-    }
-
-    /// Returns a random element of `self`, or `nil` if `self` is empty.
-    public func random(using randomGenerator: RandomGenerator) -> Iterator.Element? {
-        guard let index = Index.random(within: Range(uncheckedBounds: (startIndex, endIndex))) else {
-            return nil
-        }
-        return self[index]
+    /// Returns an optional random element in `self`. The result is `nil` if `self` is empty.
+    public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Iterator.Element? {
+        return isEmpty ? nil : uncheckedRandom(using: &randomGenerator)
     }
 
 }
 
-extension Collection where IndexDistance: RandomToValue {
+extension Collection where Self: RandomRetrievableInRange {
 
-    /// Returns a random element of `self`, or `nil` if `self` is empty.
-    public var random: Iterator.Element? {
-        return random(using: .default)
+    /// Returns a random element in `self` without checking whether `self` is empty.
+    public func uncheckedRandom<R: RandomGenerator>(using randomGenerator: inout R) -> Iterator.Element {
+        return uncheckedRandom(in: _indexRange, using: &randomGenerator)
     }
 
-    /// Returns a random element of `self`, or `nil` if `self` is empty.
-    public func random(using randomGenerator: RandomGenerator) -> Iterator.Element? {
-        guard !self.isEmpty else {
-            return nil
-        }
-        let elementIndex = IndexDistance.random(to: distance(from: startIndex, to: endIndex), using: randomGenerator)
-        return self[index(startIndex, offsetBy: elementIndex)]
+
+    /// Returns an optional random element in `self`. The result is `nil` if `self` is empty.
+    public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Iterator.Element? {
+        let range = _indexRange
+        return range.isEmpty ? nil : uncheckedRandom(in: range, using: &randomGenerator)
+    }
+
+    /// Returns an optional random element in `range`. The result is `nil` if `self` or `range` is empty.
+    public func random<R: RandomGenerator>(in range: Range<Index>, using randomGenerator: inout R) -> Iterator.Element? {
+        return isEmpty || range.isEmpty ? nil : uncheckedRandom(in: range, using: &randomGenerator)
     }
 
 }
 
-extension MutableCollection where Self: Shuffleable, Index: Strideable & RandomWithinRange, Index.Stride: SignedInteger {
+extension RandomRetrievableInRange where Self: Collection, Self.Index: RandomInRange {
 
-    /// Shuffles the elements in `self` and returns the result.
-    public func shuffled(using randomGenerator: RandomGenerator) -> Self {
-        return shuffled(from: startIndex, to: endIndex, using: randomGenerator)
+    /// Returns a random element in `range` without checking whether `self` or `range` is empty.
+    public func uncheckedRandom<R: RandomGenerator>(in range: Range<Index>, using randomGenerator: inout R) -> Iterator.Element {
+        return self[Index.uncheckedRandom(in: range, using: &randomGenerator)]
     }
 
-    /// Shuffles the elements in `self`.
-    public mutating func shuffle(using randomGenerator: RandomGenerator) {
-        shuffle(from: startIndex, to: endIndex, using: randomGenerator)
+}
+
+extension RandomRetrievableInRange where Self: Collection, Self.Index: RandomInRange, Self.IndexDistance: RandomToValue {
+
+    /// Returns a random element in `range` without checking whether `self` or `range` is empty.
+    public func uncheckedRandom<R: RandomGenerator>(in range: Range<Index>, using randomGenerator: inout R) -> Iterator.Element {
+        return self[Index.uncheckedRandom(in: range, using: &randomGenerator)]
     }
 
-    /// Shuffles the elements in `self` from `startIndex` to `endIndex` and returns the result.
-    public func shuffled(from startIndex: Index,
-                         to endIndex: Index,
-                         using randomGenerator: RandomGenerator = .default) -> Self {
+}
+
+extension Collection where Self: RandomRetrievableInRange, IndexDistance: RandomToValue {
+
+    /// Returns a random element of `self`, or `nil` if `self` is empty.
+    public func uncheckedRandom<R: RandomGenerator>(in range: Range<Index>, using randomGenerator: inout R) -> Iterator.Element {
+        let upper = range.upperBound
+        let lower = range.lowerBound
+        let elementIndex = IndexDistance.random(to: distance(from: lower, to: upper), using: &randomGenerator)
+        return self[index(lower, offsetBy: elementIndex)]
+    }
+
+}
+
+extension MutableCollection where Self: Shuffleable {
+
+    /// Shuffles the elements of `self` and returns the result.
+    public func shuffled<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
         var copy = self
-        copy.shuffle(from: startIndex, to: endIndex, using: randomGenerator)
+        copy.shuffle(using: &randomGenerator)
         return copy
     }
 
-    /// Shuffles the elements in `self` from `startIndex` to `endIndex`.
-    public mutating func shuffle(from startIndex: Index,
-                                 to endIndex: Index,
-                                 using randomGenerator: RandomGenerator = .default) {
-        let range = startIndex ..< endIndex
-        for i in range {
-            if let j = Index.random(within: range, using: randomGenerator), j != i {
+}
+
+extension MutableCollection where Self: ShuffleableInRange {
+
+    /// Shuffles the elements of `self` in `range` and returns the result.
+    public func shuffled<R: RandomGenerator>(in range: Range<Index>, using randomGenerator: inout R) -> Self {
+        var copy = self
+        copy.shuffle(in: range, using: &randomGenerator)
+        return copy
+    }
+
+}
+
+extension MutableCollection where Self: UniqueShuffleable {
+
+    /// Shuffles the elements of `self` in a unique order and returns the result.
+    public func shuffledUnique<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
+        var copy = self
+        copy.shuffleUnique(using: &randomGenerator)
+        return copy
+    }
+
+}
+
+extension MutableCollection where Self: UniqueShuffleableInRange {
+
+    /// Shuffles the elements of `self` in a unique order in `range` and returns the result.
+    public func shuffledUnique<R: RandomGenerator>(in range: Range<Index>, using randomGenerator: inout R) -> Self {
+        var copy = self
+        copy.shuffleUnique(in: range, using: &randomGenerator)
+        return copy
+    }
+
+}
+
+extension UnsafeBufferPointer: RandomRetrievableInRange {}
+
+extension UnsafeMutableBufferPointer: RandomRetrievableInRange, ShuffleableInRange, UniqueShuffleableInRange {
+
+    /// Shuffles the elements of `self`.
+    public func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
+        shuffle(in: indices, using: &randomGenerator)
+    }
+
+    /// Shuffles the elements of `self` in `range`.
+    public func shuffle<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
+        for i in CountableRange(range) {
+            let j = Int.uncheckedRandom(in: range, using: &randomGenerator)
+            if j != i {
                 swap(&self[i], &self[j])
             }
         }
     }
 
+    /// Shuffles the elements of `self` in `range`.
+    public func shuffle<R: RandomGenerator>(in range: CountableRange<Int>, using randomGenerator: inout R) {
+        shuffle(in: Range(range), using: &randomGenerator)
+    }
+
+    /// Shuffles the elements of `self` in a unique order.
+    public func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R) {
+        shuffleUnique(in: indices, using: &randomGenerator)
+    }
+
+    /// Shuffles the elements of `self` in a unique order in `range`.
+    public func shuffleUnique<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
+        if range.isEmpty {
+            return
+        }
+        for i in CountableRange(uncheckedBounds: (range.lowerBound, range.upperBound &- 1)) {
+            let randomRange = Range(uncheckedBounds: (i &+ 1, range.upperBound))
+            let j = Int.uncheckedRandom(in: randomRange, using: &randomGenerator)
+            swap(&self[i], &self[j])
+        }
+    }
+
+    /// Shuffles the elements of `self` in a unique order in `range`.
+    public func shuffleUnique<R: RandomGenerator>(in range: CountableRange<Int>, using randomGenerator: inout R) {
+        shuffleUnique(in: Range(range), using: &randomGenerator)
+    }
+
 }
 
-extension MutableCollection where Self: UniqueShuffleable, Index: Strideable & RandomWithinRange, Index.Stride: SignedInteger {
+extension UnsafeRawBufferPointer: RandomRetrievableInRange {}
 
-    /// Shuffles the elements in `self` in a unique order and returns the result.
-    public func shuffledUnique(using randomGenerator: RandomGenerator) -> Self {
-        return shuffledUnique(from: startIndex, to: endIndex, using: randomGenerator)
+extension UnsafeMutableRawBufferPointer: RandomRetrievableInRange, ShuffleableInRange, UniqueShuffleableInRange {
+
+    private var _casted: UnsafeMutableBufferPointer<UInt8> {
+        return UnsafeMutableBufferPointer(start: baseAddress?.assumingMemoryBound(to: UInt8.self), count: count)
     }
 
-    /// Shuffles the elements in `self` in a unique order.
-    public mutating func shuffleUnique(using randomGenerator: RandomGenerator) {
-        shuffleUnique(from: startIndex, to: endIndex, using: randomGenerator)
+    /// Shuffles the elements of `self`.
+    public func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
+        _casted.shuffle(using: &randomGenerator)
     }
 
-    /// Shuffles the elements in `self` in a unique order from `startIndex` to `endIndex` and returns the result.
-    public func shuffledUnique(from startIndex: Index,
-                               to endIndex: Index,
-                               using randomGenerator: RandomGenerator = .default) -> Self {
-        var copy = self
-        copy.shuffleUnique(from: startIndex, to: endIndex, using: randomGenerator)
-        return copy
-
+    /// Shuffles the elements of `self` in `range`.
+    public func shuffle<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
+        _casted.shuffle(in: range, using: &randomGenerator)
     }
 
-    /// Shuffles the elements in `self` in a unique order from `startIndex` to `endIndex`.
-    public mutating func shuffleUnique(from startIndex: Index,
-                                       to endIndex: Index,
-                                       using randomGenerator: RandomGenerator = .default) {
-        for i in startIndex ..< endIndex {
-            if let j = Index.random(within: i.advanced(by: 1) ..< endIndex, using: randomGenerator) {
-                swap(&self[i], &self[j])
+    /// Shuffles the elements of `self` in `range`.
+    public func shuffle<R: RandomGenerator>(in range: CountableRange<Int>, using randomGenerator: inout R) {
+        shuffle(in: Range(range), using: &randomGenerator)
+    }
+
+    /// Shuffles the elements of `self` in a unique order.
+    public func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R) {
+        _casted.shuffleUnique(using: &randomGenerator)
+    }
+
+    /// Shuffles the elements of `self` in a unique order in `range`.
+    public func shuffleUnique<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
+        _casted.shuffleUnique(in: range, using: &randomGenerator)
+    }
+
+    /// Shuffles the elements of `self` in a unique order in `range`.
+    public func shuffleUnique<R: RandomGenerator>(in range: CountableRange<Int>, using randomGenerator: inout R) {
+        shuffleUnique(in: Range(range), using: &randomGenerator)
+    }
+
+}
+
+extension Array: RandomRetrievableInRange, ShuffleableInRange, UniqueShuffleableInRange {
+
+    /// Returns a random element in `range` without checking whether `self` or `range` is empty.
+    public func uncheckedRandom<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) -> Element {
+        let index = Int.uncheckedRandom(in: range, using: &randomGenerator)
+        #if !swift(>=3.1)
+            if let address = _buffer.firstElementAddressIfContiguous {
+                return address[index]
             }
+        #endif
+        return self[index]
+    }
+
+    /// Shuffles the elements of `self`.
+    public mutating func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffle(using: &randomGenerator)
+        }
+    }
+
+    /// Shuffles the elements of `self` in `range`.
+    public mutating func shuffle<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
+        _boundsCheck(range: range)
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffle(in: range, using: &randomGenerator)
+        }
+    }
+
+    /// Shuffles the elements of `self` in a unique order.
+    public mutating func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R) {
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffleUnique(using: &randomGenerator)
+        }
+    }
+
+    /// Shuffles the elements of `self` in a unique order in `range`.
+    public mutating func shuffleUnique<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
+        _boundsCheck(range: range)
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffleUnique(in: range, using: &randomGenerator)
         }
     }
 
 }
 
-extension Array: Shuffleable, UniqueShuffleable {
+extension ContiguousArray: RandomRetrievableInRange, ShuffleableInRange, UniqueShuffleableInRange {
+
+    /// Returns a random element in `range` without checking whether `self` or `range` is empty.
+    public func uncheckedRandom<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) -> Element {
+        let index = Int.uncheckedRandom(in: range, using: &randomGenerator)
+        #if swift(>=3.1)
+            return self[index]
+        #else
+            return _buffer.firstElementAddress[index]
+        #endif
+    }
+
+    /// Shuffles the elements of `self`.
+    public mutating func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffle(using: &randomGenerator)
+        }
+    }
+
+    /// Shuffles the elements of `self` in `range`.
+    public mutating func shuffle<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
+        _boundsCheck(range: range)
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffle(in: range, using: &randomGenerator)
+        }
+    }
+
+    /// Shuffles the elements of `self` in a unique order.
+    public mutating func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R) {
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffleUnique(using: &randomGenerator)
+        }
+    }
+
+    /// Shuffles the elements of `self` in a unique order in `range`.
+    public mutating func shuffleUnique<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
+        _boundsCheck(range: range)
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffleUnique(in: range, using: &randomGenerator)
+        }
+    }
+
 }
 
-extension ArraySlice: Shuffleable, UniqueShuffleable {
+extension ArraySlice: RandomRetrievableInRange, ShuffleableInRange, UniqueShuffleableInRange {
+
+    private func _adjust(range: Range<Int>) -> Range<Int> {
+        let diff = startIndex
+        return Range(uncheckedBounds: (range.lowerBound &- diff, range.upperBound &- diff))
+    }
+
+    /// Returns a random element in `range` without checking whether `self` or `range` is empty.
+    public func uncheckedRandom<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) -> Element {
+        return self[Int.uncheckedRandom(in: range, using: &randomGenerator)]
+    }
+
+    /// Shuffles the elements of `self`.
+    public mutating func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffle(using: &randomGenerator)
+        }
+    }
+
+    /// Shuffles the elements of `self` in `range`.
+    public mutating func shuffle<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
+        _boundsCheck(range: range)
+        let range = _adjust(range: range)
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffle(in: range, using: &randomGenerator)
+        }
+    }
+
+    /// Shuffles the elements of `self` in a unique order.
+    public mutating func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R) {
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffleUnique(using: &randomGenerator)
+        }
+    }
+
+    /// Shuffles the elements of `self` in a unique order in `range`.
+    public mutating func shuffleUnique<R: RandomGenerator>(in range: Range<Int>, using randomGenerator: inout R) {
+        _boundsCheck(range: range)
+        let range = _adjust(range: range)
+        withUnsafeMutableBufferPointer { buffer in
+            buffer.shuffleUnique(in: range, using: &randomGenerator)
+        }
+    }
+
 }
 
-extension ContiguousArray: Shuffleable, UniqueShuffleable {
+extension CollectionOfOne: RandomRetrievableInRange {
+
+    /// Returns a random element in `self` without checking whether `self` is empty.
+    public func uncheckedRandom<R: RandomGenerator>(using randomGenerator: inout R) -> Element {
+        return _unsafeBitCast(self)
+    }
+
+    /// Returns an optional random element in `self`. The result is `nil` if `self` is empty.
+    public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Element? {
+        return first
+    }
+
 }
+
+extension Repeated: RandomRetrievableInRange {
+
+    /// Returns a random element in `self` without checking whether `self` is empty.
+    public func uncheckedRandom<R: RandomGenerator>(using randomGenerator: inout R) -> Element {
+        return repeatedValue
+    }
+
+    /// Returns an optional random element in `self`. The result is `nil` if `self` is empty.
+    public func random<R: RandomGenerator>(using randomGenerator: inout R) -> Element? {
+        return repeatedValue
+    }
+
+}
+
+extension EmptyCollection: RandomRetrievableInRange {}

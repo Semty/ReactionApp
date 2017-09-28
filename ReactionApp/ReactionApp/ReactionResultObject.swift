@@ -13,11 +13,11 @@ class ReactionResultObject: Object {
     
     private let backgroundQueue = DispatchQueue(label: "com.rstimchenko.backgroundQueue")
     
-    dynamic var reactionTime        = 0
+    @objc dynamic var reactionTime        = 0
     
-    dynamic var reactionDate        = Date()
-    dynamic var reactionWeekday     = 0
-    dynamic var reactionDayOfYear   = 0
+    @objc dynamic var reactionDate        = Date()
+    @objc dynamic var reactionWeekday     = 0
+    @objc dynamic var reactionDayOfYear   = 0
     
     func save() {
         backgroundQueue.sync {

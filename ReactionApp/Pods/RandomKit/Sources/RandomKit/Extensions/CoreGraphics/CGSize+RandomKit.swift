@@ -4,7 +4,7 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2015-2016 Nikolai Vazquez
+//  Copyright (c) 2015-2017 Nikolai Vazquez
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -33,21 +33,21 @@ extension CGSize: Random {
 
     /// Generates a random `CGSize`.
     ///
-    /// - returns: Random value within `0...100` for both `width` and `height`.
-    public static func random(using randomGenerator: RandomGenerator) -> CGSize {
-        return random(within: 0...100, 0...100, using: randomGenerator)
+    /// - returns: Random value in `0...100` for both `width` and `height`.
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> CGSize {
+        return random(widthRange: 0...100, heightRange: 0...100, using: &randomGenerator)
     }
 
-    /// Generates a random `CGSize` within the closed ranges.
+    /// Generates a random `CGSize` in the closed ranges.
     ///
-    /// - parameter widthRange: The range within which `width` will be generated.
-    /// - parameter heightRange: The range within which `height` will be generated.
+    /// - parameter widthRange: The range in which `width` will be generated.
+    /// - parameter heightRange: The range in which `height` will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random(within widthRange: ClosedRange<CGFloat>,
-                              _ heightRange: ClosedRange<CGFloat>,
-                              using randomGenerator: RandomGenerator = .default) -> CGSize {
-        return CGSize(width:  .random(within: widthRange,  using: randomGenerator),
-                      height: .random(within: heightRange, using: randomGenerator))
+    public static func random<R: RandomGenerator>(widthRange: ClosedRange<CGFloat>,
+                              heightRange: ClosedRange<CGFloat>,
+                              using randomGenerator: inout R) -> CGSize {
+        return CGSize(width:  .random(in: widthRange,  using: &randomGenerator),
+                      height: .random(in: heightRange, using: &randomGenerator))
     }
 
 }

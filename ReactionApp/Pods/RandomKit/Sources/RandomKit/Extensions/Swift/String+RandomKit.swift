@@ -4,7 +4,7 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2015-2016 Nikolai Vazquez
+//  Copyright (c) 2015-2017 Nikolai Vazquez
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -29,58 +29,58 @@ extension String: Random {
 
     /// Generates a random `String`.
     ///
-    /// - returns: Random value within `UnicodeScalar.randomRange` with length of `10`.
-    public static func random(using randomGenerator: RandomGenerator) -> String {
-        return random(ofLength: 10, within: UnicodeScalar.randomRange, using: randomGenerator)
+    /// - returns: Random value in `UnicodeScalar.randomRange` with length of `10`.
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> String {
+        return random(ofLength: 10, in: UnicodeScalar.randomRange, using: &randomGenerator)
     }
 
     /// Generates a random `String` with a length of `10` inside of the range.
     ///
-    /// - parameter range: The range within which the string will be generated.
+    /// - parameter range: The range in which the string will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random(within range: Range<UnicodeScalar>,
-                              using randomGenerator: RandomGenerator = .default) -> String? {
-        return random(ofLength: 10, within: range, using: randomGenerator)
+    public static func random<R: RandomGenerator>(in range: Range<UnicodeScalar>,
+                              using randomGenerator: inout R) -> String? {
+        return random(ofLength: 10, in: range, using: &randomGenerator)
     }
 
     /// Generates a random `String` of a given length inside of the range.
     ///
     /// - parameter length: The length for the generated string.
-    /// - parameter range: The range within which the string will be generated.
+    /// - parameter range: The range in which the string will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random<I: ExpressibleByIntegerLiteral & Strideable>(ofLength length: I,
-                              within range: Range<UnicodeScalar>,
-                              using randomGenerator: RandomGenerator = .default) -> String? where I.Stride: SignedInteger {
+    public static func random<I: ExpressibleByIntegerLiteral & Strideable, R: RandomGenerator>(ofLength length: I,
+                              in range: Range<UnicodeScalar>,
+                              using randomGenerator: inout R) -> String? where I.Stride: SignedInteger {
+        if range.isEmpty {
+            return nil
+        }
         var result = UnicodeScalarView()
         for _ in 0 ..< length {
-            guard let scalar = UnicodeScalar.random(within: range, using: randomGenerator) else {
-                return nil
-            }
-            result.append(scalar)
+            result.append(UnicodeScalar.uncheckedRandom(in: range, using: &randomGenerator))
         }
         return String(result)
     }
 
     /// Generates a random `String` with a length of `10` inside of the closed range.
     ///
-    /// - parameter closedRange: The range within which the string will be generated.
+    /// - parameter closedRange: The range in which the string will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random(within closedRange: ClosedRange<UnicodeScalar>,
-                              using randomGenerator: RandomGenerator = .default) -> String {
-        return random(ofLength: 10, within: closedRange, using: randomGenerator)
+    public static func random<R: RandomGenerator>(in closedRange: ClosedRange<UnicodeScalar>,
+                              using randomGenerator: inout R) -> String {
+        return random(ofLength: 10, in: closedRange, using: &randomGenerator)
     }
 
     /// Generates a random `String` of a given length inside of the closed range.
     ///
     /// - parameter length: The length for the generated string.
-    /// - parameter closedRange: The range within which the string will be generated. The default is `UnicodeScalar.randomRange`.
+    /// - parameter closedRange: The range in which the string will be generated. The default is `UnicodeScalar.randomRange`.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random<I: ExpressibleByIntegerLiteral & Strideable>(ofLength length: I,
-                              within closedRange: ClosedRange<UnicodeScalar> = UnicodeScalar.randomRange,
-                              using randomGenerator: RandomGenerator = .default) -> String where I.Stride: SignedInteger {
+    public static func random<I: ExpressibleByIntegerLiteral & Strideable, R: RandomGenerator>(ofLength length: I,
+                              in closedRange: ClosedRange<UnicodeScalar> = UnicodeScalar.randomRange,
+                              using randomGenerator: inout R) -> String where I.Stride: SignedInteger {
         var result = UnicodeScalarView()
         for _ in 0 ..< length {
-            result.append(.random(within: closedRange, using: randomGenerator))
+            result.append(.random(in: closedRange, using: &randomGenerator))
         }
         return String(result)
     }
@@ -89,9 +89,9 @@ extension String: Random {
     ///
     /// - parameter characters: The characters from which the string will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random(from characters: CharacterView,
-                              using randomGenerator: RandomGenerator = .default) -> String? {
-        return random(ofLength: 10, from: characters, using: randomGenerator)
+    public static func random<R: RandomGenerator>(from characters: CharacterView,
+                              using randomGenerator: inout R) -> String? {
+        return random(ofLength: 10, from: characters, using: &randomGenerator)
     }
 
     /// Generates a random `String` of a given length from `characters`.
@@ -99,12 +99,12 @@ extension String: Random {
     /// - parameter length: The length for the generated string.
     /// - parameter characters: The characters from which the string will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random<I: ExpressibleByIntegerLiteral & Strideable>(ofLength length: I,
+    public static func random<I: ExpressibleByIntegerLiteral & Strideable, R: RandomGenerator>(ofLength length: I,
                               from characters: CharacterView,
-                              using randomGenerator: RandomGenerator = .default) -> String? where I.Stride: SignedInteger {
+                              using randomGenerator: inout R) -> String? where I.Stride: SignedInteger {
         var result = ""
         for _ in 0 ..< length {
-            guard let random = characters.random(using: randomGenerator) else {
+            guard let random = characters.random(using: &randomGenerator) else {
                 return nil
             }
             result.append(random)
@@ -116,9 +116,9 @@ extension String: Random {
     ///
     /// - parameter scalars: The unicode scalars from which the string will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random(from scalars: UnicodeScalarView,
-                              using randomGenerator: RandomGenerator = .default) -> String? {
-        return random(ofLength: 10, from: scalars, using: randomGenerator)
+    public static func random<R: RandomGenerator>(from scalars: UnicodeScalarView,
+                              using randomGenerator: inout R) -> String? {
+        return random(ofLength: 10, from: scalars, using: &randomGenerator)
     }
 
     /// Generates a random `String` of a given length from `scalars`.
@@ -126,12 +126,12 @@ extension String: Random {
     /// - parameter length: The length for the generated string.
     /// - parameter scalars: The unicode scalars from which the string will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random<I: ExpressibleByIntegerLiteral & Strideable>(ofLength length: I,
+    public static func random<I: ExpressibleByIntegerLiteral & Strideable, R: RandomGenerator>(ofLength length: I,
                               from scalars: UnicodeScalarView,
-                              using randomGenerator: RandomGenerator = .default) -> String? where I.Stride: SignedInteger {
+                              using randomGenerator: inout R) -> String? where I.Stride: SignedInteger {
         var result = UnicodeScalarView()
         for _ in 0 ..< length {
-            guard let random = scalars.random(using: randomGenerator) else {
+            guard let random = scalars.random(using: &randomGenerator) else {
                 return nil
             }
             result.append(random)
@@ -143,9 +143,9 @@ extension String: Random {
     ///
     /// - parameter string: The string whose characters from which the string will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random(from string: String,
-                              using randomGenerator: RandomGenerator = .default) -> String? {
-        return random(ofLength: 10, from: string, using: randomGenerator)
+    public static func random<R: RandomGenerator>(from string: String,
+                              using randomGenerator: inout R) -> String? {
+        return random(ofLength: 10, from: string, using: &randomGenerator)
     }
 
     /// Generates a random `String` of a given length from characters in `string`.
@@ -153,24 +153,29 @@ extension String: Random {
     /// - parameter length: The length for the generated string.
     /// - parameter string: The string whose characters from which the string will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random<I: ExpressibleByIntegerLiteral & Strideable>(ofLength length: I,
+    public static func random<I: ExpressibleByIntegerLiteral & Strideable, R: RandomGenerator>(ofLength length: I,
                               from string: String,
-                              using randomGenerator: RandomGenerator = .default) -> String? where I.Stride: SignedInteger {
-        return random(ofLength: length, from: string.characters, using: randomGenerator)
+                              using randomGenerator: inout R) -> String? where I.Stride: SignedInteger {
+        return random(ofLength: length, from: string.characters, using: &randomGenerator)
     }
 
 }
 
+extension String.UnicodeScalarView: RandomRetrievableInRange {}
+extension String.CharacterView: RandomRetrievableInRange {}
+extension String.UTF8View: RandomRetrievableInRange {}
+extension String.UTF16View: RandomRetrievableInRange {}
+
 extension String: Shuffleable, UniqueShuffleable {
 
     /// Shuffles the elements in `self` and returns the result.
-    public func shuffled(using randomGenerator: RandomGenerator) -> String {
-        return String(Array(characters).shuffled(using: randomGenerator))
+    public func shuffled<R: RandomGenerator>(using randomGenerator: inout R) -> String {
+        return String(Array(characters).shuffled(using: &randomGenerator))
     }
 
     /// Shuffles the elements in `self` in a unique order and returns the result.
-    public func shuffledUnique(using randomGenerator: RandomGenerator) -> String {
-        return String(Array(characters).shuffledUnique(using: randomGenerator))
+    public func shuffledUnique<R: RandomGenerator>(using randomGenerator: inout R) -> String {
+        return String(Array(characters).shuffledUnique(using: &randomGenerator))
     }
 
 }
@@ -178,13 +183,13 @@ extension String: Shuffleable, UniqueShuffleable {
 extension String.CharacterView: Shuffleable, UniqueShuffleable {
 
     /// Shuffles the elements in `self` and returns the result.
-    public func shuffled(using randomGenerator: RandomGenerator) -> String.CharacterView {
-        return String.CharacterView(Array(self).shuffled(using: randomGenerator))
+    public func shuffled<R: RandomGenerator>(using randomGenerator: inout R) -> String.CharacterView {
+        return String.CharacterView(Array(self).shuffled(using: &randomGenerator))
     }
 
     /// Shuffles the elements in `self` in a unique order and returns the result.
-    public func shuffledUnique(using randomGenerator: RandomGenerator) -> String.CharacterView {
-        return String.CharacterView(Array(self).shuffledUnique(using: randomGenerator))
+    public func shuffledUnique<R: RandomGenerator>(using randomGenerator: inout R) -> String.CharacterView {
+        return String.CharacterView(Array(self).shuffledUnique(using: &randomGenerator))
     }
 
 }

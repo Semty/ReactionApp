@@ -80,7 +80,7 @@ class ShrinkingLTMortphingLabel: LTMorphingLabel {
         let size = text.boundingRect(
             with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: frame.height),
             options: [NSStringDrawingOptions.usesLineFragmentOrigin],
-            attributes: [NSFontAttributeName: originalFont!],
+            attributes: [NSAttributedStringKey.font: originalFont!],
             context: nil).size
         
         return ceil(size.width)

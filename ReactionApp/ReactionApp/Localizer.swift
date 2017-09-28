@@ -17,7 +17,7 @@ class Localizer: NSObject {
 }
 
 extension Bundle {
-    func specialLocalizedStringForKey(_ key: String, value: String?,
+    @objc func specialLocalizedStringForKey(_ key: String, value: String?,
                                       table tableName: String?) -> String {
         if self == Bundle.main {
             let currentLanguage = Language.currentAppleLanguage()
@@ -41,8 +41,8 @@ extension Bundle {
 
 /// Exchange the implementation of two methods of the same Class
 func MethodSwizzleGivenClassName(cls: AnyClass, originalSelector: Selector, overrideSelector: Selector) {
-    let origMethod: Method = class_getInstanceMethod(cls, originalSelector);
-    let overrideMethod: Method = class_getInstanceMethod(cls, overrideSelector);
+    let origMethod: Method = class_getInstanceMethod(cls, originalSelector)!;
+    let overrideMethod: Method = class_getInstanceMethod(cls, overrideSelector)!;
     if (class_addMethod(cls, originalSelector, method_getImplementation(overrideMethod), method_getTypeEncoding(overrideMethod))) {
         class_replaceMethod(cls, overrideSelector, method_getImplementation(origMethod), method_getTypeEncoding(origMethod));
     } else {

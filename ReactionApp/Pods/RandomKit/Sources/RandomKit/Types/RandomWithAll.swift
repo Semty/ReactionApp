@@ -4,7 +4,7 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2015-2016 Nikolai Vazquez
+//  Copyright (c) 2015-2017 Nikolai Vazquez
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -44,7 +44,7 @@
 ///
 /// }
 ///
-/// let random = Direction.random()  // east
+/// let random = Direction.random(using: &randomGenerator)  // east
 /// ```
 public protocol RandomWithAll: Random {
 
@@ -58,8 +58,8 @@ extension RandomWithAll {
     /// Generates a random value of `Self` using `randomGenerator`.
     ///
     /// - warning: `Self.all` should be non-empty or else this will cause a crash.
-    public static func random(using randomGenerator: RandomGenerator) -> Self {
-        return all.random(using: randomGenerator).unsafelyUnwrapped
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
+        return all.uncheckedRandom(using: &randomGenerator)
     }
 
 }

@@ -4,7 +4,7 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2015-2016 Nikolai Vazquez
+//  Copyright (c) 2015-2017 Nikolai Vazquez
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,71 +25,69 @@
 //  THE SOFTWARE.
 //
 
-extension UnicodeScalar: Random, RandomWithinRange, RandomWithinClosedRange {
+extension UnicodeScalar: Random, RandomInRange, RandomInClosedRange {
 
     /// A unicode scalar range from `" "` through `"~"`.
     public static let randomRange: ClosedRange<UnicodeScalar> = " "..."~"
 
     /// Generates a random value of `Self`.
     ///
-    /// The random value is within `UnicodeScalar.randomRange`.
-    public static func random(using randomGenerator: RandomGenerator) -> UnicodeScalar {
-        return random(within: UnicodeScalar.randomRange, using: randomGenerator)
+    /// The random value is in `UnicodeScalar.randomRange`.
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> UnicodeScalar {
+        return random(in: UnicodeScalar.randomRange, using: &randomGenerator)
     }
 
     /// Returns a random value of `Self` inside of the closed range.
-    public static func random(within range: Range<UnicodeScalar>,
-                              using randomGenerator: RandomGenerator) -> UnicodeScalar? {
-        guard !range.isEmpty else {
-            return nil
-        }
+    public static func uncheckedRandom<R: RandomGenerator>(in range: Range<UnicodeScalar>, using randomGenerator: inout R) -> UnicodeScalar {
         let lower = range.lowerBound.value
         let upper = range.upperBound.value
         if lower._isLowerRange && !upper._isLowerRange {
             let diff: UInt32 = 0xE000 - 0xD7FF - 1
             let newRange = Range(uncheckedBounds: (lower, upper - diff))
-            let random = UInt32.random(within: newRange, using: randomGenerator).unsafelyUnwrapped
+            let random = UInt32.uncheckedRandom(in: newRange, using: &randomGenerator)
             if random._isLowerRange {
-                return UnicodeScalar(random)
+                return _unsafeBitCast(random)
             } else {
-                return UnicodeScalar(random + diff)
+                return _unsafeBitCast(random &+ diff)
             }
         } else {
             let newRange = Range(uncheckedBounds: (lower, upper))
-            return UInt32.random(within: newRange, using: randomGenerator).flatMap(UnicodeScalar.init)
+            let random = UInt32.uncheckedRandom(in: newRange, using: &randomGenerator)
+            return _unsafeBitCast(random)
         }
     }
 
     /// Returns a random value of `Self` inside of the closed range.
-    public static func random(within closedRange: ClosedRange<UnicodeScalar>,
-                              using randomGenerator: RandomGenerator) -> UnicodeScalar {
+    public static func random<R: RandomGenerator>(in closedRange: ClosedRange<UnicodeScalar>,
+                                                  using randomGenerator: inout R) -> UnicodeScalar {
         let lower = closedRange.lowerBound.value
         let upper = closedRange.upperBound.value
         if lower._isLowerRange && !upper._isLowerRange {
             let diff: UInt32 = 0xE000 - 0xD7FF - 1
             let newRange = ClosedRange(uncheckedBounds: (lower, upper - diff))
-            let random = UInt32.random(within: newRange, using: randomGenerator)
+            let random = UInt32.random(in: newRange, using: &randomGenerator)
             if random._isLowerRange {
-                return UnicodeScalar(random).unsafelyUnwrapped
+                return _unsafeBitCast(random)
             } else {
-                return UnicodeScalar(random + diff).unsafelyUnwrapped
+                return _unsafeBitCast(random &+ diff)
             }
         } else {
             let newRange = ClosedRange(uncheckedBounds: (lower, upper))
-            return UnicodeScalar(.random(within: newRange, using: randomGenerator)).unsafelyUnwrapped
+            let random = UInt32.random(in: newRange, using: &randomGenerator)
+            return _unsafeBitCast(random)
         }
     }
 
     /// Returns an optional random value of `Self` inside of the range.
-    public static func random(within range: Range<UInt8>,
-                              using randomGenerator: RandomGenerator = .default) -> UnicodeScalar? {
-        return UInt8.random(within: range, using: randomGenerator).map(UnicodeScalar.init)
+    public static func random<R: RandomGenerator>(in range: Range<UInt8>,
+                                                  using randomGenerator: inout R) -> UnicodeScalar? {
+        return UInt8.random(in: range, using: &randomGenerator).map(UnicodeScalar.init)
     }
 
     /// Returns a random value of `Self` inside of the closed range.
-    public static func random(within closedRange: ClosedRange<UInt8>,
-                              using randomGenerator: RandomGenerator = .default) -> UnicodeScalar {
-        return UnicodeScalar(UInt8.random(within: closedRange, using: randomGenerator))
+    public static func random<R: RandomGenerator>(in closedRange: ClosedRange<UInt8>,
+                                                  using randomGenerator: inout R) -> UnicodeScalar {
+        return UnicodeScalar(UInt8.random(in: closedRange, using: &randomGenerator))
     }
 
 }

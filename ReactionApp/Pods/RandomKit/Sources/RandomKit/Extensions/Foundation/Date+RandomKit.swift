@@ -4,7 +4,7 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2015-2016 Nikolai Vazquez
+//  Copyright (c) 2015-2017 Nikolai Vazquez
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -27,54 +27,37 @@
 
 import Foundation
 
-extension Date: Random, RandomWithinRange, RandomWithinClosedRange {
+extension Date: Random, RandomInRange, RandomInClosedRange {
 
     /// Generates a random date.
     ///
-    /// - returns: Random date within `Date.distantPast...Date.distantFuture`.
-    public static func random(using randomGenerator: RandomGenerator) -> Date {
-        return random(within: .distantPast ... .distantFuture, using: randomGenerator)
+    /// - returns: Random date in `Date.distantPast...Date.distantFuture`.
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Date {
+        return random(in: .distantPast ... .distantFuture, using: &randomGenerator)
     }
 
-    /// Returns an optional random value of `Self` inside of the range using `randomGenerator`.
+    /// Returns a random value of `Self` inside of the unchecked range using `randomGenerator`.
     ///
-    /// - parameter range: The range within which the date will be generated.
+    /// - parameter range: The range in which the date will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random(within range: Range<Date>, using randomGenerator: RandomGenerator) -> Date? {
-        let lower = range.lowerBound.timeIntervalSince1970
-        let upper = range.upperBound.timeIntervalSince1970
-        return random(within: Range(uncheckedBounds: (lower, upper)), using: randomGenerator)
+    public static func uncheckedRandom<R: RandomGenerator>(in range: Range<Date>, using randomGenerator: inout R) -> Date {
+        let lower = range.lowerBound.timeIntervalSinceReferenceDate
+        let upper = range.upperBound.timeIntervalSinceReferenceDate
+        let range = Range(uncheckedBounds: (lower, upper))
+        let value = TimeInterval.uncheckedRandom(in: range, using: &randomGenerator)
+        return Date(timeIntervalSinceReferenceDate: value)
     }
 
     /// Returns a random value of `Self` inside of the closed range using `randomGenerator`.
     ///
-    /// - parameter closedRange: The range within which the date will be generated.
+    /// - parameter closedRange: The range in which the date will be generated.
     /// - parameter randomGenerator: The random generator to use.
-    public static func random(within closedRange: ClosedRange<Date>, using randomGenerator: RandomGenerator) -> Date {
-        let lower = closedRange.lowerBound.timeIntervalSince1970
-        let upper = closedRange.upperBound.timeIntervalSince1970
-        return random(within: ClosedRange(uncheckedBounds: (lower, upper)), using: randomGenerator)
-    }
-
-    /// Generates a random date within the range.
-    ///
-    /// - parameter range: The range within which the date will be generated.
-    /// - parameter randomGenerator: The random generator to use.
-    public static func random(within range: Range<TimeInterval>,
-                              using randomGenerator: RandomGenerator = .default) -> Date? {
-        guard let random = TimeInterval.random(within: range, using: randomGenerator) else {
-            return nil
-        }
-        return Date(timeIntervalSince1970: random)
-    }
-
-    /// Generates a random date within the closed range.
-    ///
-    /// - parameter closedRange: The range within which the date will be generated.
-    /// - parameter randomGenerator: The random generator to use.
-    public static func random(within closedRange: ClosedRange<TimeInterval>,
-                              using randomGenerator: RandomGenerator = .default) -> Date {
-        return Date(timeIntervalSince1970: .random(within: closedRange, using: randomGenerator))
+    public static func random<R: RandomGenerator>(in closedRange: ClosedRange<Date>, using randomGenerator: inout R) -> Date {
+        let lower = closedRange.lowerBound.timeIntervalSinceReferenceDate
+        let upper = closedRange.upperBound.timeIntervalSinceReferenceDate
+        let range = ClosedRange(uncheckedBounds: (lower, upper))
+        let value = TimeInterval.random(in: range, using: &randomGenerator)
+        return Date(timeIntervalSinceReferenceDate: value)
     }
 
 }

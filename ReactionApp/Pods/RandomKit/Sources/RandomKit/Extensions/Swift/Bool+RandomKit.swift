@@ -4,7 +4,7 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2015-2016 Nikolai Vazquez
+//  Copyright (c) 2015-2017 Nikolai Vazquez
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,13 +25,16 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
-
 extension Bool: Random {
 
     /// Generates a random `Bool`.
-    public static func random(using randomGenerator: RandomGenerator) -> Bool {
-        return UInt.random(using: randomGenerator) % 2 == 0
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Bool {
+        return UInt8.random(using: &randomGenerator) % 2 == 0
+    }
+
+    /// Generates a random `Bool` with a 1 in n chance of being `true`.
+    public static func random<R: RandomGenerator>(withWeight weight: UInt64, using randomGenerator: inout R) -> Bool {
+        return weight <= 1 || UInt64.random(to: weight, using: &randomGenerator) == 0
     }
 
 }

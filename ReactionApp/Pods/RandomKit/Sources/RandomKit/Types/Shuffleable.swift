@@ -4,7 +4,7 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2015-2016 Nikolai Vazquez
+//  Copyright (c) 2015-2017 Nikolai Vazquez
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -28,29 +28,47 @@
 /// A type whose elements can be shuffled.
 public protocol Shuffleable {
 
-    /// Shuffles the elements in `self` and returns the result.
-    func shuffled(using randomGenerator: RandomGenerator) -> Self
+    /// Shuffles the elements of `self` and returns the result.
+    func shuffled<R: RandomGenerator>(using randomGenerator: inout R) -> Self
 
-    /// Shuffles the elements in `self`.
-    mutating func shuffle(using randomGenerator: RandomGenerator)
+    /// Shuffles the elements of `self`.
+    mutating func shuffle<R: RandomGenerator>(using randomGenerator: inout R)
 
 }
 
-public extension Shuffleable {
+extension Shuffleable {
 
-    /// Shuffles the elements in `self` and returns the result.
-    public func shuffled() -> Self {
-        return shuffled(using: .default)
+    /// Shuffles the elements of `self`.
+    public mutating func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
+        self = shuffled(using: &randomGenerator)
     }
 
-    /// Shuffles the elements in `self`.
-    public mutating func shuffle(using randomGenerator: RandomGenerator) {
-        self = shuffled(using: randomGenerator)
+}
+
+/// A type whose elements can be shuffled in an index range.
+public protocol ShuffleableInRange: Shuffleable {
+
+    /// A type that represents a position in an instance of `Self`.
+    associatedtype Index: Comparable
+
+    /// Shuffles the elements of `self` in `range` and returns the result.
+    func shuffled<R: RandomGenerator>(in range: Range<Index>, using randomGenerator: inout R) -> Self
+
+    /// Shuffles the elements of `self` in `range`.
+    mutating func shuffle<R: RandomGenerator>(in range: Range<Index>, using randomGenerator: inout R)
+
+}
+
+extension ShuffleableInRange where Index: Strideable, Index.Stride: SignedInteger {
+
+    /// Shuffles the elements of `self` in `range` and returns the result.
+    public func shuffled<R: RandomGenerator>(in range: CountableRange<Index>, using randomGenerator: inout R) -> Self {
+        return shuffled(in: Range(range), using: &randomGenerator)
     }
 
-    /// Shuffles the elements in `self`.
-    public mutating func shuffle() {
-        shuffle(using: .default)
+    /// Shuffles the elements of `self` in `range`.
+    public mutating func shuffle<R: RandomGenerator>(in range: CountableRange<Index>, using randomGenerator: inout R) {
+        shuffle(in: Range(range), using: &randomGenerator)
     }
 
 }

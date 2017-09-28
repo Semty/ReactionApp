@@ -13,17 +13,18 @@ target 'ReactionApp' do
   
   pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
   
-  pod 'Charts/Realm'
+  pod 'Charts'
+  pod 'ChartsRealm'
   
   pod 'Google-Mobile-Ads-SDK'
   
-  pod 'RandomKit', '~> 3.0.0'
+  pod 'RandomKit', :git => 'https://github.com/nvzqz/RandomKit.git'
   
   pod 'RAMAnimatedTabBarController', "~> 2.0.13"
   
   pod 'LTMorphingLabel'
   
-  pod 'Eureka', '~> 2.0'
+  pod 'Eureka', :git => 'https://github.com/xmartlabs/Eureka.git'
   
   pod 'PopupDialog', '~> 0.5'
   

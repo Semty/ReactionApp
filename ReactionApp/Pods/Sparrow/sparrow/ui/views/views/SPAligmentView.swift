@@ -158,3 +158,82 @@ class SPCenteringAligmentView: SPAligmentView {
         }
     }
 }
+
+class SPDinamicAligmentView: UIView {
+    
+    var aliment: Aliment
+    
+    var itemSideSize: CGFloat = 50
+    var space: CGFloat = 10
+    
+    var needSize: CGSize {
+        get {
+            self.layoutSubviews()
+            switch aliment {
+            case .horizontal:
+                return CGSize.init(width: ((self.subviews.last?.frame.origin.x) ?? 0) + ((self.subviews.last?.frame.width) ?? 0), height: (self.subviews.last?.frame.height) ?? 0)
+            case .vertical:
+                return CGSize.init(width: (self.subviews.last?.frame.width) ?? 0, height: (self.subviews.last?.frame.bottomYPosition) ?? 0)
+            }
+            
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        self.aliment = .vertical
+        super.init(coder: aDecoder)
+    }
+    
+    init(aliment: Aliment) {
+        self.aliment = aliment
+        super.init(frame: CGRect.zero)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        var xPoint: CGFloat = 0
+        var yPoint: CGFloat = 0
+        var itemWidth: CGFloat = 0
+        var itemHeight: CGFloat = 0
+        
+        for (index, view) in self.subviews.enumerated() {
+            switch self.aliment {
+            case .horizontal:
+                xPoint = CGFloat(index) * (self.itemSideSize + space)
+                itemWidth = self.itemSideSize
+                itemHeight = self.frame.height
+            case .vertical:
+                yPoint = CGFloat(index) * (self.itemSideSize + space)
+                itemWidth = self.frame.width
+                itemHeight = self.itemSideSize
+            }
+            view.frame = CGRect.init(
+                x: xPoint, y: yPoint,
+                width: itemWidth,
+                height: itemHeight
+            )
+        }
+        
+        var needSideSize: CGFloat = 0
+        let lastView = self.subviews.last
+        if lastView != nil {
+            switch self.aliment {
+            case .horizontal:
+                needSideSize = lastView!.frame.origin.x + lastView!.frame.width
+                self.setWidth(needSideSize)
+                break
+            case .vertical:
+                needSideSize = lastView!.frame.origin.y + lastView!.frame.height
+                self.setHeight(needSideSize)
+                break
+            }
+        }
+    }
+    
+    enum Aliment {
+        case vertical
+        case horizontal
+    }
+
+}

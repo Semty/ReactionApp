@@ -4,7 +4,7 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2015-2016 Nikolai Vazquez
+//  Copyright (c) 2015-2017 Nikolai Vazquez
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,32 +25,51 @@
 //  THE SOFTWARE.
 //
 
-/// A type whose elements can be shuffled in a unique order.
+/// A type whose elements can be shuffled in a unique order such that no element is ever in its initial position.
 public protocol UniqueShuffleable {
 
     /// Shuffles the elements in `self` in a unique order and returns the result.
-    func shuffledUnique(using randomGenerator: RandomGenerator) -> Self
+    func shuffledUnique<R: RandomGenerator>(using randomGenerator: inout R) -> Self
 
     /// Shuffles the elements in `self` in a unique order.
-    mutating func shuffleUnique(using randomGenerator: RandomGenerator)
+    mutating func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R)
 
 }
 
 extension UniqueShuffleable {
 
-    /// Shuffles the elements in `self` in a unique order and returns the result.
-    public func shuffledUnique() -> Self {
-        return shuffledUnique(using: .default)
+    /// Shuffles the elements in `self` in a unique order.
+    public mutating func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R) {
+        self = shuffledUnique(using: &randomGenerator)
     }
 
-    /// Shuffles the elements in `self` in a unique order.
-    public mutating func shuffleUnique(using randomGenerator: RandomGenerator) {
-        self = shuffledUnique(using: randomGenerator)
+}
+
+/// A type whose elements can be shuffled in an index range in a unique order such that no element is ever in its
+/// initial position.
+public protocol UniqueShuffleableInRange: UniqueShuffleable {
+
+    /// A type that represents a position in an instance of `Self`.
+    associatedtype Index: Comparable
+
+    /// Shuffles the elements of `self` in a unique order in `range` and returns the result.
+    func shuffledUnique<R: RandomGenerator>(in range: Range<Index>, using randomGenerator: inout R) -> Self
+
+    /// Shuffles the elements of `self` in a unique order in `range`.
+    mutating func shuffleUnique<R: RandomGenerator>(in range: Range<Index>, using randomGenerator: inout R)
+
+}
+
+extension UniqueShuffleableInRange where Index: Strideable, Index.Stride: SignedInteger {
+
+    /// Shuffles the elements of `self` in a unique order in `range` and returns the result.
+    public func shuffledUnique<R: RandomGenerator>(in range: CountableRange<Index>, using randomGenerator: inout R) -> Self {
+        return shuffledUnique(in: Range(range), using: &randomGenerator)
     }
 
-    /// Shuffles the elements in `self` in a unique order.
-    public mutating func shuffleUnique() {
-        shuffleUnique(using: .default)
+    /// Shuffles the elements of `self` in a unique order in `range`.
+    public mutating func shuffleUnique<R: RandomGenerator>(in range: CountableRange<Index>, using randomGenerator: inout R) {
+        shuffleUnique(in: Range(range), using: &randomGenerator)
     }
 
 }

@@ -165,7 +165,7 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
             
             print("setDayData, OBJECTS = \(resultsCount)")
             
-            D
+            var dataEntries = [ChartDataEntry]()
             
             for (index, result) in (currentDayResults?.enumerated())! {
                 
@@ -218,8 +218,8 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
             
             for index in minDayOfYear...maxDayOfYear {
                 
-                let avgValue: Int = currentWeekResults!.filter("reactionDayOfYear == %@", index).average(ofProperty: "reactionTime") ?? 0
-                overallTime += avgValue
+                let avgValue: Double = currentWeekResults!.filter("reactionDayOfYear == %@", index).average(ofProperty: "reactionTime") ?? 0.0
+                overallTime += Int(avgValue.rounded())
                 overallCount += avgValue != 0 ? 1 : 0
                 
                 let dataEntry = BarChartDataEntry(x: Double(index), y: Double(avgValue))
@@ -259,8 +259,8 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
             
             for index in minDayOfYear...maxDayOfYear {
                 
-                let avgValue: Int = allTimeResults!.filter("reactionDayOfYear == %@", index).average(ofProperty: "reactionTime") ?? 0
-                overallTime += avgValue
+                let avgValue: Double = allTimeResults!.filter("reactionDayOfYear == %@", index).average(ofProperty: "reactionTime") ?? 0.0
+                overallTime += Int(avgValue.rounded())
                 overallCount += avgValue != 0 ? 1 : 0
                 
                 let dataEntry = BarChartDataEntry(x: Double(index), y: Double(avgValue))

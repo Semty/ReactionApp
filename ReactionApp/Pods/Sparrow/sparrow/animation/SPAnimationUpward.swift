@@ -38,7 +38,8 @@ public class SPAnimationUpward {
         SPAnimationSpring.animate(
             duration, animations: {
                 view.alpha = 0
-                view.transform = CGAffineTransform(translationX: 0, y: -UIScreen.main.bounds.height / coefLenthForTransition)
+                //view.transform = CGAffineTransform(translationX: 0, y: -UIScreen.main.bounds.height / coefLenthForTransition)
+                view.frame.origin.y = view.frame.origin.y + (-UIScreen.main.bounds.height / coefLenthForTransition)
             },
             delay: delay,
             options: options,

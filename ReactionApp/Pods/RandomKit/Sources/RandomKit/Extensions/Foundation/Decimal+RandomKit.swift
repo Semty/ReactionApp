@@ -4,7 +4,7 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2015-2016 Nikolai Vazquez
+//  Copyright (c) 2015-2017 Nikolai Vazquez
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -27,17 +27,17 @@
 
 import Foundation
 
-extension Decimal: Random, RandomWithinClosedRange {
+extension Decimal: Random, RandomInClosedRange {
 
     /// Generates a random value of `Self`.
-    public static func random(using randomGenerator: RandomGenerator) -> Decimal {
-        return random(within: 0...1, using: randomGenerator)
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Decimal {
+        return random(in: 0...1, using: &randomGenerator)
     }
 
     /// Returns a random value of `Self` inside of the closed range.
-    public static func random(within closedRange: ClosedRange<Decimal>, using randomGenerator: RandomGenerator) -> Decimal {
+    public static func random<R: RandomGenerator>(in closedRange: ClosedRange<Decimal>, using randomGenerator: inout R) -> Decimal {
         let multiplier = closedRange.upperBound - closedRange.lowerBound
-        return closedRange.lowerBound + multiplier * (Decimal(UInt32.random(using: randomGenerator)) / Decimal(UInt32.max))
+        return closedRange.lowerBound + multiplier * (Decimal(UInt32.random(using: &randomGenerator)) / Decimal(UInt32.max))
     }
 
 }

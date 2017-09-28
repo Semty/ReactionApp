@@ -3,7 +3,7 @@
 //  https://github.com/lexrus/LTMorphingLabel
 //
 //  The MIT License (MIT)
-//  Copyright (c) 2016 Lex Tang, http://lexrus.com
+//  Copyright (c) 2017 Lex Tang, http://lexrus.com
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files
@@ -132,9 +132,9 @@ extension LTMorphingLabel {
                 )
                 context!.rotate(by: rotation * CGFloat(Double.pi) / 180.0)
                 let s = String(limbo.char)
-                let attributes: [String: Any] = [
-                    NSFontAttributeName: self.font.withSize(limbo.size),
-                    NSForegroundColorAttributeName: charColor
+                let attributes: [NSAttributedStringKey: Any] = [
+                    .font: self.font.withSize(limbo.size),
+                    .foregroundColor: charColor
                 ]
                 s.draw(in: charRect, withAttributes: attributes)
                 context!.restoreGState()

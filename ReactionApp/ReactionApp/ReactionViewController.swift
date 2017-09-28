@@ -213,8 +213,11 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
         Circle.sharedCircle.state = .preparation
             
         self.circleView.setNeedsDisplay()
-            
-        self.timer = Timer.scheduledTimer(timeInterval: Double.random(within: Circle.sharedCircle.currentPreparationTime),
+        
+        let timeInterval = TimeInterval(Double.random(min: Circle.sharedCircle.currentPreparationTime.lowerBound,
+                                                      max: Circle.sharedCircle.currentPreparationTime.upperBound))
+        
+        self.timer = Timer.scheduledTimer(timeInterval: timeInterval,
                                           target: self,
                                           selector: #selector(actionTimerHire),
                                           userInfo: nil,
@@ -345,7 +348,7 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
     
 // MARK: - Timer Selector
     
-    func actionTimerHire() {
+    @objc func actionTimerHire() {
         if Circle.sharedCircle.state == .preparation {
             
             Circle.sharedCircle.state = .action
@@ -398,7 +401,7 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
         adBannerView.adUnitID = "ca-app-pub-8402016319891167/2847760134"
         adBannerView.delegate = self
         adBannerView.rootViewController = self
-        backgroundQueue.async {
+        DispatchQueue.main.async {
             self.adBannerView.load(GADRequest())
         }
     }
@@ -441,15 +444,5 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
             }
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

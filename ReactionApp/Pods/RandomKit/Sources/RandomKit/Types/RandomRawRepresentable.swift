@@ -4,7 +4,7 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2015-2016 Nikolai Vazquez
+//  Copyright (c) 2015-2017 Nikolai Vazquez
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,22 +25,30 @@
 //  THE SOFTWARE.
 //
 
+#if swift(>=3.2)
+
+/// A type with an associated raw type that can be randomly generated.
+public protocol RandomRawRepresentable: Random, RawRepresentable where RawValue: Random {
+    /// Creates a new instance with the specified raw value.
+    init(rawValue: RawValue)
+}
+
+#else
+
 /// A type with an associated raw type that can be randomly generated.
 public protocol RandomRawRepresentable: Random, RawRepresentable {
-
     /// The raw type that can be used to represent all values of the conforming type.
     associatedtype RawValue: Random
 
     /// Creates a new instance with the specified raw value.
     init(rawValue: RawValue)
-
 }
 
+#endif
+
 extension RandomRawRepresentable {
-
     /// Generates a random value of `Self` using `randomGenerator`.
-    public static func random(using randomGenerator: RandomGenerator) -> Self {
-        return Self(rawValue: .random(using: randomGenerator))
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
+        return Self(rawValue: .random(using: &randomGenerator))
     }
-
 }

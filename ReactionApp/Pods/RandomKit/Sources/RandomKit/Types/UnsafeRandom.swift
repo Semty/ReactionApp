@@ -4,7 +4,7 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2015-2016 Nikolai Vazquez
+//  Copyright (c) 2015-2017 Nikolai Vazquez
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@
 ///
 /// }
 ///
-/// let random = Code.random()  // Code(value: 158)
+/// let random = Code.random(using: &randomGenerator)  // Code(value: 158)
 /// ```
 public protocol UnsafeRandom: Random {
 
@@ -49,8 +49,13 @@ public protocol UnsafeRandom: Random {
 
 extension UnsafeRandom {
 
+    /// The base randomizable value for `Self`.
+    public static var randomizableValue: Self {
+        return _unsafeValue()
+    }
+
     /// Generates a random value of `Self` using `randomGenerator`.
-    public static func random(using randomGenerator: RandomGenerator) -> Self {
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
         var value = randomizableValue
         randomGenerator.randomize(value: &value)
         return value

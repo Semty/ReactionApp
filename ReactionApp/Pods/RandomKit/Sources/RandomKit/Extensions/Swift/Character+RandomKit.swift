@@ -4,7 +4,7 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2015-2016 Nikolai Vazquez
+//  Copyright (c) 2015-2017 Nikolai Vazquez
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -29,21 +29,21 @@ extension Character: Random {
 
     /// Generates a random `Character`.
     ///
-    /// - returns: Random value within `UnicodeScalar.randomRange` from `UnicodeScalar.random()`.
-    public static func random(using randomGenerator: RandomGenerator) -> Character {
-        return Character(UnicodeScalar.random(using: randomGenerator))
+    /// - returns: Random value in `UnicodeScalar.randomRange` from `UnicodeScalar.random()`.
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Character {
+        return Character(UnicodeScalar.random(using: &randomGenerator))
     }
 
     /// Returns an optional random value of `Self` inside of the range.
-    public static func random(within range: Range<UnicodeScalar>,
-                              using randomGenerator: RandomGenerator = .default) -> Character? {
-        return UnicodeScalar.random(within: range, using: randomGenerator).map(Character.init)
+    public static func random<R: RandomGenerator>(in range: Range<UnicodeScalar>,
+                                                  using randomGenerator: inout R) -> Character? {
+        return UnicodeScalar.random(in: range, using: &randomGenerator).map(Character.init)
     }
 
     /// Returns a random value of `Self` inside of the closed range.
-    public static func random(within closedRange: ClosedRange<UnicodeScalar>,
-                              using randomGenerator: RandomGenerator = .default) -> Character {
-        return Character(UnicodeScalar.random(within: closedRange, using: randomGenerator))
+    public static func random<R: RandomGenerator>(in closedRange: ClosedRange<UnicodeScalar>,
+                                                  using randomGenerator: inout R) -> Character {
+        return Character(UnicodeScalar.random(in: closedRange, using: &randomGenerator))
     }
 
 }

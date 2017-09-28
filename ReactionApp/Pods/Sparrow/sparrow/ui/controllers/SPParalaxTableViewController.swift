@@ -48,5 +48,4 @@ public class SPParallaxTableViewController: UITableViewController {
             parallaxCell.parallaxOffset(self.tableView)
         }
     }
-
 }

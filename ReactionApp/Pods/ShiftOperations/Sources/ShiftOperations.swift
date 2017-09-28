@@ -4,7 +4,7 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2016 Nikolai Vazquez
+//  Copyright (c) 2016-2017 Nikolai Vazquez
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,6 +26,7 @@
 //
 
 /// A type that can use shift operators.
+@available(swift, obsoleted: 4.0, message: "Functionality replaced by BinaryInteger")
 public protocol ShiftOperations {
 
     /// Shifts `lhs` left by `rhs` and returns the result.
@@ -41,6 +42,8 @@ public protocol ShiftOperations {
     static func >>= (lhs: inout Self, rhs: Self)
 
 }
+
+#if !swift(>=4)
 
 extension ShiftOperations {
 
@@ -85,3 +88,5 @@ extension UInt16: ShiftOperations {
 
 extension UInt8: ShiftOperations {
 }
+
+#endif

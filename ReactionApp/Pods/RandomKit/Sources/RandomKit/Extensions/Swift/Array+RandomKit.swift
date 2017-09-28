@@ -4,7 +4,7 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2015-2016 Nikolai Vazquez
+//  Copyright (c) 2015-2017 Nikolai Vazquez
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,56 +25,115 @@
 //  THE SOFTWARE.
 //
 
-extension Array where Element: Random {
+@inline(__always)
+private func _castResult<T, P>(_ result: ([T], P)) -> ([T], UnsafeMutablePointer<T>) {
+    return _unsafeBitCast(result)
+}
 
+private extension Array {
+    @inline(__always)
+    static func _uninitialized(count: Int) -> (Array, UnsafeMutablePointer<Element>) {
+        return _castResult(_allocateUninitializedArray(_unsafeBitCast(count)))
+    }
+}
+
+extension Array {
+    /// Construct an Array of random elements by unsafely randomizing the buffer directly.
+    ///
+    /// This is generally significantly faster than using `init(randomCount:using:)`. However, calling this initializer
+    /// directly is unnecessary for native integer types because the other initializer uses this in that case.
+    ///
+    /// - warning: Do not use this initializer if you don't know what you're doing. This is an extremely unsafe
+    ///   operation and should be done with great care. Only call this for trivial types that don't contain references
+    ///   and have no spare bits.
+    public init<R: RandomGenerator>(unsafeRandomCount: Int, using randomGenerator: inout R) {
+        let (array, pointer) = Array._uninitialized(count: unsafeRandomCount)
+        let size = unsafeRandomCount &* MemoryLayout<Element>.stride
+        randomGenerator.randomize(buffer: pointer, size: size)
+        self = array
+    }
+}
+
+extension ContiguousArray {
+    /// Construct a ContiguousArray of random elements by unsafely randomizing the buffer directly.
+    ///
+    /// - warning: Do not use this initializer if you don't know what you're doing. This is an extremely unsafe
+    ///   operation and should be done with great care. Only call this for trivial types that don't contain references
+    ///   and have no spare bits.
+    public init<R: RandomGenerator>(unsafeRandomCount: Int, using randomGenerator: inout R) {
+        self.init(Array(unsafeRandomCount: unsafeRandomCount, using: &randomGenerator))
+    }
+}
+
+extension Array where Element: Random {
     /// Construct an Array of random elements.
     ///
-    /// Although safety is not guaranteed, `init(unsafeRandomCount:)` is *significantly* faster than this.
-    public init(randomCount: Int, using randomGenerator: RandomGenerator = .default) {
-        self = (0 ..< randomCount).map { _ in Element.random(using: randomGenerator) }
-    }
-
-}
-
-extension Array where Element: UnsafeRandom {
-
-    /// Construct an Array of random elements by randomizing the buffer directly.
-    ///
-    /// This is *significantly* faster than using `init(randomCount:using:)`.
-    public init(unsafeRandomCount: Int, using randomGenerator: RandomGenerator = .default) {
-        self.init(repeating: .randomizableValue, count: unsafeRandomCount)
-        let buffer = UnsafeMutablePointer(mutating: self)
-        randomGenerator.randomize(buffer: buffer, size: MemoryLayout<Element>.size * unsafeRandomCount)
-    }
-
-}
-
-extension Array where Element: RandomWithinRange {
-
-    /// Construct an Array of random elements from within the range.
-    public init(randomCount: Int,
-                within range: Range<Element>,
-                using randomGenerator: RandomGenerator = .default) {
-        if range.isEmpty {
-            self = []
+    /// For better performance, this initializer uses `init(unsafeRandomCount:using:)` for `Trivial` types such as
+    /// native integers. Otherwise it will call `Element.random(using:)` to generate values.
+    public init<R: RandomGenerator>(randomCount: Int, using randomGenerator: inout R) {
+        if Element.self is Trivial.Type {
+            self = Array(unsafeRandomCount: randomCount, using: &randomGenerator)
         } else {
-            self = (0 ..< randomCount).map { _ in
-                Element.random(within: range, using: randomGenerator).unsafelyUnwrapped
+            var pointer: UnsafeMutablePointer<Element>
+            (self, pointer) = Array._uninitialized(count: randomCount)
+            for _ in CountableRange(uncheckedBounds: (0, randomCount)) {
+                pointer.initialize(to: Element.random(using: &randomGenerator))
+                pointer += 1
             }
         }
     }
-
 }
 
-extension Array where Element: RandomWithinClosedRange {
-
-    /// Construct an Array of random elements from within the closed range.
-    public init(randomCount: Int,
-                within closedRange: ClosedRange<Element>,
-                using randomGenerator: RandomGenerator = .default) {
-        self = (0 ..< randomCount).map { _ in Element.random(within: closedRange, using: randomGenerator) }
+extension Array where Element: RandomToValue {
+    /// Construct an Array of random elements to a value.
+    public init<R: RandomGenerator>(randomCount: Int, to value: Element, using randomGenerator: inout R) {
+        var pointer: UnsafeMutablePointer<Element>
+        (self, pointer) = Array._uninitialized(count: randomCount)
+        for _ in CountableRange(uncheckedBounds: (0, randomCount)) {
+            pointer.initialize(to: Element.random(to: value, using: &randomGenerator))
+            pointer += 1
+        }
     }
+}
 
+extension Array where Element: RandomThroughValue {
+    /// Construct an Array of random elements through a value.
+    public init<R: RandomGenerator>(randomCount: Int, through value: Element, using randomGenerator: inout R) {
+        var pointer: UnsafeMutablePointer<Element>
+        (self, pointer) = Array._uninitialized(count: randomCount)
+        for _ in CountableRange(uncheckedBounds: (0, randomCount)) {
+            pointer.initialize(to: Element.random(through: value, using: &randomGenerator))
+            pointer += 1
+        }
+    }
+}
+
+extension Array where Element: RandomInRange {
+    /// Construct an Array of random elements in the range.
+    public init<R: RandomGenerator>(randomCount: Int, in range: Range<Element>, using randomGenerator: inout R) {
+        guard !range.isEmpty else {
+            self = []
+            return
+        }
+        var pointer: UnsafeMutablePointer<Element>
+        (self, pointer) = Array._uninitialized(count: randomCount)
+        for _ in CountableRange(uncheckedBounds: (0, randomCount)) {
+            pointer.initialize(to: Element.uncheckedRandom(in: range, using: &randomGenerator))
+            pointer += 1
+        }
+    }
+}
+
+extension Array where Element: RandomInClosedRange {
+    /// Construct an Array of random elements in the closed range.
+    public init<R: RandomGenerator>(randomCount: Int, in closedRange: ClosedRange<Element>, using randomGenerator: inout R) {
+        var pointer: UnsafeMutablePointer<Element>
+        (self, pointer) = Array._uninitialized(count: randomCount)
+        for _ in CountableRange(uncheckedBounds: (0, randomCount)) {
+            pointer.initialize(to: Element.random(in: closedRange, using: &randomGenerator))
+            pointer += 1
+        }
+    }
 }
 
 extension Array {
@@ -85,19 +144,19 @@ extension Array {
     ///
     /// - parameter count: The number of elements to return.
     /// - parameter randomGenerator: The random generator to use.
-    public func randomSlice(count: Int, using randomGenerator: RandomGenerator = .default) -> Array {
-        if count <= 0  {
+    public func randomSlice<R: RandomGenerator>(count: Int, using randomGenerator: inout R) -> Array {
+        guard count > 0 else {
             return []
         }
-        if count >= self.count {
-            return Array(self)
+        guard count < self.count else {
+            return self
         }
         // Algorithm R
         // fill the reservoir array
-        var result = Array(self[0..<count])
+        var result = Array(self.prefix(upTo: count))
         // replace elements with gradually decreasing probability
-        for i in count..<self.count {
-            let j = Int.random(within: 0 ... i-1, using: randomGenerator)
+        for i in CountableRange(uncheckedBounds: (count, self.count)) {
+            let j = Int.random(to: i, using: &randomGenerator)
             if j < count {
                 result[j] = self[i]
             }
@@ -112,24 +171,24 @@ extension Array {
     /// - parameter count: The number of elements to return.
     /// - parameter weights: Apply weights on element.
     /// - parameter randomGenerator: The random generator to use.
-    public func randomSlice(count: Int, weights: [Double], using randomGenerator: RandomGenerator = .default) -> Array {
-        if count <= 0  {
+    public func randomSlice<R: RandomGenerator>(count: Int, weights: [Double], using randomGenerator: inout R) -> Array {
+        guard count > 0 else {
             return []
         }
-        if count >= self.count || weights.count < self.count {
-            return Array(self)
+        guard count < self.count && weights.count >= self.count else {
+            return self
         }
 
         // Algorithm A-Chao
-        var result = Array(self[0..<count])
-        var weightSum: Double = weights[0..<count].reduce(0.0) { (total, value) in
+        var result = Array(self.prefix(upTo: count))
+        var weightSum: Double = weights.prefix(upTo: count).reduce(0.0) { (total, value) in
             total + value
         }
-        for i in count..<self.count {
+        for i in CountableRange(uncheckedBounds: (count, self.count)) {
             let p = weights[i] / weightSum
-            let j = Double.random(within: 0.0...1.0, using: randomGenerator)
+            let j = Double.random(through: 1.0, using: &randomGenerator)
             if j <= p {
-                let index = Int.random(within: 0 ... count-1, using: randomGenerator)
+                let index = Int.random(to: count, using: &randomGenerator)
                 result[index] = self[i]
             }
             weightSum += weights[i]

@@ -4,7 +4,7 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2015-2016 Nikolai Vazquez
+//  Copyright (c) 2015-2017 Nikolai Vazquez
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -60,7 +60,7 @@
 ///
 /// }
 ///
-/// let random = Month.random()  // november
+/// let random = Month.random(using: &randomGenerator)  // november
 /// ```
 public protocol RandomEnum: Random, Hashable {
 
@@ -72,9 +72,9 @@ public protocol RandomEnum: Random, Hashable {
 extension RandomEnum {
 
     /// Generates a random value of `Self` using `randomGenerator`.
-    public static func random(using randomGenerator: RandomGenerator) -> Self {
-        var random = UInt.random(through: UInt(lastCase.hashValue), using: randomGenerator)
-        return withUnsafePointer(to: &random) { UnsafeRawPointer($0).assumingMemoryBound(to: self).pointee }
+    public static func random<R: RandomGenerator>(using randomGenerator: inout R) -> Self {
+        var random = UInt.random(through: UInt(lastCase.hashValue), using: &randomGenerator)
+        return _unsafeCast(&random)
     }
 
 }

@@ -2,66 +2,83 @@ PODS:
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
-  - Charts/Core (3.0.1)
-  - Charts/Realm (3.0.1):
-    - Charts/Core
-    - RealmSwift (~> 1.1)
-  - Eureka (2.0.1)
-  - Google-Mobile-Ads-SDK (7.20.0)
-  - LTMorphingLabel (0.5.0)
+  - Charts (3.0.4):
+    - Charts/Core (= 3.0.4)
+  - Charts/Core (3.0.4)
+  - ChartsRealm (3.0.2):
+    - Charts (~> 3.0.2)
+    - RealmSwift (~> 2.4)
+  - Eureka (4.0.0)
+  - Google-Mobile-Ads-SDK (7.24.0)
+  - LTMorphingLabel (0.5.4)
   - PopupDialog (0.5.4)
   - RAMAnimatedTabBarController (2.0.13)
-  - RandomKit (3.0.0):
-    - ShiftOperations
-  - Realm (1.1.0):
-    - Realm/Headers (= 1.1.0)
-  - Realm/Headers (1.1.0)
-  - RealmSwift (1.1.0):
-    - Realm (= 1.1.0)
-  - ShiftOperations (1.0.0)
-  - Sparrow/Core (1.0.0)
-  - Sparrow/Modules/RequestPermission (1.0.0):
+  - RandomKit (5.2.3):
+    - ShiftOperations (~> 1.0.2)
+    - Threadly (~> 1.0)
+  - Realm (2.10.2):
+    - Realm/Headers (= 2.10.2)
+  - Realm/Headers (2.10.2)
+  - RealmSwift (2.10.2):
+    - Realm (= 2.10.2)
+  - ShiftOperations (1.0.2)
+  - Sparrow/Core (1.1.0)
+  - Sparrow/Modules/RequestPermission (1.1.0):
     - Sparrow/Core
+  - Threadly (1.2.0)
 
 DEPENDENCIES:
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
-  - Charts/Realm
-  - Eureka (~> 2.0)
+  - Charts
+  - ChartsRealm
+  - Eureka (from `https://github.com/xmartlabs/Eureka.git`)
   - Google-Mobile-Ads-SDK
   - LTMorphingLabel
   - PopupDialog (~> 0.5)
   - RAMAnimatedTabBarController (~> 2.0.13)
-  - RandomKit (~> 3.0.0)
+  - RandomKit (from `https://github.com/nvzqz/RandomKit.git`)
   - Sparrow/Modules/RequestPermission (from `https://github.com/IvanVorobei/Sparrow.git`)
 
 EXTERNAL SOURCES:
   ChameleonFramework:
     :git: https://github.com/ViccAlexander/Chameleon.git
+  Eureka:
+    :git: https://github.com/xmartlabs/Eureka.git
+  RandomKit:
+    :git: https://github.com/nvzqz/RandomKit.git
   Sparrow:
     :git: https://github.com/IvanVorobei/Sparrow.git
 
 CHECKOUT OPTIONS:
   ChameleonFramework:
-    :commit: acc480fbe023c6e5fe40f68593f4a70a8c4c7ad5
+    :commit: 6dd284bde21ea2e7f9fd89bc36f40df16e16369d
     :git: https://github.com/ViccAlexander/Chameleon.git
+  Eureka:
+    :commit: 7c95c10580f198b6780bfc284cf5d61c7acecddc
+    :git: https://github.com/xmartlabs/Eureka.git
+  RandomKit:
+    :commit: 06c51cbf8816a5f682aba03da353daf5640830ca
+    :git: https://github.com/nvzqz/RandomKit.git
   Sparrow:
-    :commit: 4a443d26fdb43bf834908afd93d2cd3e38ceb60a
+    :commit: 7415a10e150d6344a10b11572d0d85f3df83319c
     :git: https://github.com/IvanVorobei/Sparrow.git
 
 SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
-  Charts: 0e84f4418e87dad6a9edde221fba37ebb51d3ba7
-  Eureka: ae837bb1dfae0c07bc1bda7aeef87876eeb537c2
-  Google-Mobile-Ads-SDK: 168312cdc167fa22746d4ea8e839fc4825dd2966
-  LTMorphingLabel: bc170be74b219b7dae0e5543a44676d16da70ff7
+  Charts: 0705898046257443f0afbbc3179f4b67507b6e48
+  ChartsRealm: ed0332fd409298188a2b71e9548604165c987d42
+  Eureka: cf31d9de849ce134f2eb22751d4e78160ed8e96a
+  Google-Mobile-Ads-SDK: f405b7acb098fe89e6fcd05fdbf400c1a5bcb935
+  LTMorphingLabel: e2db48d19486affc0ed87fb56785c5f53afe00ec
   PopupDialog: 75cf955693590b0cb2fdde00223fb65d99c57247
   RAMAnimatedTabBarController: 2510f3b66954c3f77ea1042a35d34df8f5f3b604
-  RandomKit: 03b4be99ecc35850b794e0185689931d72024e93
-  Realm: ceecf1a4540c4ce9efe196fe73fa9855bce05bd8
-  RealmSwift: 838058b2db95b12cb86bd0cf209df642c33fb60a
-  ShiftOperations: 0c77c06851e7976c2665d601b46af123dbffeade
-  Sparrow: 30b0e315a27798d7a56757250499449ac6b663c3
+  RandomKit: e1ca01dea55913637cea96e25b3dffd37bdb674d
+  Realm: 0ef72b837fb67e9f4b098bac771ddd72c7fdbb69
+  RealmSwift: 07a9ae0505091eda6b2ee7c190c3786d6e90a7b0
+  ShiftOperations: 702c9aa98d3b20d98dceb71dd8437b562f7ab3ad
+  Sparrow: 86b8f0d7598dc52ff2b06bb1df05feb297d1821f
+  Threadly: b772ed7c1ff4a3f03eb4600bbc5ef83b3be5cb29
 
-PODFILE CHECKSUM: a240f53aef5d825167aa593a9396fb05bba55f5e
+PODFILE CHECKSUM: 3b101f2433c0ef3cd510a294017d2e8aef6da438
 
 COCOAPODS: 1.2.0

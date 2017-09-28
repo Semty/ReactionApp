@@ -32,7 +32,7 @@ extension Calendar {
     }
 }
 
-extension Array where Element: Integer {
+extension Array where Element: BinaryInteger {
     
     var total: Element {
         return reduce(0, +)

@@ -4,7 +4,7 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2015-2016 Nikolai Vazquez
+//  Copyright (c) 2015-2017 Nikolai Vazquez
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,32 +25,36 @@
 //  THE SOFTWARE.
 //
 
-extension Dictionary: Shuffleable, UniqueShuffleable {
+extension Dictionary: RandomRetrievableInRange, Shuffleable, UniqueShuffleable {
 
     /// Shuffles the elements in `self` and returns the result.
-    public func shuffled(using randomGenerator: RandomGenerator) -> Dictionary {
+    public func shuffled<R: RandomGenerator>(using randomGenerator: inout R) -> Dictionary {
         var copy = self
-        copy.shuffle(using: randomGenerator)
+        copy.shuffle(using: &randomGenerator)
         return copy
     }
 
     /// Shuffles the elements in `self`.
-    public mutating func shuffle(using randomGenerator: RandomGenerator) {
-        for (key, value) in zip(keys, Array(values).shuffled(using: randomGenerator)) {
+    public mutating func shuffle<R: RandomGenerator>(using randomGenerator: inout R) {
+        var values = Array(self.values)
+        values.shuffle(using: &randomGenerator)
+        for (key, value) in zip(keys, values) {
             self[key] = value
         }
     }
 
     /// Shuffles the elements in `self` in a unique order and returns the result.
-    public func shuffledUnique(using randomGenerator: RandomGenerator) -> Dictionary {
+    public func shuffledUnique<R: RandomGenerator>(using randomGenerator: inout R) -> Dictionary {
         var copy = self
-        copy.shuffleUnique(using: randomGenerator)
+        copy.shuffleUnique(using: &randomGenerator)
         return copy
     }
 
     /// Shuffles the elements in `self` in a unique order.
-    public mutating func shuffleUnique(using randomGenerator: RandomGenerator) {
-        for (key, value) in zip(keys, Array(values).shuffledUnique(using: randomGenerator)) {
+    public mutating func shuffleUnique<R: RandomGenerator>(using randomGenerator: inout R) {
+        var values = Array(self.values)
+        values.shuffle(using: &randomGenerator)
+        for (key, value) in zip(keys, values) {
             self[key] = value
         }
     }
@@ -58,45 +62,63 @@ extension Dictionary: Shuffleable, UniqueShuffleable {
 }
 
 private extension Dictionary {
-
-    init(_ randomCount: Int, _ keys: AnySequence<Key>, _ values: AnySequence<Value>, _ keyGenerator: () -> Key) {
-        self.init(minimumCapacity: randomCount)
-        for (key, value) in zip(keys, values) {
-            var key = key
+    init<K: Sequence, V: Sequence>(count: Int, keys: K, values: V) where K.Iterator.Element == Key, V.Iterator.Element == Value {
+        self.init(minimumCapacity: count)
+        var keysIterator = keys.makeIterator()
+        var valuesIterator = values.makeIterator()
+        while self.count < count, var key = keysIterator.next(), let value = valuesIterator.next() {
             while case .some = self[key] {
-                key = keyGenerator()
+                guard let next = keysIterator.next() else {
+                    return
+                }
+                key = next
             }
             self[key] = value
         }
     }
-
 }
 
 extension Dictionary where Key: Random, Value: Random {
-
-    /// Construct a Dictionary of random elements.
-    public init(randomCount: Int, using randomGenerator: RandomGenerator = .default) {
-        self.init(randomCount,
-                  Key.randomSequence(maxCount: randomCount, using: randomGenerator),
-                  Value.randomSequence(maxCount: randomCount, using: randomGenerator),
-                  { Key.random(using: randomGenerator) })
+    /// Creates a set of random key-value pairs using `randomGenerator`.
+    public init<R: RandomGenerator>(randomCount: Int, using randomGenerator: inout R) {
+        let keys = Key.randoms(using: &randomGenerator)
+        let values = Value.randoms(using: &randomGenerator)
+        self.init(count: randomCount, keys: keys, values: values)
     }
-
 }
 
-extension Dictionary where Key: RandomWithinClosedRange, Value: RandomWithinClosedRange {
-
-    /// Construct a Dictionary of random elements from within the closed ranges.
-    ///
-    /// - precondition: Number of elements within `keyRange` >= `randomCount`.
-    public init(randomCount: Int,
-                _ keyRange: ClosedRange<Key>,
-                _ valueRange: ClosedRange<Value>,
-                using randomGenerator: RandomGenerator = .default) {
-        self.init(randomCount,
-                  Key.randomSequence(within: keyRange, maxCount: randomCount, using: randomGenerator),
-                  Value.randomSequence(within: valueRange, maxCount: randomCount, using: randomGenerator),
-                  { Key.random(within: keyRange, using: randomGenerator) })
+extension Dictionary where Key: RandomToValue, Value: RandomToValue {
+    /// Creates a set of random key-value pairs to a key and value using `randomGenerator`.
+    public init<R: RandomGenerator>(randomCount: Int, toKey key: Key, toValue value: Value, using randomGenerator: inout R) {
+        let keys = Key.randoms(to: key, using: &randomGenerator)
+        let values = Value.randoms(to: value, using: &randomGenerator)
+        self.init(count: randomCount, keys: keys, values: values)
     }
+}
 
+extension Dictionary where Key: RandomThroughValue, Value: RandomThroughValue {
+    /// Creates a set of random key-value pairs through a key and value using `randomGenerator`.
+    public init<R: RandomGenerator>(randomCount: Int, throughKey key: Key, throughValue value: Value, using randomGenerator: inout R) {
+        let keys = Key.randoms(through: key, using: &randomGenerator)
+        let values = Value.randoms(through: value, using: &randomGenerator)
+        self.init(count: randomCount, keys: keys, values: values)
+    }
+}
+
+extension Dictionary where Key: RandomInRange, Value: RandomInRange {
+    /// Creates a set of random key-value pairs in key and value ranges using `randomGenerator`.
+    public init<R: RandomGenerator>(randomCount: Int, inKeys keys: Range<Key>, inValues values: Range<Value>, using randomGenerator: inout R) {
+        let keys = Key.randoms(in: keys, using: &randomGenerator)
+        let values = Value.randoms(in: values, using: &randomGenerator)
+        self.init(count: randomCount, keys: keys, values: values)
+    }
+}
+
+extension Dictionary where Key: RandomInClosedRange, Value: RandomInClosedRange {
+    /// Creates a set of random key-value pairs in key and value closed ranges using `randomGenerator`.
+    public init<R: RandomGenerator>(randomCount: Int, inKeys keys: ClosedRange<Key>, inValues values: ClosedRange<Value>, using randomGenerator: inout R) {
+        let keys = Key.randoms(in: keys, using: &randomGenerator)
+        let values = Value.randoms(in: values, using: &randomGenerator)
+        self.init(count: randomCount, keys: keys, values: values)
+    }
 }
