@@ -22,7 +22,7 @@ class Language {
         return currentWithoutLocale
     }
     
-    class func currentAppleLanguageFull() -> String{
+    class func currentAppleLanguageFull() -> String {
         let userdef = UserDefaults.standard
         let langArray = userdef.object(forKey: APPLE_LANGUAGE_KEY) as! NSArray
         let current = langArray.firstObject as! String

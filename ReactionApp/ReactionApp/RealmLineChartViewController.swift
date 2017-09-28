@@ -165,7 +165,7 @@ class RealmLineChartViewController: RealmDemoBaseViewController, ChartViewDelega
             
             print("setDayData, OBJECTS = \(resultsCount)")
             
-            var dataEntries: [ChartDataEntry] = []
+            D
             
             for (index, result) in (currentDayResults?.enumerated())! {
                 
