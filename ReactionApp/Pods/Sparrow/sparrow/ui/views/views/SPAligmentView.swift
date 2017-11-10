@@ -55,12 +55,12 @@ class SPAligmentView: UIView {
                 space = self.minSpace
             }
             let spaceForButton = self.frame.width - (space * (countViews - 1))
-            itemHeight = spaceForButton / countViews
+            itemWidth = spaceForButton / countViews
             if self.maxItemSideSize != nil {
-                if (itemHeight > self.maxItemSideSize!) {
-                    itemHeight = self.maxItemSideSize!
+                if (itemWidth > self.maxItemSideSize!) {
+                    itemWidth = self.maxItemSideSize!
                     if countViews > 1 {
-                        space = (self.frame.width - (itemHeight * countViews)) / (countViews - 1)
+                        space = (self.frame.width - (itemWidth * countViews)) / (countViews - 1)
                     } else {
                         space = 0
                     }

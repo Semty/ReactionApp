@@ -56,7 +56,7 @@ extension SPRequestPermission {
                 presenter.eventsDelegate = delegate
                 let controller = SPRequestPermissionDialogInteractiveViewController.init(presenter: presenter)
                 controller.present(on: viewController)
-
+                
             }
         }
     }

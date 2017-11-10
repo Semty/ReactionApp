@@ -268,7 +268,7 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
         
             <<< PickerInlineRow<Flags>() {
                 $0.title = switchLanguageTitle
-                $0.options = [en, zh, ja, es, fr, ru]
+                $0.options = [en, de, ru, zh, ja, es, fr]
                 $0.value = currentFlag()
                 
             }.onChange({ (row: PickerInlineRow<SettingsViewController.Flags>) in
@@ -286,6 +286,8 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
                     Language.setAppleLAnguageTo(lang: "zh-Hans")
                 case self.es:
                     Language.setAppleLAnguageTo(lang: "es")
+                case self.de:
+                    Language.setAppleLAnguageTo(lang: "de")
                 default:
                     break
                 }
@@ -354,7 +356,7 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
 // MARK: - Language Switching
     
     typealias Flags = String
-    let en = "🇺🇸", ja = "🇯🇵", zh = "🇨🇳", fr = "🇫🇷", ru = "🇷🇺", es = "🇪🇸"
+    let en = "🇺🇸", ja = "🇯🇵", zh = "🇨🇳", fr = "🇫🇷", ru = "🇷🇺", es = "🇪🇸", de = "🇩🇪"
     
     private func currentFlag() -> Flags {
         switch Language.currentAppleLanguage() {
@@ -370,6 +372,8 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
             return zh
         case "es":
             return es
+        case "de":
+            return de
         default:
             return ""
         }

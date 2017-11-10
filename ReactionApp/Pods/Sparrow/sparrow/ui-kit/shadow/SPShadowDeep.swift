@@ -27,6 +27,12 @@ extension SPShadow {
         
         private init() {}
         
+        public static func setFor(label: UILabel) {
+            var offset = label.frame.height * 0.03
+            offset.setIfMore(when: 1)
+            label.setShadowOffsetForLetters(heightOffset: offset, opacity: 0.35)
+        }
+        
         public static func setFor(view: UIView) {
             
             let xTranslationFactor: CGFloat = 0
@@ -81,5 +87,12 @@ extension UIView {
     
     func setDeepShadow() {
         SPShadow.DeepStyle.setFor(view: self)
+    }
+}
+
+extension UILabel {
+    
+    func setDeepShadowForLetters() {
+        SPShadow.DeepStyle.setFor(label: self)
     }
 }

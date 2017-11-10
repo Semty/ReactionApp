@@ -205,6 +205,13 @@ extension UIView {
         self.layer.shadowPath = shadowPath.cgPath
     }
     
+    func removeShadow() {
+        self.layer.shadowColor = nil
+        self.layer.shadowOffset = CGSize.zero
+        self.layer.shadowOpacity = 0
+        self.layer.shadowPath = nil
+    }
+    
     func addShadowOpacityAnimation(to: CGFloat, duration: CFTimeInterval) {
         let animation = CABasicAnimation(keyPath:"shadowOpacity")
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
@@ -218,8 +225,8 @@ extension UIView {
 }
 
 // MARK: - animation
-extension UIView
-{
+extension UIView {
+    
     func addCornerRadiusAnimation(to: CGFloat, duration: CFTimeInterval) {
         let animation = CABasicAnimation(keyPath:"cornerRadius")
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
@@ -228,6 +235,14 @@ extension UIView
         animation.duration = duration
         self.layer.add(animation, forKey: "cornerRadius")
         self.layer.cornerRadius = to
+    }
+    
+    func removeFromSupervVewWithAlphaAnimatable(duration: CGFloat = 0.3) {
+        SPAnimation.animate(TimeInterval(duration), animations: {
+            self.alpha = 0
+        }, withComplection: {
+            self.removeFromSuperview()
+        })
     }
 }
 

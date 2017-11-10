@@ -20,13 +20,13 @@ target 'ReactionApp' do
   
   pod 'RandomKit', :git => 'https://github.com/nvzqz/RandomKit.git'
   
-  pod 'RAMAnimatedTabBarController', "~> 2.0.13"
+  pod 'RAMAnimatedTabBarController'
   
   pod 'LTMorphingLabel'
   
   pod 'Eureka', :git => 'https://github.com/xmartlabs/Eureka.git'
   
-  pod 'PopupDialog', '~> 0.5'
+  pod 'PopupDialog', '~> 0.6'
   
   pod 'Sparrow/Modules/RequestPermission', :git => 'https://github.com/IvanVorobei/Sparrow.git’
 

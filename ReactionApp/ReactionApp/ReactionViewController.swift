@@ -7,15 +7,14 @@
 //
 
 import UIKit
-import GoogleMobileAds
 import LTMorphingLabel
 import RandomKit
 import RealmSwift
 import Sparrow
 import StoreKit
 
-class ReactionViewController:   UIViewController, SPRequestPermissionEventsDelegate,
-                                GADBannerViewDelegate {
+class ReactionViewController:   UIViewController,
+                                SPRequestPermissionEventsDelegate {
     
 // MARK: - Localizable Strings
     
@@ -76,21 +75,9 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
         }
     }
     
-    lazy var adBannerView: GADBannerView = {
-        let adBannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
-        adBannerView.adUnitID = "ca-app-pub-8402016319891167/2847760134"
-        adBannerView.delegate = self
-        adBannerView.rootViewController = self
-        
-        return adBannerView
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        updateAdBanner()
-        self.view.addSubview(adBannerView)
-        
+
         if UserDefaultManager.shared.loadValue(forKey: .kShowPermissions) == nil {
             SPRequestPermission.dialog.interactive.present(on: self.tabBarController!,
                                                            with: [.notification],
@@ -156,7 +143,6 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
         setShortInstruction(duringCircleState: .none)
         
         self.reactionResultLabel.adjustFontSizeToFitText(newText: self.reactionResultLabel.text!)
-        self.checkPortraitTransition(forSize: self.view.bounds.size)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -201,7 +187,7 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
             
         UIView.animate(withDuration: Circle.sharedCircle.animationDuration) {
                 
-            self.circleView.transform  = CGAffineTransform.init(scaleX: 1.1, y: 1.1)
+            self.circleView.transform  = CGAffineTransform.init(scaleX: 1.05, y: 1.05)
         }
             
         setShortInstruction(duringCircleState: .preparation)
@@ -325,8 +311,6 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) in
             
-            self.checkPortraitTransition(forSize: size)
-            
             self.circleView.setNeedsDisplay()
             
             self.reactionResultLabel.adjustFontSizeToFitText(newText: self.reactionResultLabel.text!)
@@ -376,62 +360,6 @@ class ReactionViewController:   UIViewController, SPRequestPermissionEventsDeleg
     
     func didSelectedPermission(permission: SPRequestPermissionType) {
         
-    }
-    
-// MARK: - GADBannerViewDelegate
-    
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        print("Banner loaded successfully")
-        relayoutAdBannerView()
-        animateAdBanner()
-    }
-    
-    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        print("Fail to receive ads")
-        print(error)
-    }
-    
-// MARK: - Ad Banner
-    
-    func updateAdBanner() {
-        adBannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait,
-                                     origin: CGPoint.init(x: 0,
-                                                          y: rootView.frame.maxY -
-                                                            adBannerView.bounds.height + 8))
-        adBannerView.adUnitID = "ca-app-pub-8402016319891167/2847760134"
-        adBannerView.delegate = self
-        adBannerView.rootViewController = self
-        DispatchQueue.main.async {
-            self.adBannerView.load(GADRequest())
-        }
-    }
-    
-    func relayoutAdBannerView() {
-        
-        var bannerFrame = adBannerView.frame
-        bannerFrame.origin.x =  0
-        bannerFrame.origin.y =  rootView.frame.maxY -
-                                adBannerView.bounds.height + 8
-        adBannerView.frame = bannerFrame
-    }
-    
-    func animateAdBanner() {
-        let translateTransform = CGAffineTransform(translationX: 0,
-                                                   y: adBannerView.bounds.size.height)
-        adBannerView.transform = translateTransform
-        
-        UIView.animate(withDuration: 0.5) {
-            self.adBannerView.transform = CGAffineTransform.identity
-        }
-    }
-    
-    func checkPortraitTransition(forSize size: CGSize) {
-        if size.height < size.width {
-            self.adBannerView.isHidden = true
-        } else {
-            self.adBannerView.isHidden = false
-            self.relayoutAdBannerView()
-        }
     }
     
 // MARK: - Rate App

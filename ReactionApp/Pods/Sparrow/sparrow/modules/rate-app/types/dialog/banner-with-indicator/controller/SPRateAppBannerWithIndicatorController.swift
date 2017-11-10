@@ -50,7 +50,7 @@ class SPRateAppBannerWithIndicatorController: SPIndicationBannerController<UILab
         super.viewDidLoad()
     }
     
-    func tapButton() {
+    @objc func tapButton() {
         if self.listView.subviews.count == Int(1) {
             SPRateApp.rateApp(id: applicationID)
         }

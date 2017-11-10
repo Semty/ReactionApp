@@ -50,7 +50,7 @@ class SPRateAppBannerWithIndicatorTwiceButton: UIButton {
         self.addTarget(self, action: #selector(self.pressButton), for: .touchUpInside)
     }
     
-    func pressButton() {
+    @objc func pressButton() {
         self.setSelectedState(animated: true)
     }
     

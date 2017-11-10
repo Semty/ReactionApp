@@ -18,8 +18,10 @@ class Language {
         let langArray = userdef.object(forKey: APPLE_LANGUAGE_KEY) as! NSArray
         let current = langArray.firstObject as! String
         let endIndex = current.startIndex
-        let currentWithoutLocale = current.substring(to: current.index(endIndex, offsetBy: 2))
-        return currentWithoutLocale
+        
+        let currentWithoutLocale = current[..<current.index(endIndex, offsetBy: 2)]
+        
+        return String(currentWithoutLocale)
     }
     
     class func currentAppleLanguageFull() -> String {

@@ -25,7 +25,7 @@ public class SPBezierPathFigureDraw : NSObject {
 
     //// Drawing Methods
 
-    public dynamic class func drawFillChecked(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 26, height: 26), resizing: ResizingBehavior = .aspectFit, fillColor: UIColor = UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1.000)) {
+    @objc public dynamic class func drawFillChecked(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 26, height: 26), resizing: ResizingBehavior = .aspectFit, fillColor: UIColor = UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1.000)) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()!
         

@@ -88,6 +88,8 @@ class RealmDemoBaseViewController: UIViewController {
         chartView.rightAxis.enabled = false
         
         chartView.legend.textColor = UIColor.white
+        chartView.legend.font = UIFont.init(name: "HelveticaNeue-CondensedBold",
+                                            size: fontSize)!
         
         let msFormatter = NumberFormatter()
         msFormatter.positiveSuffix = msLString

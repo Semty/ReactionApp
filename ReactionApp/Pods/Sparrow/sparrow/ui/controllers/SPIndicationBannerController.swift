@@ -139,7 +139,6 @@ public class SPIndicationBannerController<BottomView: UIView>: SPStatusBarManage
         self.bottomView.alpha = 0
         self.modalPresentationStyle = .overCurrentContext
         viewController.present(self, animated: false, completion: {
-            finished in
             SPHideWindow.dialog.presentWith(view: self.backgroundView)
             if self.isShowBottomView {
                 SPAnimation.animate(0.3, animations: {
@@ -164,9 +163,7 @@ public class SPIndicationBannerController<BottomView: UIView>: SPStatusBarManage
         SPAnimation.animate(SPHideWindow.dialog.duration, animations: {
             self.backgroundView.setGradeAlpha(0, blurRaius: 0)
         }, withComplection: {
-            finished in
             self.dismiss(animated: false, completion: {
-                finished in
                 self.animator.removeAllBehaviors()
                 self.delegate?.didHide()
             })
@@ -240,7 +237,6 @@ public class SPIndicationBannerController<BottomView: UIView>: SPStatusBarManage
             let lastFrameViewInList = self.listView.subviews.last?.frame ?? CGRect.zero
             self.hidingView?.frame = CGRect.init(x: self.listView.frame.origin.x, y: self.listView.frame.bottomYPosition - lastFrameViewInList.height, width: lastFrameViewInList.height, height: lastFrameViewInList.height)
         }, options: .curveEaseInOut, withComplection: {
-            finished in
             SPAnimation.animate(0.05, animations: {
                 let itemView = self.listView.subviews.last as! SPItemListView
                 itemView.iconView.alpha = 1
@@ -248,7 +244,6 @@ public class SPIndicationBannerController<BottomView: UIView>: SPStatusBarManage
             SPAnimation.animate(0.1, animations: {
                 self.hidingView?.alpha = 0
             }, withComplection: {
-                finished in
                 self.hidingView?.removeFromSuperview()
                 self.hidingView = nil
             })
@@ -268,7 +263,7 @@ public class SPIndicationBannerController<BottomView: UIView>: SPStatusBarManage
     var snapBehavior : UISnapBehavior!
     
     //MARK: - handle gesture
-    func handleGesture(sender: AnyObject) {
+    @objc func handleGesture(sender: AnyObject) {
         let myView = self.alertView!
         let location = sender.location(in: view)
         let boxLocation = sender.location(in: myView)

@@ -24,7 +24,7 @@ extension Bundle {
             var bundle = Bundle();
             if let _path = Bundle.main.path(forResource: Language.currentAppleLanguageFull(), ofType: "lproj") {
                 bundle = Bundle(path: _path)!
-            }else
+            } else
                 if let _path = Bundle.main.path(forResource: currentLanguage, ofType: "lproj") {
                     bundle = Bundle(path: _path)!
                 } else {

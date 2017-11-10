@@ -40,6 +40,7 @@
 		D55E49A41E7E9F27003DB146 /* Localizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55E49A31E7E9F27003DB146 /* Localizer.swift */; };
 		D55E49D81E8073D9003DB146 /* fr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = D55E49D71E8073D9003DB146 /* fr.lproj */; };
 		D58C4F621EA90013000533CB /* VideoAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58C4F611EA90013000533CB /* VideoAdManager.swift */; };
+		D5D2D23C1FB611B60021123A /* de.lproj in Resources */ = {isa = PBXBuildFile; fileRef = D5D2D23B1FB611B60021123A /* de.lproj */; };
 		D5F118401E7B230F00138F8D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5F118421E7B230F00138F8D /* InfoPlist.strings */; };
 		D5F39ED71E7B242200746551 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5F39ED91E7B242200746551 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
@@ -124,6 +125,9 @@
 		D55E49D61E8073B3003DB146 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D55E49D71E8073D9003DB146 /* fr.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fr.lproj; sourceTree = "<group>"; };
 		D58C4F611EA90013000533CB /* VideoAdManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoAdManager.swift; sourceTree = "<group>"; };
+		D5D2D2321FB610830021123A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		D5D2D2331FB610840021123A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		D5D2D23B1FB611B60021123A /* de.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = de.lproj; sourceTree = "<group>"; };
 		D5F118411E7B230F00138F8D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D5F39ED81E7B242200746551 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F438793F6FC39C17F09DF974 /* Pods-ReactionApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactionApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactionApp/Pods-ReactionApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -308,6 +312,7 @@
 				D5119CE61E82E71D0013A98E /* ja.lproj */,
 				D55E49D71E8073D9003DB146 /* fr.lproj */,
 				D545A4F41E7B18DA001CDE44 /* ru.lproj */,
+				D5D2D23B1FB611B60021123A /* de.lproj */,
 			);
 			name = Localization;
 			sourceTree = "<group>";
@@ -424,6 +429,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 44D0878B1E547DAF00180DD9;
 			productRefGroup = 44D087951E547DAF00180DD9 /* Products */;
@@ -449,6 +455,7 @@
 				D55E49D81E8073D9003DB146 /* fr.lproj in Resources */,
 				D5119D2B1E8315090013A98E /* es.lproj in Resources */,
 				D5119CE71E82E71D0013A98E /* ja.lproj in Resources */,
+				D5D2D23C1FB611B60021123A /* de.lproj in Resources */,
 				44D0879D1E547DAF00180DD9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -678,6 +685,7 @@
 				D55E49A91E8068BD003DB146 /* ja */,
 				D55E49AB1E8068C8003DB146 /* es */,
 				D55E49B51E806947003DB146 /* zh-Hans */,
+				D5D2D2321FB610830021123A /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -691,6 +699,7 @@
 				D55E49AA1E8068BD003DB146 /* ja */,
 				D55E49AC1E8068C8003DB146 /* es */,
 				D55E49B61E806947003DB146 /* zh-Hans */,
+				D5D2D2331FB610840021123A /* de */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

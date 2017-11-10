@@ -5,14 +5,14 @@ PODS:
   - Charts (3.0.4):
     - Charts/Core (= 3.0.4)
   - Charts/Core (3.0.4)
-  - ChartsRealm (3.0.2):
-    - Charts (~> 3.0.2)
-    - RealmSwift (~> 2.4)
-  - Eureka (4.0.0)
-  - Google-Mobile-Ads-SDK (7.24.0)
-  - LTMorphingLabel (0.5.4)
-  - PopupDialog (0.5.4)
-  - RAMAnimatedTabBarController (2.0.13)
+  - ChartsRealm (3.0.4):
+    - Charts (= 3.0.4)
+    - RealmSwift (~> 2.10)
+  - Eureka (4.0.1)
+  - Google-Mobile-Ads-SDK (7.25.0)
+  - LTMorphingLabel (0.5.5)
+  - PopupDialog (0.6.0)
+  - RAMAnimatedTabBarController (3.0.0)
   - RandomKit (5.2.3):
     - ShiftOperations (~> 1.0.2)
     - Threadly (~> 1.0)
@@ -34,8 +34,8 @@ DEPENDENCIES:
   - Eureka (from `https://github.com/xmartlabs/Eureka.git`)
   - Google-Mobile-Ads-SDK
   - LTMorphingLabel
-  - PopupDialog (~> 0.5)
-  - RAMAnimatedTabBarController (~> 2.0.13)
+  - PopupDialog (~> 0.6)
+  - RAMAnimatedTabBarController
   - RandomKit (from `https://github.com/nvzqz/RandomKit.git`)
   - Sparrow/Modules/RequestPermission (from `https://github.com/IvanVorobei/Sparrow.git`)
 
@@ -54,24 +54,24 @@ CHECKOUT OPTIONS:
     :commit: 6dd284bde21ea2e7f9fd89bc36f40df16e16369d
     :git: https://github.com/ViccAlexander/Chameleon.git
   Eureka:
-    :commit: 7c95c10580f198b6780bfc284cf5d61c7acecddc
+    :commit: 076eaaa27d1c90c68f01a6389cfcaa0359ea1a10
     :git: https://github.com/xmartlabs/Eureka.git
   RandomKit:
-    :commit: 06c51cbf8816a5f682aba03da353daf5640830ca
+    :commit: e4e0889c287551d4a0051ce257c518f29ade5d78
     :git: https://github.com/nvzqz/RandomKit.git
   Sparrow:
-    :commit: 7415a10e150d6344a10b11572d0d85f3df83319c
+    :commit: a20cea9b7a6c0f60359c3faddaf56240c357c19a
     :git: https://github.com/IvanVorobei/Sparrow.git
 
 SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Charts: 0705898046257443f0afbbc3179f4b67507b6e48
-  ChartsRealm: ed0332fd409298188a2b71e9548604165c987d42
-  Eureka: cf31d9de849ce134f2eb22751d4e78160ed8e96a
-  Google-Mobile-Ads-SDK: f405b7acb098fe89e6fcd05fdbf400c1a5bcb935
-  LTMorphingLabel: e2db48d19486affc0ed87fb56785c5f53afe00ec
-  PopupDialog: 75cf955693590b0cb2fdde00223fb65d99c57247
-  RAMAnimatedTabBarController: 2510f3b66954c3f77ea1042a35d34df8f5f3b604
+  ChartsRealm: 3cf7c9ebf9c6312efbf418cf1da91d72d5416b26
+  Eureka: 3311299432b1e11fa4b40796654fc759caabcd93
+  Google-Mobile-Ads-SDK: 113804f266381a30f982ad3c18063d4e0155414f
+  LTMorphingLabel: 86464e41c3394dbf1ad098442ed4dcf8891ba975
+  PopupDialog: 687af43af0f7b89948cd411ac701865f931bd6dc
+  RAMAnimatedTabBarController: 6d0638ad14db4939006e8c58933e05bde93e66f6
   RandomKit: e1ca01dea55913637cea96e25b3dffd37bdb674d
   Realm: 0ef72b837fb67e9f4b098bac771ddd72c7fdbb69
   RealmSwift: 07a9ae0505091eda6b2ee7c190c3786d6e90a7b0
@@ -79,6 +79,6 @@ SPEC CHECKSUMS:
   Sparrow: 86b8f0d7598dc52ff2b06bb1df05feb297d1821f
   Threadly: b772ed7c1ff4a3f03eb4600bbc5ef83b3be5cb29
 
-PODFILE CHECKSUM: 3b101f2433c0ef3cd510a294017d2e8aef6da438
+PODFILE CHECKSUM: 9730ab8987b5b1ab5ef0a0f01228a871fe631174
 
 COCOAPODS: 1.2.0
