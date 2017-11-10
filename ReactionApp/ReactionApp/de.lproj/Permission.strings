@@ -1,0 +1,32 @@
+/* Title for Camera Permission */
+"titleForPermissionCameraLString" = "Kamera";
+
+/* Title for Photo Library Permission */
+"titleForPermissionPhotoLibraryLString" = "Fotobibliothek";
+
+/* Title for Notifications Permission */
+"titleForPermissionNotificationLString" = "Benachrichtigungen";
+
+/* Title for Microphone Permission */
+"titleForPermissionMicrophoneLString" = "Mikrofon";
+
+/* Title for Calendar Permission */
+"titleForPermissionCalendarLString" = "Der Kalender";
+
+/* Title for Location Permission */
+"titleForPermissionLocationLString" = "Geolokalisierung";
+
+/* Header Title */
+"headerTitleLString" = "Hallo!";
+
+/* Header Subtitle */
+"headerSubtitleLString" = "Diese Anwendung benötigt Zugriff auf Benachrichtigungen :)";
+
+/* Top Advice Title */
+"topAdviceTitleLString" = "Bereitstellung der richtigen Rechte, können Sie es 100% verwenden";
+
+/* Bottom Advice Title */
+"bottomAdviceTitleLString" = "Sie können Berechtigungen in den Einstellungen verwalten";
+
+/* Under Dialog Advice Title */
+"underDialogAdviceTitleLString" = "Zum Überspringen ziehen";

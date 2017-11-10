@@ -1,0 +1,65 @@
+/* Max Saving Time Header */
+"maxSavingTimeHeader" = "Maximale Reaktionszeit für die Konservierung";
+
+/* Max Saving Time Title */
+"maxSavingTimeTitle" = "Reaktionszeit (in ms)";
+
+/* ms */
+"ms" = "ms";
+
+/* Notifications Settings Footer */
+"notificationDisabledFooter" = "Benachrichtigungen deaktiviert Du kannst sie aktivieren: Einstellungen -> Tap and Up -> Benachrichtigungen -> Benachrichtigungen aktivieren";
+
+/* Red Circle Time Header */
+"redCircleTimeHeader" = "Minimum und Maximum \"Rote Kreiszeit \"";
+
+/* Red Circle Time Max Title */
+"redCircleTimeMaxTitle" = "Maximal";
+
+/* Red Circle Time Min Title */
+"redCircleTimeMinTitle" = "Minimum";
+
+/* sec */
+"sec" = "sek";
+
+/* Training Settings Header */
+"trainingNotificationHeader" = "Trainingsbenachrichtigungen";
+
+/* Notifications Settings Ring Time */
+"trainingNotificationRingTime" = "Zeit";
+
+/* Training Settings Title */
+"trainingNotificationTitle" = "Aktivieren/Deaktivieren";
+
+/* Switch Language Header */
+"switchLanguageHeader" = "Sprache ändern";
+
+/* Switch Language Title */
+"switchLanguageTitle" = "Sprache";
+
+/* Write to Developer Header */
+"writeToDeveloperHeader" = "Entwickler kontaktieren";
+
+/* Send Feedback Title */
+"sendToDeveloperTitle" = "Rückkopplung";
+
+/* Help Developer Header */
+"helpDeveloperHeader" = "Beitrag zum Projekt";
+
+/* Help Developer Footer */
+"helpDeveloperFooter" = "Wenn Sie das Projekt unterstützen möchten, folgen Sie diesen Schritten:\n\n1. Eine Anzeige öffnen\n2. Wenn es erscheint, klicken Sie es an, als ob Sie an dem vorgeschlagenen Produkt interessiert sind\n3. Vielen Dank :)";
+
+/* Help Developer Confirmation */
+"helpDeveloperConfirmation" = "Ich kann ohne Ihre Erklärungen klicken 😊";
+
+/* Help Developer Title */
+"helpDeveloperTitle" = "Anzeigen ohne Klick zu sehen hat keinen Sinn";
+
+/* Watch Video Ad Title */
+"watchAdTitle" = "Werbung ansehen";
+
+
+
+
+
+
